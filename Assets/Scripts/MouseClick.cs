@@ -24,12 +24,16 @@ public class MouseClick : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
-		blockPossition = gameObject.transform.position;
-		blockPossition.y += 1;
+		// Land must be walkable
+		if(gameObject.GetComponent<LandScript>().speed != 0) {
+			blockPossition = gameObject.transform.position;
+			blockPossition.y += 1;
 
-		distx = player.position.x - blockPossition.x;
-		distz = player.position.z - blockPossition.z;
-		player.position = blockPossition;
+			distx = player.position.x - blockPossition.x;
+			distz = player.position.z - blockPossition.z;
+	
+			player.position = blockPossition;
+		}
 	}
 
 	void OnMouseOver() {
