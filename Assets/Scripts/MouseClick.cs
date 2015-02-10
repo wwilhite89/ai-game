@@ -6,8 +6,7 @@ public class MouseClick : MonoBehaviour {
 
 	Transform player;
 	private Vector3 blockPossition;
-	private float distx = .0f;
-	private float distz = .0f;
+	private float playerDist;
 
 	// Use this for initialization
 	void Start () {
@@ -29,9 +28,9 @@ public class MouseClick : MonoBehaviour {
 			blockPossition = gameObject.transform.position;
 			blockPossition.y += 1;
 
-			distx = player.position.x - blockPossition.x;
-			distz = player.position.z - blockPossition.z;
-	
+			playerDist = Vector3.Distance (gameObject.transform.position, player.position);
+
+			Debug.Log("you clicked distance " + playerDist);
 			player.position = blockPossition;
 		}
 	}
