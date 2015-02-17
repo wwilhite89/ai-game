@@ -16,4 +16,8 @@ public class LandScript : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	void OnMouseOver() {
+		renderer.material.color = new Color(255, renderer.material.color.g, renderer.material.color.b);
+	}
 }
