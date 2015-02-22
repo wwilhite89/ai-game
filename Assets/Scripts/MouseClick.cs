@@ -6,12 +6,13 @@ public class MouseClick : MonoBehaviour {
 
 	Transform player;
 	private Vector3 blockPossition;
-	private float distx = .0f;
-	private float distz = .0f;
+	private float playerDist;
+	private float mouseDist;
+	private Color landColor;
 
 	// Use this for initialization
 	void Start () {
-	
+		landColor = renderer.material.color;
 	}
 
 	void Awake() {
@@ -24,15 +25,30 @@ public class MouseClick : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
-		blockPossition = gameObject.transform.position;
-		blockPossition.y += 1;
+		// Land must be walkable
+		if(gameObject.GetComponent<LandScript>().speed != 0) {
+			blockPossition = gameObject.transform.position;
+			blockPossition.y += 1;
 
-		distx = player.position.x - blockPossition.x;
-		distz = player.position.z - blockPossition.z;
-		player.position = blockPossition;
+			playerDist = Vector3.Distance (gameObject.transform.position, player.position);
+
+			Debug.Log("you clicked distance " + playerDist);
+
+			if ( playerDist < player.GetComponent<PlayerScript>().moveSpeed )
+				player.position = blockPossition;
+		}
 	}
 
 	void OnMouseOver() {
 
+		mouseDist = Vector3.Distance (gameObject.transform.position, player.position);
+
+		if ( mouseDist < player.GetComponent<PlayerScript>().moveSpeed )
+			renderer.material.color = new Color(255, renderer.material.color.g, renderer.material.color.b);
+	} 
+	
+	void OnMouseExit ()
+	{
+		renderer.material.color = landColor;
 	}
 }

@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class PlayerScript : MonoBehaviour {
-
 	public float moveSpeed;
 	private Vector3 moveDirection;
 
