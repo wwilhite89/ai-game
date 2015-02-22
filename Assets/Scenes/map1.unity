@@ -155,7 +155,6 @@ GameObject:
   - 23: {fileID: 41668104}
   - 54: {fileID: 41668103}
   - 114: {fileID: 41668108}
-  - 114: {fileID: 41668109}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -234,6 +233,7 @@ Transform:
   - {fileID: 137375908}
   - {fileID: 11740868}
   - {fileID: 333718740}
+  - {fileID: 731398774}
   m_Father: {fileID: 0}
   m_RootOrder: 1
 --- !u!114 &41668108
@@ -249,19 +249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
---- !u!114 &41668109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: d974fa9640b7cab498e4dd7d5e719088,
-    type: 2}
-  m_PrefabInternal: {fileID: 674957240}
-  m_GameObject: {fileID: 41668102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a41e25e3dd4962c499aca2f794ce730d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
 --- !u!1 &55077394
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,6 +2198,7 @@ GameObject:
   - 92: {fileID: 333718738}
   - 124: {fileID: 333718737}
   - 81: {fileID: 333718736}
+  - 114: {fileID: 333718741}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2261,7 +2249,7 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
-  field of view: 70
+  field of view: 94
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2287,6 +2275,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 41668107}
   m_RootOrder: 2
+--- !u!114 &333718741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 333718735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d740171be7af9b841ae98643d2678112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera1: {fileID: 333718735}
+  camera2: {fileID: 731398773}
 --- !u!1 &356206605
 GameObject:
   m_ObjectHideFlags: 0
@@ -5142,7 +5143,16 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2000000, guid: d974fa9640b7cab498e4dd7d5e719088, type: 2}
+      propertyPath: field of view
+      value: 94
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: d974fa9640b7cab498e4dd7d5e719088, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11400002, guid: d974fa9640b7cab498e4dd7d5e719088, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d974fa9640b7cab498e4dd7d5e719088, type: 2}
   m_RootGameObject: {fileID: 41668102}
   m_IsPrefabParent: 0
@@ -5304,6 +5314,96 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &731398773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 731398774}
+  - 20: {fileID: 731398778}
+  - 124: {fileID: 731398777}
+  - 92: {fileID: 731398776}
+  - 114: {fileID: 731398775}
+  m_Layer: 0
+  m_Name: Camera2
+  m_TagString: Camera2
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &731398774
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 731398773}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
+  m_LocalScale: {x: 2, y: 20, z: 1}
+  m_Children: []
+  m_Father: {fileID: 41668107}
+  m_RootOrder: 3
+--- !u!114 &731398775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 731398773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d740171be7af9b841ae98643d2678112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera1: {fileID: 333718735}
+  camera2: {fileID: 731398773}
+--- !u!92 &731398776
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 731398773}
+  m_Enabled: 1
+--- !u!124 &731398777
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 731398773}
+  m_Enabled: 1
+--- !u!20 &731398778
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 731398773}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: .300000012
+  far clip plane: 1000
+  field of view: 74
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_HDR: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: .0219999999
 --- !u!1 &742492546
 GameObject:
   m_ObjectHideFlags: 0
@@ -14801,6 +14901,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1892486765}
   - 114: {fileID: 1892486766}
+  - 23: {fileID: 1892486767}
   m_Layer: 0
   m_Name: SandHolder
   m_TagString: Untagged
@@ -14842,6 +14943,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: Sand
   speed: 0
+--- !u!23 &1892486767
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1892486764}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!1 &1894785740
 GameObject:
   m_ObjectHideFlags: 0
@@ -16020,6 +16141,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2052329470}
   - 114: {fileID: 2052329471}
+  - 23: {fileID: 2052329472}
   m_Layer: 0
   m_Name: GrassFloor
   m_TagString: Untagged
@@ -16063,6 +16185,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: Grass
   speed: 0
+--- !u!23 &2052329472
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2052329469}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!1001 &2059143249
 Prefab:
   m_ObjectHideFlags: 0

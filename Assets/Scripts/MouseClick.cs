@@ -31,7 +31,9 @@ public class MouseClick : MonoBehaviour {
 			playerDist = Vector3.Distance (gameObject.transform.position, player.position);
 
 			Debug.Log("you clicked distance " + playerDist);
-			player.position = blockPossition;
+
+			if ( playerDist < player.GetComponent<PlayerScript>().moveSpeed )
+				player.position = blockPossition;
 		}
 	}
 
