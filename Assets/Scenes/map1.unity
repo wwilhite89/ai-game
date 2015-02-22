@@ -14900,8 +14900,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1892486765}
-  - 114: {fileID: 1892486766}
-  - 23: {fileID: 1892486767}
   m_Layer: 0
   m_Name: SandHolder
   m_TagString: Untagged
@@ -14930,39 +14928,6 @@ Transform:
   - {fileID: 146141302}
   m_Father: {fileID: 1241715261}
   m_RootOrder: 1
---- !u!114 &1892486766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1892486764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e71b6b77687d75a499b754a4d0c64455, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LandType: Sand
-  speed: 0
---- !u!23 &1892486767
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1892486764}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!1 &1894785740
 GameObject:
   m_ObjectHideFlags: 0
@@ -16140,8 +16105,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2052329470}
-  - 114: {fileID: 2052329471}
-  - 23: {fileID: 2052329472}
   m_Layer: 0
   m_Name: GrassFloor
   m_TagString: Untagged
@@ -16172,39 +16135,6 @@ Transform:
   - {fileID: 1938558922}
   m_Father: {fileID: 1241715261}
   m_RootOrder: 0
---- !u!114 &2052329471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2052329469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e71b6b77687d75a499b754a4d0c64455, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LandType: Grass
-  speed: 0
---- !u!23 &2052329472
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2052329469}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!1001 &2059143249
 Prefab:
   m_ObjectHideFlags: 0

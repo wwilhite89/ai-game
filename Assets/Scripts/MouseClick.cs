@@ -7,10 +7,12 @@ public class MouseClick : MonoBehaviour {
 	Transform player;
 	private Vector3 blockPossition;
 	private float playerDist;
+	private float mouseDist;
+	private Color landColor;
 
 	// Use this for initialization
 	void Start () {
-	
+		landColor = renderer.material.color;
 	}
 
 	void Awake() {
@@ -39,5 +41,14 @@ public class MouseClick : MonoBehaviour {
 
 	void OnMouseOver() {
 
+		mouseDist = Vector3.Distance (gameObject.transform.position, player.position);
+
+		if ( mouseDist < player.GetComponent<PlayerScript>().moveSpeed )
+			renderer.material.color = new Color(255, renderer.material.color.g, renderer.material.color.b);
+	} 
+	
+	void OnMouseExit ()
+	{
+		renderer.material.color = landColor;
 	}
 }
