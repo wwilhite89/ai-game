@@ -2,8 +2,11 @@
 using System.Collections;
 
 public class PlayerScript : MonoBehaviour {
+
+	public string team;
 	public float moveSpeed;
 	private Vector3 moveDirection;
+
 
 	// Use this for initialization
 	void Start () {

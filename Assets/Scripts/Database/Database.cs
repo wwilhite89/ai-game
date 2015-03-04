@@ -21,7 +21,7 @@ public class Database : MonoBehaviour {
 
     private IEnumerator setup() {
 
-        using (var c = new SQLiteConnection(connectionString))
+        using (var c = new SQLiteConnection(connectionString, false))
         {
             this.createCharacters(c);
         }
