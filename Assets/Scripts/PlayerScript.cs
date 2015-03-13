@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerScript : MonoBehaviour {
 
-	private int active;
+	public int isActive;
 	private Vector3 cameraOffset1;
 	private Vector3 cameraOffset2;
 	private int currentCam;
@@ -13,9 +13,9 @@ public class PlayerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		active = 0;
+		isActive = 0;
 		pieceLeftToMove = true;
-		cameraOffset1 = new Vector3(0,7,-4);
+		cameraOffset1 = new Vector3(0,7,-5);
 		cameraOffset2 = new Vector3 (0, 10, 0);
 		currentCam = 1;
 	}
@@ -31,12 +31,12 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
-		active = 1;
+		isActive = 1;
 
 		Camera.main.camera.transform.position = cameraPosition (gameObject.transform.position);
 	}
 
-	private Vector3 cameraPosition ( Vector3 position ) {
+	public Vector3 cameraPosition ( Vector3 position ) {
 		Vector3 newPosition;
 
 		if (currentCam == 1) {
