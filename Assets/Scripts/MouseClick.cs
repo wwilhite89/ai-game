@@ -9,11 +9,13 @@ public class MouseClick : MonoBehaviour {
 	private float playerDist;
 	private float mouseDist;
 	private Color landColor;
+	private Color highlighColor;
 	private GameObject[] players;
 
 	// Use this for initialization
 	void Start () {
 		landColor = renderer.material.color;
+		highlighColor = new Color (255, renderer.material.color.g, renderer.material.color.b);
 		players = GameObject.FindGameObjectsWithTag ("Player");
 
 		Debug.Log ("player length" + players.Length);
@@ -30,11 +32,30 @@ public class MouseClick : MonoBehaviour {
 			if (players [i].GetComponent<PlayerScript> ().isActive == 1)
 					player = players [i];
 		}
+
+		HighlightLand ();
+	}
+
+	void HighlightLand() {
+		float dist;
+
+		if (player != null) {
+			dist = Vector3.Distance (gameObject.transform.position, player.transform.position);
+
+			// set the land color to the default color
+			this.renderer.material.color = landColor;
+
+			// highlight the land around a selected player if he is active and able to move
+			if (dist < player.GetComponent<PlayerScript>().moveSpeed && gameObject.GetComponent<LandScript>().speed != 0) {
+				if (player.GetComponent<PlayerScript>().isActive == 1 && player.GetComponent<PlayerScript>().pieceLeftToMove == true)
+					this.renderer.material.color = highlighColor;
+			}
+		}
 	}
 
 	void OnMouseDown() {
 		// Land must be walkable
-		if(gameObject.GetComponent<LandScript>().speed != 0) {
+		if(player != null && gameObject.GetComponent<LandScript>().speed != 0) {
 			blockPossition = gameObject.transform.position;
 			blockPossition.y += 1;
 
@@ -43,8 +64,10 @@ public class MouseClick : MonoBehaviour {
 			Debug.Log("you clicked distance " + playerDist);
 
 			if ( playerDist < player.GetComponent<PlayerScript>().moveSpeed && player.GetComponent<PlayerScript>().pieceLeftToMove == true) {
-				player.transform.position = blockPossition;
 				player.GetComponent<PlayerScript>().isActive = 0;
+
+				player.transform.position = blockPossition;
+
 				Camera.main.transform.position = player.GetComponent<PlayerScript>().cameraPosition(player.transform.position);
 				player.GetComponent<PlayerScript>().pieceLeftToMove = false;
 			}
@@ -53,18 +76,10 @@ public class MouseClick : MonoBehaviour {
 
 	void OnMouseOver() {
 
-		if (player != null) {
-			if (player.GetComponent<PlayerScript> ().pieceLeftToMove == true) {
-				mouseDist = Vector3.Distance (gameObject.transform.position, player.transform.position);
-
-				if (mouseDist < player.GetComponent<PlayerScript> ().moveSpeed)
-					renderer.material.color = new Color (255, renderer.material.color.g, renderer.material.color.b);
-			}
-		}
 	} 
 	
 	void OnMouseExit ()
 	{
-		renderer.material.color = landColor;
+
 	}
 }
