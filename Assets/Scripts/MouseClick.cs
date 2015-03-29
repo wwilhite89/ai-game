@@ -12,12 +12,12 @@ public class MouseClick : MonoBehaviour {
 	private Color highlighColor;
 	private GameObject[] players;
 
+
 	// Use this for initialization
 	void Start () {
 		landColor = renderer.material.color;
 		highlighColor = new Color (255, renderer.material.color.g, renderer.material.color.b);
 		players = GameObject.FindGameObjectsWithTag ("Player");
-
 		Debug.Log ("player length" + players.Length);
 	}
 
@@ -68,7 +68,7 @@ public class MouseClick : MonoBehaviour {
 
 				player.transform.position = blockPossition;
 
-				Camera.main.transform.position = player.GetComponent<PlayerScript>().cameraPosition(player.transform.position);
+				player.GetComponent<CameraScript>().cameraPosition(player.transform.position);
 				player.GetComponent<PlayerScript>().pieceLeftToMove = false;
 			}
 		}
