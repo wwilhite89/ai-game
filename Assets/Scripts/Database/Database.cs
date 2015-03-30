@@ -42,7 +42,8 @@ public class Database : MonoBehaviour {
         this.isInitialized = true;
         yield return new WaitForSeconds(0);
     }
-    
+   
+
     private IEnumerable<Character> getInitialCharacters()
     {
         var c = new List<Character>();
@@ -81,20 +82,39 @@ public class Database : MonoBehaviour {
 
         #region MARTELL
 
-        c.Add(new Character { Name = "Randell Tarli", House = Character.HouseName.MARTELL });
-        
+        c.Add(new Character { Name = "The Red Viper", House = Character.HouseName.MARTELL });
+        c.Add(new Character { Name = "Areo Hotah", House = Character.HouseName.MARTELL });
+        c.Add(new Character { Name = "Obara Sand", House = Character.HouseName.MARTELL });
+        c.Add(new Character { Name = "Darkstar", House = Character.HouseName.MARTELL });
+        c.Add(new Character { Name = "Nymeria Sand", House = Character.HouseName.MARTELL });
+        c.Add(new Character { Name = "Arianne Martell", House = Character.HouseName.MARTELL });
+        c.Add(new Character { Name = "Doran Martell", House = Character.HouseName.MARTELL });
+ 
+
         #endregion
 
         #region TYRELL
 
-        c.Add(new Character { Name = "Eddard Stark", House = Character.HouseName.TYRELL });
+        c.Add(new Character { Name = "Randell Tarli", House = Character.HouseName.TYRELL });
+        c.Add(new Character { Name = "Ser Garlen Tyrell", House = Character.HouseName.TYRELL });
+        c.Add(new Character { Name = "Ser Loras Tyrell", House = Character.HouseName.TYRELL });
+        c.Add(new Character { Name = "Mace Tyrell", House = Character.HouseName.TYRELL });
+        c.Add(new Character { Name = "Queen of Thorns", House = Character.HouseName.TYRELL });
+        c.Add(new Character { Name = "Margaery Tyrell", House = Character.HouseName.TYRELL });
+        c.Add(new Character { Name = "Alester Florent", House = Character.HouseName.TYRELL });
 
         #endregion
         
         #region BARATHEON
 
-        c.Add(new Character { Name = "Eddard Stark", House = Character.HouseName.BARATHEON });
-
+        c.Add(new Character { Name = "Stannis Baratheon", House = Character.HouseName.BARATHEON });
+        c.Add(new Character { Name = "Renly Baratheon", House = Character.HouseName.BARATHEON });
+        c.Add(new Character { Name = "Ser Davos Seaworth", House = Character.HouseName.BARATHEON });
+        c.Add(new Character { Name = "Brienne of Tarth", House = Character.HouseName.BARATHEON });
+        c.Add(new Character { Name = "Melisandre", House = Character.HouseName.BARATHEON });
+        c.Add(new Character { Name = "Sallandhor Saan", House = Character.HouseName.BARATHEON });
+        c.Add(new Character { Name = "Patchface", House = Character.HouseName.BARATHEON });
+       
         #endregion
 
         return c.AsEnumerable();

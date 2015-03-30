@@ -30,6 +30,7 @@ class Character
     public float CRIT { get; set; }
     public int MOV { get; set; }
     public HouseName House { get; set; }
+    public string resourcePath { get; set; }
 
     #endregion
 
