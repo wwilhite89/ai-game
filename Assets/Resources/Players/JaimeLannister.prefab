@@ -29,7 +29,7 @@ GameObject:
   - 54: {fileID: 5449054}
   - 114: {fileID: 11449054}
   m_Layer: 0
-  m_Name: Player
+  m_Name: JaimeLannister
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -211,7 +211,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41e25e3dd4962c499aca2f794ce730d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
+  pieceLeftToMove: 0
   moveSpeed: 3
+  attack: 0
+  defense: 0
+  luck: 0
+  playerSprites: []
 --- !u!212 &21249054
 SpriteRenderer:
   m_ObjectHideFlags: 1
