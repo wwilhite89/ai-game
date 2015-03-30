@@ -15,8 +15,11 @@ public class MouseClick : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		landColor = renderer.material.color;
-		highlighColor = new Color (255, renderer.material.color.g, renderer.material.color.b);
+
+		if (renderer.material.HasProperty ("_Color")) {
+			landColor = renderer.material.color;
+			highlighColor = new Color (255, renderer.material.color.g, renderer.material.color.b);
+		}
 		players = GameObject.FindGameObjectsWithTag ("Player");
 		Debug.Log ("player length" + players.Length);
 	}
