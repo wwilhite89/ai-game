@@ -54,7 +54,7 @@ public class CameraScript : MonoBehaviour {
 	private void arialCam() {
 		if (currentCam == 1) {
 			currentCam = 2;
-			camera.transform.position = cameraPosition (gameObject.transform.position);
+			cam.transform.position = cameraPosition (gameObject.transform.position);
 			transform.rotation = Quaternion.Euler(90.0f,0.0f,0.0f);
 		}
 	}
@@ -62,7 +62,7 @@ public class CameraScript : MonoBehaviour {
 	private void angleCam() {
 		if (currentCam == 2) {
 			currentCam = 1;
-			camera.transform.position = cameraPosition (gameObject.transform.position);
+			cam.transform.position = cameraPosition (gameObject.transform.position);
 			transform.rotation = Quaternion.Euler(49.0f,0.0f,0.0f);
 		}
 	}
