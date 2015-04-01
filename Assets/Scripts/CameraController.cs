@@ -43,6 +43,7 @@ public class CameraController : MonoBehaviour {
 	}
 
 	public void Center(Vector3 pos) {
+		pos.y = cam.transform.position.y;
 		cam.transform.position = pos;
 	}
 }
