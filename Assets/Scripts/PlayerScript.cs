@@ -26,6 +26,8 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
+
+		this.GetComponentInParent<ParentPlayerScript>().resetActive ();
 		isActive = 1;
 	}
 
