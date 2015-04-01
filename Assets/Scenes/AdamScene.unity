@@ -164,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &22981920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &29955774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &37476667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &44941742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,6 +612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &59233493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,6 +713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &60376038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -847,6 +853,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &82567118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,6 +954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &87355906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1047,6 +1055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &128013926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1147,6 +1156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &141522741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1247,6 +1257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &145250813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,7 +1327,7 @@ GameObject:
   - 114: {fileID: 145638991}
   - 114: {fileID: 145638990}
   m_Layer: 0
-  m_Name: Player Test
+  m_Name: Human
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1329,12 +1340,12 @@ Transform:
   m_PrefabInternal: {fileID: 501843273}
   m_GameObject: {fileID: 145638988}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: .75, y: .75, z: .0500000119}
   m_Children:
   - {fileID: 1893953269}
-  m_Father: {fileID: 1331076214}
-  m_RootOrder: 1
+  m_Father: {fileID: 1235800197}
+  m_RootOrder: 4
 --- !u!114 &145638990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1489,6 +1500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &146141305
 Renderer:
   m_ObjectHideFlags: 0
@@ -1589,6 +1601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &147170638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1718,6 +1731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &165177700
 Renderer:
   m_ObjectHideFlags: 0
@@ -1819,7 +1833,7 @@ GameObject:
   - 114: {fileID: 168150497}
   - 114: {fileID: 168150496}
   m_Layer: 0
-  m_Name: Player Test
+  m_Name: Human
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1832,12 +1846,12 @@ Transform:
   m_PrefabInternal: {fileID: 1331805136}
   m_GameObject: {fileID: 168150494}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: -2}
   m_LocalScale: {x: .75, y: .75, z: .0500000119}
   m_Children:
   - {fileID: 824007594}
-  m_Father: {fileID: 1331076214}
-  m_RootOrder: 0
+  m_Father: {fileID: 1235800197}
+  m_RootOrder: 3
 --- !u!114 &168150496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1975,6 +1989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &169142497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2075,6 +2090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &210480075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2175,6 +2191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &210921310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2275,6 +2292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &230190586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2375,6 +2393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &243796950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2475,6 +2494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &253554857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2619,6 +2639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &267440295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2719,6 +2740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &284215899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2819,6 +2841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &286168394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2926,6 +2949,10 @@ Prefab:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 155988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
+      propertyPath: m_Name
+      value: AI
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
   m_RootGameObject: {fileID: 1301158872}
@@ -2977,6 +3004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &314186933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3077,6 +3105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &333612520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3261,6 +3290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &347256592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3361,6 +3391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &358618640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3549,6 +3580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &396947176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3649,6 +3681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &412837602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3718,7 +3751,7 @@ GameObject:
   - 114: {fileID: 425793590}
   - 114: {fileID: 425793589}
   m_Layer: 0
-  m_Name: Player Test
+  m_Name: AI
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3874,6 +3907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &443747698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3974,6 +4008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &444965711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4118,6 +4153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &452924155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4218,6 +4254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &462537732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4306,6 +4343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &466559341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4418,6 +4456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &486264146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4516,7 +4555,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1331076214}
+    m_TransformParent: {fileID: 1235800197}
     m_Modifications:
     - target: {fileID: 455988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_LocalPosition.x
@@ -4528,7 +4567,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 455988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 455988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4548,7 +4587,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 455988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11455988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: playerSprites.Array.data[1]
@@ -4563,6 +4602,10 @@ Prefab:
     - target: {fileID: 155988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 155988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
+      propertyPath: m_Name
+      value: Human
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
@@ -4615,6 +4658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &502353051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4715,6 +4759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &507461291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4859,6 +4904,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &525875935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5003,6 +5049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &533972217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5103,6 +5150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &536921547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5291,6 +5339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &569218426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5391,6 +5440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &569785228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5552,6 +5602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &580371385
 Renderer:
   m_ObjectHideFlags: 0
@@ -5669,6 +5720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &625666853
 Renderer:
   m_ObjectHideFlags: 0
@@ -5769,6 +5821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &627244067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5869,6 +5922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &628373333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5969,6 +6023,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &633858660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6113,6 +6168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &644085917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6252,6 +6308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &646068837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6369,6 +6426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &658143452
 Renderer:
   m_ObjectHideFlags: 0
@@ -6469,6 +6527,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &659736712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6613,6 +6672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &683778002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6713,6 +6773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &689214867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6813,6 +6874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &700015200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6867,6 +6929,52 @@ MeshFilter:
   m_PrefabInternal: {fileID: 256314806}
   m_GameObject: {fileID: 700015197}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &712362430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 712362432}
+  - 114: {fileID: 712362431}
+  m_Layer: 0
+  m_Name: Camera Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &712362431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 712362430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c6845decaa2a614d9e9b3ef7d329e76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionDelta: .5
+  yMax: 20
+  yMin: 4
+  up: 119
+  down: 115
+  left: 97
+  right: 100
+--- !u!4 &712362432
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 712362430}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.53528905, y: .000345230103, z: .0321169868}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
 --- !u!1 &718869417
 GameObject:
   m_ObjectHideFlags: 0
@@ -6913,6 +7021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &718869420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7013,6 +7122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &720647585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7113,6 +7223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &723316245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7213,6 +7324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &727047557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7313,6 +7425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &738489494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7420,6 +7533,10 @@ Prefab:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 155988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
+      propertyPath: m_Name
+      value: AI
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
   m_RootGameObject: {fileID: 1092856325}
@@ -7471,6 +7588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &758218332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7571,6 +7689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &761585687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7671,6 +7790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &770271218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7771,6 +7891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &796887369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7900,6 +8021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &822980929
 Renderer:
   m_ObjectHideFlags: 0
@@ -8039,6 +8161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &824260065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8139,6 +8262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &834310939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8239,6 +8363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &838517071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8339,6 +8464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &846771079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8439,6 +8565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &849293647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8539,6 +8666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &851830736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8639,6 +8767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &864259254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8739,6 +8868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &867381438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8878,6 +9008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &873090940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8978,6 +9109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &873660699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9210,6 +9342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &893087611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9310,6 +9443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &912040438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9461,6 +9595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &935638119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9561,6 +9696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &936183054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9705,6 +9841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &944763091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9805,6 +9942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &954495660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9934,6 +10072,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &965391455
 Renderer:
   m_ObjectHideFlags: 0
@@ -10095,6 +10234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &974253700
 Renderer:
   m_ObjectHideFlags: 0
@@ -10183,6 +10323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &986478927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10312,6 +10453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &1000918227
 Renderer:
   m_ObjectHideFlags: 0
@@ -10417,6 +10559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &1001164261
 Renderer:
   m_ObjectHideFlags: 0
@@ -10583,6 +10726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &1016007698
 Renderer:
   m_ObjectHideFlags: 0
@@ -10671,6 +10815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &1024404236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10771,6 +10916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1029000437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10871,6 +11017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &1054182124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10971,6 +11118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1054601315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11144,6 +11292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &1073623237
 Renderer:
   m_ObjectHideFlags: 0
@@ -11232,6 +11381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1073987056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11332,6 +11482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1081504278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11401,7 +11552,7 @@ GameObject:
   - 114: {fileID: 1092856328}
   - 114: {fileID: 1092856327}
   m_Layer: 0
-  m_Name: Player Test
+  m_Name: AI
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11601,6 +11752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1109684856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11745,6 +11897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1136691118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11845,6 +11998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1137844607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11945,6 +12099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1139961708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12123,6 +12278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1157751791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12223,6 +12379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1159462331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12428,6 +12585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &1179399308
 Renderer:
   m_ObjectHideFlags: 0
@@ -12528,6 +12686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1195011944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12672,6 +12831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1215777679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12734,6 +12894,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1235800197}
+  - 114: {fileID: 1235800198}
   m_Layer: 0
   m_Name: Players
   m_TagString: Untagged
@@ -12754,8 +12915,24 @@ Transform:
   - {fileID: 1092856326}
   - {fileID: 425793588}
   - {fileID: 1301158873}
+  - {fileID: 168150495}
+  - {fileID: 145638989}
+  - {fileID: 1255392179}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &1235800198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1235800196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35a814b92de40a488811af7150e58d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  humans: []
+  ai: []
 --- !u!1 &1241715260
 GameObject:
   m_ObjectHideFlags: 0
@@ -12843,6 +13020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1245027284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12943,6 +13121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1245611334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13043,6 +13222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1253223137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13112,7 +13292,7 @@ GameObject:
   - 114: {fileID: 1255392181}
   - 114: {fileID: 1255392180}
   m_Layer: 0
-  m_Name: Player Test
+  m_Name: Human
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13125,12 +13305,12 @@ Transform:
   m_PrefabInternal: {fileID: 1697544778}
   m_GameObject: {fileID: 1255392178}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: -2}
   m_LocalScale: {x: .75, y: .75, z: .0500000119}
   m_Children:
   - {fileID: 1505514496}
-  m_Father: {fileID: 1331076214}
-  m_RootOrder: 2
+  m_Father: {fileID: 1235800197}
+  m_RootOrder: 5
 --- !u!114 &1255392180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13376,6 +13556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &1297702698
 Renderer:
   m_ObjectHideFlags: 0
@@ -13464,6 +13645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1298362672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13533,7 +13715,7 @@ GameObject:
   - 114: {fileID: 1301158875}
   - 114: {fileID: 1301158874}
   m_Layer: 0
-  m_Name: Player Test
+  m_Name: AI
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13689,6 +13871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1312836038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13789,6 +13972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1313397872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13889,6 +14073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &1319296004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14006,6 +14191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &1324099974
 Renderer:
   m_ObjectHideFlags: 0
@@ -14060,42 +14246,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1331076213
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1331076214}
-  m_Layer: 0
-  m_Name: Players
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1331076214
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1331076213}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 168150495}
-  - {fileID: 145638989}
-  - {fileID: 1255392179}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
 --- !u!1001 &1331805136
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1331076214}
+    m_TransformParent: {fileID: 1235800197}
     m_Modifications:
     - target: {fileID: 455988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_LocalPosition.x
@@ -14107,7 +14263,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 455988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 455988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_LocalRotation.x
@@ -14127,7 +14283,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 455988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11455988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: playerSprites.Array.data[0]
@@ -14142,6 +14298,10 @@ Prefab:
     - target: {fileID: 155988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 155988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
+      propertyPath: m_Name
+      value: Human
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
@@ -14194,6 +14354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1339363132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14294,6 +14455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1339981133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14394,6 +14556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1348512724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14494,6 +14657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1351604581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14594,6 +14758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1357119082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14694,6 +14859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1361089887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14794,6 +14960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1362111933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14921,6 +15088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1376947351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15033,6 +15201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1404046162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15184,6 +15353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1418904351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15284,6 +15454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1426688995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15384,6 +15555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1435640693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15484,6 +15656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1438363812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15584,6 +15757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1439096198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15684,6 +15858,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1443653060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15784,6 +15959,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1444678327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15928,6 +16104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1463737620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16028,6 +16205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1468274660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16262,6 +16440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1510854706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16450,6 +16629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1572334707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16550,6 +16730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1575338418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16701,6 +16882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1601642310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16907,6 +17089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &1633506962
 Renderer:
   m_ObjectHideFlags: 0
@@ -17007,6 +17190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1639365806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17107,6 +17291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1650642859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17251,6 +17436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1695482335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17310,7 +17496,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1331076214}
+    m_TransformParent: {fileID: 1235800197}
     m_Modifications:
     - target: {fileID: 455988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_LocalPosition.x
@@ -17322,7 +17508,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 455988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 455988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_LocalRotation.x
@@ -17342,7 +17528,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 455988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11455988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: playerSprites.Array.data[1]
@@ -17357,6 +17543,10 @@ Prefab:
     - target: {fileID: 155988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 155988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
+      propertyPath: m_Name
+      value: Human
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
@@ -17409,6 +17599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1703276675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17538,6 +17729,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: .5
+  ocupado: 0
 --- !u!23 &1704737239
 Renderer:
   m_ObjectHideFlags: 0
@@ -17733,6 +17925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1727975763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17840,6 +18033,10 @@ Prefab:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 155988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
+      propertyPath: m_Name
+      value: AI
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
   m_RootGameObject: {fileID: 425793587}
@@ -17891,6 +18088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1754160120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17991,6 +18189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1757129691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18130,6 +18329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &1767915945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18230,6 +18430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1792300544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18330,6 +18531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1792837017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18430,6 +18632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1795835415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18530,6 +18733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1798367820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18630,6 +18834,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1812056298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18730,6 +18935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1831488405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18830,6 +19036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1840457052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18930,6 +19137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1841503058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19030,6 +19238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &1863036159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19130,6 +19339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1863457023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19230,6 +19440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1867748482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19330,6 +19541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1868227909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19560,6 +19772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1907633927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19660,6 +19873,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1911219906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19760,6 +19974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1921257459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19943,6 +20158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1942122363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20043,6 +20259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1953494456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20212,6 +20429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1983067407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20312,6 +20530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1985862495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20412,6 +20631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &1997055220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20512,6 +20732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &2003480206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20612,6 +20833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &2004692153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20712,6 +20934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &2011716904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20812,6 +21035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &2026325403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20912,6 +21136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &2026762169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21012,6 +21237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &2050390230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21112,6 +21338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &2056574729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21212,6 +21439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 0
+  ocupado: 0
 --- !u!114 &2058948003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21312,6 +21540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &2066945933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21412,6 +21641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &2067456675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21556,6 +21786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &2078248125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21656,6 +21887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &2083404524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21756,6 +21988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &2111039970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21856,6 +22089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LandType: 
   speed: 1
+  ocupado: 0
 --- !u!114 &2132495425
 MonoBehaviour:
   m_ObjectHideFlags: 0
