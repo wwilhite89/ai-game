@@ -1317,7 +1317,7 @@ GameObject:
   - 114: {fileID: 145638990}
   m_Layer: 0
   m_Name: Player Test
-  m_TagString: Enemy
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1820,7 +1820,7 @@ GameObject:
   - 114: {fileID: 168150496}
   m_Layer: 0
   m_Name: Player Test
-  m_TagString: Enemy
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2922,6 +2922,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: d2c1df7c0fcaba24892f3b76d30ed58d,
         type: 3}
+    - target: {fileID: 155988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
   m_RootGameObject: {fileID: 1301158872}
@@ -3715,7 +3719,7 @@ GameObject:
   - 114: {fileID: 425793589}
   m_Layer: 0
   m_Name: Player Test
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4558,7 +4562,7 @@ Prefab:
         type: 3}
     - target: {fileID: 155988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_TagString
-      value: Enemy
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
@@ -7412,6 +7416,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 55f015f0e263d04438995fb2ce9bcb24,
         type: 3}
+    - target: {fileID: 155988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
   m_RootGameObject: {fileID: 1092856325}
@@ -11394,7 +11402,7 @@ GameObject:
   - 114: {fileID: 1092856327}
   m_Layer: 0
   m_Name: Player Test
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13105,7 +13113,7 @@ GameObject:
   - 114: {fileID: 1255392180}
   m_Layer: 0
   m_Name: Player Test
-  m_TagString: Enemy
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13526,7 +13534,7 @@ GameObject:
   - 114: {fileID: 1301158874}
   m_Layer: 0
   m_Name: Player Test
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14133,7 +14141,7 @@ Prefab:
         type: 3}
     - target: {fileID: 155988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_TagString
-      value: Enemy
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
@@ -17348,7 +17356,7 @@ Prefab:
         type: 3}
     - target: {fileID: 155988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
       propertyPath: m_TagString
-      value: Enemy
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
@@ -17828,6 +17836,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: d2c1df7c0fcaba24892f3b76d30ed58d,
         type: 3}
+    - target: {fileID: 155988, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 44c0a440d27abf041b9bf44c9bafc4b6, type: 2}
   m_RootGameObject: {fileID: 425793587}
