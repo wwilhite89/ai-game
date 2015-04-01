@@ -73,6 +73,7 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
+    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &11740867
 GameObject:
@@ -201,7 +202,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 41668102}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a41e25e3dd4962c499aca2f794ce730d, type: 3}
   m_Name: 
@@ -209,6 +210,10 @@ MonoBehaviour:
   isActive: 0
   pieceLeftToMove: 0
   moveSpeed: 3
+  attack: 0
+  defense: 0
+  luck: 0
+  playerSprites: []
 --- !u!1 &55077394
 GameObject:
   m_ObjectHideFlags: 0
@@ -2373,7 +2378,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 266187315}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a41e25e3dd4962c499aca2f794ce730d, type: 3}
   m_Name: 
@@ -2381,6 +2386,10 @@ MonoBehaviour:
   isActive: 0
   pieceLeftToMove: 0
   moveSpeed: 3
+  attack: 0
+  defense: 0
+  luck: 0
+  playerSprites: []
 --- !u!54 &266187318
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2846,6 +2855,7 @@ GameObject:
   - 92: {fileID: 333718738}
   - 124: {fileID: 333718737}
   - 81: {fileID: 333718736}
+  - 114: {fileID: 333718741}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2918,6 +2928,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &333718741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 333718735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d740171be7af9b841ae98643d2678112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &356206605
 GameObject:
   m_ObjectHideFlags: 0
@@ -5909,7 +5930,7 @@ GameObject:
   - 54: {fileID: 696383890}
   - 114: {fileID: 696383889}
   m_Layer: 0
-  m_Name: player
+  m_Name: JaimeLannister
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5936,7 +5957,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1213913173}
   m_GameObject: {fileID: 696383887}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a41e25e3dd4962c499aca2f794ce730d, type: 3}
   m_Name: 
@@ -5944,6 +5965,10 @@ MonoBehaviour:
   isActive: 0
   pieceLeftToMove: 0
   moveSpeed: 3
+  attack: 0
+  defense: 0
+  luck: 0
+  playerSprites: []
 --- !u!54 &696383890
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11022,6 +11047,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 449056, guid: 232e3a45f3ba5e846a344cdc32459987, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449054, guid: 232e3a45f3ba5e846a344cdc32459987, type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

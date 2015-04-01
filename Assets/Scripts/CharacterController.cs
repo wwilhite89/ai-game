@@ -3,7 +3,6 @@ using System.Collections;
 using System;
 
 public class MouseClick : MonoBehaviour {
-
 	GameObject player;
 	private Vector3 blockPossition;
 	private float playerDist;
@@ -12,10 +11,8 @@ public class MouseClick : MonoBehaviour {
 	private Color highlighColor;
 	private GameObject[] players;
 
-
 	// Use this for initialization
 	void Start () {
-
 		if (renderer.material.HasProperty ("_Color")) {
 			landColor = renderer.material.color;
 			highlighColor = new Color (255, renderer.material.color.g, renderer.material.color.b);
@@ -71,7 +68,7 @@ public class MouseClick : MonoBehaviour {
 
 				player.transform.position = blockPossition;
 
-				player.GetComponent<CameraScript>().cameraPosition(player.transform.position);
+				//player.GetComponent<CameraScript>().(player.transform.position;
 				player.GetComponent<PlayerScript>().pieceLeftToMove = false;
 			}
 		}
@@ -81,8 +78,7 @@ public class MouseClick : MonoBehaviour {
 
 	} 
 	
-	void OnMouseExit ()
-	{
+	void OnMouseExit() {
 
 	}
 }
