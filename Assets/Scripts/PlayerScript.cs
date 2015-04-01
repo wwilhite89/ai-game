@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlayerScript : MonoBehaviour {
-
+//TODO(wil) can this be removed since we have Database/Character.cs? 
 	public int isActive;
 	public bool pieceLeftToMove;
 	public float moveSpeed;
@@ -13,7 +13,6 @@ public class PlayerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
 		isActive = 0;
 		pieceLeftToMove = true;
 		SpriteRenderer[] sr = GetComponentsInChildren<SpriteRenderer>(true);
@@ -29,6 +28,6 @@ public class PlayerScript : MonoBehaviour {
 
 		this.GetComponentInParent<ParentPlayerScript>().resetActive ();
 		isActive = 1;
-	}
 
+	}
 }
