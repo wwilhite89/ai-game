@@ -31,8 +31,9 @@ public class MouseClick : MonoBehaviour {
 		for (int i = 0; i < players.Length; i++) {
 			if (players [i].GetComponent<PlayerScript> ().isActive == 1)
 					player = players [i];
-		}
 
+		}
+		Debug.Log("player: "+player);
 		HighlightLand ();
 	}
 

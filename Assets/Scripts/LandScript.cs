@@ -5,12 +5,16 @@ using System;
 
 public class LandScript : MonoBehaviour {
 	private GameObject player;
+	private GameObject enemy;
+	private GameObject currentChar;
 	public string LandType;
 	private Color highlighColor;
 	private GameObject[] players;
+	private GameObject[] enemies;
 	private Vector3 blockPossition;
 	private float playerDist;
 	private Color landColor;
+	public ParentPlayerScript.Turn currentTurn;
 
 	// Modifies movement speed of characters. 1 is normal, 0 is unwalkable.
 	public float speed;
@@ -23,20 +27,32 @@ public class LandScript : MonoBehaviour {
 			highlighColor = new Color (255, renderer.material.color.g, renderer.material.color.b);
 		}
 		players = GameObject.FindGameObjectsWithTag ("Player");
-		Debug.Log ("player length" + players.Length);
+		enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+//		Debug.Log ("player length" + players.Length);
 	}
 	
 	void Awake() {
 		//player = GameObject.FindGameObjectWithTag ("Player").transform;
 		//players = GameObject.FindGameObjectsWithTag ("player");
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		for (int i = 0; i < players.Length; i++) {
-			if (players [i].GetComponent<PlayerScript> ().isActive == 1)
-				player = players [i];
+		currentTurn = GameObject.Find("Players").GetComponent<ParentPlayerScript> ().playerTurn;
+		if (currentTurn == ParentPlayerScript.Turn.player) {
+			for (int i = 0; i < players.Length; i++) {
+				if (players [i].GetComponent<PlayerScript> ().isActive == 1)
+					player = players [i];
+			}
 		}
+		else if(currentTurn == ParentPlayerScript.Turn.AI){
+			for (int i = 0; i < players.Length; i++) {
+				if (enemies [i].GetComponent<PlayerScript> ().isActive == 1)
+					player = enemies [i];
+			}
+		}
+
+
 		
 		HighlightLand ();
 	}
@@ -75,7 +91,10 @@ public class LandScript : MonoBehaviour {
 				
 				//player.GetComponent<CameraScript>().(player.transform.position;
 				player.GetComponent<PlayerScript>().pieceLeftToMove = false;
+				player.GetComponentInParent<ParentPlayerScript>().checkTurnEnd();
+
 			}
+
 		}
 	}
 	
