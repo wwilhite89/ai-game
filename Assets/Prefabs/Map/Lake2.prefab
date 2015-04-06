@@ -26,7 +26,6 @@ GameObject:
   - 33: {fileID: 3335160}
   - 65: {fileID: 6535160}
   - 23: {fileID: 2335160}
-  - 114: {fileID: 11435124}
   - 114: {fileID: 11435126}
   m_Layer: 0
   m_Name: water2
@@ -46,7 +45,6 @@ GameObject:
   - 33: {fileID: 3335162}
   - 65: {fileID: 6535162}
   - 23: {fileID: 2335162}
-  - 114: {fileID: 11435128}
   - 114: {fileID: 11435130}
   m_Layer: 0
   m_Name: water2
@@ -66,7 +64,6 @@ GameObject:
   - 33: {fileID: 3335164}
   - 65: {fileID: 6535164}
   - 23: {fileID: 2335164}
-  - 114: {fileID: 11435132}
   - 114: {fileID: 11435134}
   m_Layer: 0
   m_Name: water2
@@ -86,7 +83,6 @@ GameObject:
   - 33: {fileID: 3335166}
   - 65: {fileID: 6535166}
   - 23: {fileID: 2335166}
-  - 114: {fileID: 11435136}
   - 114: {fileID: 11435138}
   m_Layer: 0
   m_Name: water2
@@ -106,7 +102,6 @@ GameObject:
   - 33: {fileID: 3335168}
   - 65: {fileID: 6535168}
   - 23: {fileID: 2335168}
-  - 114: {fileID: 11435140}
   - 114: {fileID: 11435142}
   m_Layer: 0
   m_Name: water2
@@ -126,7 +121,6 @@ GameObject:
   - 33: {fileID: 3335170}
   - 65: {fileID: 6535170}
   - 23: {fileID: 2335170}
-  - 114: {fileID: 11435144}
   - 114: {fileID: 11435146}
   m_Layer: 0
   m_Name: water2
@@ -146,7 +140,6 @@ GameObject:
   - 33: {fileID: 3335172}
   - 65: {fileID: 6535172}
   - 23: {fileID: 2335172}
-  - 114: {fileID: 11435148}
   - 114: {fileID: 11435150}
   m_Layer: 0
   m_Name: water2
@@ -166,7 +159,6 @@ GameObject:
   - 33: {fileID: 3335174}
   - 65: {fileID: 6535174}
   - 23: {fileID: 2335174}
-  - 114: {fileID: 11435152}
   - 114: {fileID: 11435154}
   m_Layer: 0
   m_Name: water2
@@ -186,7 +178,6 @@ GameObject:
   - 33: {fileID: 3335176}
   - 65: {fileID: 6535176}
   - 23: {fileID: 2335176}
-  - 114: {fileID: 11435156}
   - 114: {fileID: 11435158}
   m_Layer: 0
   m_Name: water2
@@ -206,7 +197,6 @@ GameObject:
   - 33: {fileID: 3335178}
   - 65: {fileID: 6535178}
   - 23: {fileID: 2335178}
-  - 114: {fileID: 11435160}
   - 114: {fileID: 11435162}
   m_Layer: 0
   m_Name: water2
@@ -226,7 +216,6 @@ GameObject:
   - 33: {fileID: 3335180}
   - 65: {fileID: 6535180}
   - 23: {fileID: 2335180}
-  - 114: {fileID: 11435164}
   - 114: {fileID: 11435166}
   m_Layer: 0
   m_Name: water2
@@ -246,7 +235,6 @@ GameObject:
   - 33: {fileID: 3335182}
   - 65: {fileID: 6535182}
   - 23: {fileID: 2335182}
-  - 114: {fileID: 11435168}
   - 114: {fileID: 11435170}
   m_Layer: 0
   m_Name: water2
@@ -266,7 +254,6 @@ GameObject:
   - 33: {fileID: 3335184}
   - 65: {fileID: 6535184}
   - 23: {fileID: 2335184}
-  - 114: {fileID: 11435172}
   - 114: {fileID: 11435174}
   m_Layer: 0
   m_Name: water2
@@ -286,7 +273,6 @@ GameObject:
   - 33: {fileID: 3335186}
   - 65: {fileID: 6535186}
   - 23: {fileID: 2335186}
-  - 114: {fileID: 11435176}
   - 114: {fileID: 11435178}
   m_Layer: 0
   m_Name: water2
@@ -306,7 +292,6 @@ GameObject:
   - 33: {fileID: 3335188}
   - 65: {fileID: 6535188}
   - 23: {fileID: 2335188}
-  - 114: {fileID: 11435180}
   - 114: {fileID: 11435182}
   m_Layer: 0
   m_Name: water2
@@ -326,7 +311,6 @@ GameObject:
   - 33: {fileID: 3335190}
   - 65: {fileID: 6535190}
   - 23: {fileID: 2335190}
-  - 114: {fileID: 11435184}
   - 114: {fileID: 11435186}
   m_Layer: 0
   m_Name: water2
@@ -346,7 +330,6 @@ GameObject:
   - 33: {fileID: 3335192}
   - 65: {fileID: 6535192}
   - 23: {fileID: 2335192}
-  - 114: {fileID: 11435188}
   - 114: {fileID: 11435190}
   m_Layer: 0
   m_Name: water2
@@ -366,7 +349,6 @@ GameObject:
   - 33: {fileID: 3335194}
   - 65: {fileID: 6535194}
   - 23: {fileID: 2335194}
-  - 114: {fileID: 11435192}
   - 114: {fileID: 11435194}
   m_Layer: 0
   m_Name: water2
@@ -1323,17 +1305,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11435124
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1346,18 +1317,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435128
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1370,18 +1331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435132
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1394,18 +1345,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435136
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1418,18 +1359,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435140
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1442,18 +1373,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435144
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1466,18 +1387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435148
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1490,18 +1401,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435152
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1514,18 +1415,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435156
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1538,18 +1429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435160
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1562,18 +1443,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435164
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1586,18 +1457,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435168
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1610,18 +1471,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435172
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1634,18 +1485,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435176
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1658,18 +1499,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435180
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1682,18 +1513,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435184
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1706,18 +1527,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435188
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1730,18 +1541,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
---- !u!114 &11435192
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11435194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1754,6 +1555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 0
 --- !u!1001 &100100000
 Prefab:

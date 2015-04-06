@@ -28,7 +28,6 @@ GameObject:
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
   - 54: {fileID: 5400020}
-  - 114: {fileID: 11400036}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
@@ -49,7 +48,6 @@ GameObject:
   - 23: {fileID: 2300002}
   - 114: {fileID: 11400002}
   - 54: {fileID: 5400018}
-  - 114: {fileID: 11400034}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
@@ -70,7 +68,6 @@ GameObject:
   - 23: {fileID: 2300004}
   - 114: {fileID: 11400004}
   - 54: {fileID: 5400016}
-  - 114: {fileID: 11400030}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
@@ -91,7 +88,6 @@ GameObject:
   - 23: {fileID: 2300006}
   - 114: {fileID: 11400006}
   - 54: {fileID: 5400014}
-  - 114: {fileID: 11400032}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
@@ -112,7 +108,6 @@ GameObject:
   - 23: {fileID: 2300008}
   - 114: {fileID: 11400008}
   - 54: {fileID: 5400000}
-  - 114: {fileID: 11400040}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
@@ -133,7 +128,6 @@ GameObject:
   - 23: {fileID: 2300010}
   - 114: {fileID: 11400010}
   - 54: {fileID: 5400012}
-  - 114: {fileID: 11400042}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
@@ -154,7 +148,6 @@ GameObject:
   - 23: {fileID: 2300012}
   - 114: {fileID: 11400012}
   - 54: {fileID: 5400010}
-  - 114: {fileID: 11400026}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
@@ -175,7 +168,6 @@ GameObject:
   - 23: {fileID: 2300014}
   - 114: {fileID: 11400014}
   - 54: {fileID: 5400008}
-  - 114: {fileID: 11400022}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
@@ -196,7 +188,6 @@ GameObject:
   - 23: {fileID: 2300016}
   - 114: {fileID: 11400016}
   - 54: {fileID: 5400006}
-  - 114: {fileID: 11400038}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
@@ -217,7 +208,6 @@ GameObject:
   - 23: {fileID: 2300018}
   - 114: {fileID: 11400018}
   - 54: {fileID: 5400004}
-  - 114: {fileID: 11400028}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
@@ -1007,6 +997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 1
 --- !u!114 &11400002
 MonoBehaviour:
@@ -1020,6 +1011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 1
 --- !u!114 &11400004
 MonoBehaviour:
@@ -1033,6 +1025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 1
 --- !u!114 &11400006
 MonoBehaviour:
@@ -1046,6 +1039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 1
 --- !u!114 &11400008
 MonoBehaviour:
@@ -1059,6 +1053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 1
 --- !u!114 &11400010
 MonoBehaviour:
@@ -1072,6 +1067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 1
 --- !u!114 &11400012
 MonoBehaviour:
@@ -1085,6 +1081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 1
 --- !u!114 &11400014
 MonoBehaviour:
@@ -1098,6 +1095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 1
 --- !u!114 &11400016
 MonoBehaviour:
@@ -1111,6 +1109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 1
 --- !u!114 &11400018
 MonoBehaviour:
@@ -1124,6 +1123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 1
 --- !u!114 &11400020
 MonoBehaviour:
@@ -1137,123 +1137,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
+  currentTurn: 0
   speed: 1
---- !u!114 &11400022
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11400024
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400026
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400028
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400030
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400032
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400034
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400036
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400038
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400040
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400042
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100012}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0b827151cffffd4fb8cf2ecadeb3e08, type: 3}
