@@ -18,7 +18,6 @@ public class LandScript : MonoBehaviour {
 
 	// Modifies movement speed of characters. 1 is normal, 0 is unwalkable.
 	public float speed;
-	public bool ocupado;
 
 	// Use this for initialization
 	void Start () {
@@ -51,8 +50,6 @@ public class LandScript : MonoBehaviour {
 					player = enemies [i];
 			}
 		}
-
-
 		
 		HighlightLand ();
 	}
@@ -84,7 +81,8 @@ public class LandScript : MonoBehaviour {
 			
 			Debug.Log("you clicked distance " + playerDist);
 			
-			if ( playerDist < player.GetComponent<PlayerScript>().moveSpeed && player.GetComponent<PlayerScript>().pieceLeftToMove == true) {
+			if ( playerDist < player.GetComponent<PlayerScript>().moveSpeed && player.GetComponent<PlayerScript>().pieceLeftToMove == true ) {
+
 				player.GetComponent<PlayerScript>().isActive = 0;
 				
 				player.transform.position = blockPossition;
@@ -92,10 +90,19 @@ public class LandScript : MonoBehaviour {
 				//player.GetComponent<CameraScript>().(player.transform.position;
 				player.GetComponent<PlayerScript>().pieceLeftToMove = false;
 				player.GetComponentInParent<ParentPlayerScript>().checkTurnEnd();
-
 			}
-
 		}
+	}
+
+
+	bool playerCollision(Collider col){
+
+		if (col.gameObject.tag == "Player" || col.gameObject.tag == "Enemy") {
+			Debug.Log ("this spot is ucupied");
+			return true;
+		}
+		else 
+			return false;
 	}
 	
 	void OnMouseOver() {
