@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GameDB;
 
 public class PlayerScript : MonoBehaviour {
 //TODO(wil) can this be removed since we have Database/Character.cs? 
@@ -10,6 +11,7 @@ public class PlayerScript : MonoBehaviour {
 	public int defense;
 	public int luck;
 	public Sprite[] playerSprites;
+    private Character character;
 
 	// Use this for initialization
 	void Start () {
@@ -30,4 +32,9 @@ public class PlayerScript : MonoBehaviour {
 		isActive = 1;
 
 	}
+
+    public int GetHealth()
+    {
+        return this.character.HP;
+    }
 }

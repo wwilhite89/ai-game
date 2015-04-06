@@ -34,7 +34,7 @@ namespace GameDB
                     // var table = c.Execute("", new object[]{});
 
                     var startingCharacters = getInitialCharacters();
-                    var initialGame = new SavedGame { Id = -1 };
+                    var initialGame = new SavedGame { Id = 0 };
 
                     c.Insert(initialGame);
 
@@ -55,7 +55,7 @@ namespace GameDB
             using (var c = new SQLiteConnection(this.connectionString, false))
             {
                 // SavedGameID == -1 on initial load
-                return c.Table<Character>().Where(x => /*x.SavedGameId == -1 &&*/ x.Name == characterName).FirstOrDefault();
+                return c.Table<Character>().Where(x => x.SavedGameId == 0 && x.Name == characterName).FirstOrDefault();
             }
         }
 
