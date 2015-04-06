@@ -99,7 +99,7 @@ public class LandScript : MonoBehaviour {
 	void OnCollisionStay (Collision col){
 
 		if (col.collider.tag == "Player" || col.collider.tag == "Enemy") {
-			renderer.material.color = landColor;
+			Debug.Log("player collision");
 		}
 	}
 	
