@@ -8,6 +8,7 @@ public class PlayerScript : MonoBehaviour {
 	public bool pieceLeftToMove;
 	public float moveSpeed;
 	public int attack;
+	public float attackRange;
 	public int defense;
 	public int luck;
 	public Sprite[] playerSprites;

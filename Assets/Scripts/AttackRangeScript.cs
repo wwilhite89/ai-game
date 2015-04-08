@@ -5,7 +5,7 @@ using System.Linq;
 public class AttackRangeScript : MonoBehaviour
 {
 
-    public float range = 3F;
+    public float range;
     public Vector3 startDir = new Vector3(0, 1, 0);
     private int[] actLevels = new int[4];
 	private GameObject[] opponents;
@@ -22,6 +22,8 @@ public class AttackRangeScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		range = gameObject.GetComponent<PlayerScript>().attackRange;
+
 		if (gameObject.tag == "Enemy") {
 			opponents = GameObject.FindGameObjectsWithTag ("Player");
 			opponent = "Player";
