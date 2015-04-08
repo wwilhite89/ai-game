@@ -75,7 +75,7 @@ public class LandScript : MonoBehaviour {
 		// Land must be walkable
 		if(player != null && gameObject.GetComponent<LandScript>().speed != 0) {
 			blockPossition = gameObject.transform.position;
-			blockPossition.y += .5f;
+			blockPossition.y += .6f;
 			
 			playerDist = Vector3.Distance (gameObject.transform.position, player.transform.position);
 			
@@ -99,10 +99,10 @@ public class LandScript : MonoBehaviour {
 	void OnCollisionStay (Collision col){
 
 		if (col.collider.tag == "Player" || col.collider.tag == "Enemy") {
-			Debug.Log("player collision");
+			this.renderer.material.color = landColor;
 		}
 	}
-	
+
 	void OnMouseOver() {
 		
 	} 

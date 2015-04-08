@@ -11,6 +11,8 @@ public class PlayerScript : MonoBehaviour {
 	public int defense;
 	public int luck;
 	public Sprite[] playerSprites;
+	public enum Turn{ player, AI,};
+	public Turn playerTurn;
     private Character character;
 
 	// Use this for initialization
@@ -31,6 +33,16 @@ public class PlayerScript : MonoBehaviour {
 		this.GetComponentInParent<ParentPlayerScript>().resetActive ();
 		isActive = 1;
 
+	}
+
+	void OnTriggerEnter( Collider col ) {
+
+		if (this.gameObject.tag == "Player" && col.gameObject.tag == "Enemy") {
+			gameObject.GetComponentInParent<ParentPlayerScript>().attack();
+		}
+		if (this.gameObject.tag == "Enemy" && col.gameObject.tag == "Player") {
+			gameObject.GetComponentInParent<ParentPlayerScript>().attack();
+		}
 	}
 
     public int GetHealth()

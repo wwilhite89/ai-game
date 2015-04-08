@@ -13,9 +13,10 @@ GameObject:
   - 23: {fileID: 2355990}
   - 54: {fileID: 5455990}
   - 114: {fileID: 11455988}
+  - 65: {fileID: 6552152}
   m_Layer: 0
   m_Name: Player Test
-  m_TagString: Enemy
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +44,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 155988}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: -2}
   m_LocalScale: {x: .75, y: .75, z: .0500000119}
   m_Children:
   - {fileID: 455990}
@@ -99,11 +100,11 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &6555990
+  m_CollisionDetection: 1
+--- !u!65 &6552152
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -113,8 +114,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.29999995, y: 1.29999995, z: 11}
-  m_Center: {x: 0, y: 0, z: 5}
+  m_Size: {x: 1, y: 1.00000048, z: 1.00000048}
+  m_Center: {x: 0, y: -7.94728621e-08, z: 0}
+--- !u!65 &6555990
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155988}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.39999998, y: 1.39999998, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11455988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,8 +146,9 @@ MonoBehaviour:
   defense: 0
   luck: 0
   playerSprites:
-  - {fileID: 21300000, guid: d2c1df7c0fcaba24892f3b76d30ed58d, type: 3}
   - {fileID: 21300000, guid: 55f015f0e263d04438995fb2ce9bcb24, type: 3}
+  - {fileID: 21300000, guid: d2c1df7c0fcaba24892f3b76d30ed58d, type: 3}
+  playerTurn: 0
 --- !u!212 &21255990
 SpriteRenderer:
   m_ObjectHideFlags: 1

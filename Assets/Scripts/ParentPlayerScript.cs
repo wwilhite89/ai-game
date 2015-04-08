@@ -92,4 +92,11 @@ public class ParentPlayerScript : MonoBehaviour {
 		}
 
 	}
+
+	public void attack() {
+		if (playerTurn == Turn.AI) 
+			Debug.Log ("AI to attack Player");
+		else
+			Debug.Log ("Player to attack AI");
+	}
 }
