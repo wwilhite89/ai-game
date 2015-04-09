@@ -113,7 +113,7 @@ public class AttackRangeScript : MonoBehaviour
         return levels;
     }
 
-    private GameObject[] getObjectsInRadius(string agentName)
+    public GameObject[] getObjectsInRadius(string agentName)
     {
         Vector3 pos = gameObject.transform.position;
 
