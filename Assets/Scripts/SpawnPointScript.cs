@@ -5,55 +5,21 @@ using GameDB;
 
 public class SpawnPointScript : MonoBehaviour {
 
-    public enum SpawnCharacter
-    { 
-        EddardStark,
-        JamieLannister
-    }
-
+    // Spawn override properties
     public bool OverrideSpawn = false;
-    public SpawnCharacter SpawnCharacterOverride;
     public Sprite SpriteOverride;
+    public string OvName = "Test Player";
+    public int OvHP = 1000;
+    public int OvATT = 250;
+    public int OvDEF = 100;
+    public float OvEVA = 0.5f;
+    public float OvCRIT = 0.10f;
+    public int OvMOV = 6;
+    public int OvRANGE = 3;
 
 	// Use this for initialization
 	void Start () {
 	}
-
-    // TODO: Add stats and whatnot, copy over scripts?
-    /*private void spawnCharacter()
-    {
-        if (this.SpriteOverride == null)
-            throw new UnityException("SpriteOverride is null.");
-
-        var gameDb = Database.getInstance();
-        Character character = null;
-
-        switch (this.SpawnCharacterOverride)
-        {
-            case SpawnCharacter.EddardStark:
-                //character = gameDb.GetDefaultCharacters(House.HouseName.STARK).GetEnumerator()("Eddard Stark");
-                break;
-            case SpawnCharacter.JamieLannister:
-                //character = gameDb.GetInitialCharacter("Jaime Lannister");
-                break;
-            default:
-                break;
-        }
-
-        if (character == null)
-            throw new UnityException("Cannot load character.");
-        Debug.Log(character.SavedGameId + " loaded");
-        // Get the resource
-        var resource = Resources.Load(@"Players/BasePlayer") as GameObject;
-        // Create the player
-        var player = Instantiate(resource, this.transform.position, resource.transform.rotation) as GameObject;
-        var renderer = player.GetComponentInChildren<SpriteRenderer>();
-        renderer.sprite = this.SpriteOverride;
-
-        // Remove the spawn point
-        Destroy(gameObject);
-    }
-    */
 	
     // Update is called once per frame
 	void Update () {
@@ -62,19 +28,32 @@ public class SpawnPointScript : MonoBehaviour {
 
     public void SpawnPlayer(PlayerScript script, Character player)
     {
+        var renderer = GetComponentInChildren<SpriteRenderer>();
+        script.SetCharacter(player);
+
         if (this.OverrideSpawn)
         {
             Debug.Log("Overriding spawn for character: " + player.Name);
-            this.spawnOverrideCharacter(script);
+
+            // Override stats
+            player.Name = OvName;
+            player.ATT = OvATT;
+            player.DEF = OvDEF;
+            player.EVA = OvEVA;
+            player.CRIT = OvCRIT;
+            player.MOV = OvMOV;
+            player.RANGE = OvRANGE;
+
+            // Override sprite
+            renderer.sprite = this.SpriteOverride;
         }
         else
         {
             Debug.Log("Spawning " + player.Name);
-        }
-    }
+            var sprite = Resources.Load<Sprite>(@"Players/" + player.resourcePath);
+            renderer.sprite = sprite;
 
-    private void spawnOverrideCharacter(PlayerScript script)
-    {
-        throw new System.NotImplementedException();
+
+        }
     }
 }

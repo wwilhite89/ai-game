@@ -5,11 +5,17 @@ using System.Linq;
 public class AttackRangeScript : MonoBehaviour
 {
 
-    public float range;
     public Vector3 startDir = new Vector3(0, 1, 0);
+    
     private int[] actLevels = new int[4];
-	private GameObject[] opponents;
-	private string opponent;
+
+    private PlayerScript playerScript;
+    private GameObject[] opponents;
+	
+    private string opponent;
+    private int range;
+    private bool rangeSet = false;
+
 
     enum Slice
     {
@@ -22,7 +28,7 @@ public class AttackRangeScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		range = gameObject.GetComponent<PlayerScript>().GetAttackRange();
+        this.playerScript = gameObject.GetComponent<PlayerScript>();
 
 		if (gameObject.tag == "Enemy") {
 			opponents = GameObject.FindGameObjectsWithTag ("Player");
@@ -36,13 +42,20 @@ public class AttackRangeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (!this.rangeSet && this.playerScript.IsInitialized())
+        {
+            this.range = this.playerScript.GetAttackRange();
+            this.rangeSet = true;
+        }
     }
 
     void FixedUpdate()
     {
-        drawPieSlices();
-        updateActivationLevels();
+        if (this.rangeSet)
+        {
+            drawPieSlices();
+            updateActivationLevels();
+        }
     }
 
     private void drawPieSlices() {

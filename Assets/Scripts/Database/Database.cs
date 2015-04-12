@@ -83,6 +83,12 @@ namespace GameDB
         {
             using (var c = new SQLiteConnection(this.connectionString, false))
             {
+                var game = c.Table<SavedGame>().FirstOrDefault(x => x.Id == savedGameID);
+
+                // Ensure save exists
+                if (game == null)
+                    throw new UnityException("Cannot load characters for save with id=" + savedGameID);
+
                 return c.Table<Character>().Where(x => x.SavedGameId == savedGameID).ToList();
             }
         }

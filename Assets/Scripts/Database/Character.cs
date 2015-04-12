@@ -37,6 +37,7 @@ namespace GameDB
             this.CRIT = 0.01f;
             this.MOV = 6;
             this.RANGE = 3;
+            this.resourcePath = "Rob";
         }
 
         #endregion

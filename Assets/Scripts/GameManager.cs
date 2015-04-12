@@ -65,10 +65,25 @@ public class GameManager
         if (PlayerPrefs.HasKey(GameConstants.CURRENT_GAME))
         {
             var game = PlayerPrefs.GetInt(GameConstants.CURRENT_GAME);
-            players = db.GetCharacters(game);
+            try
+            {
+                players = db.GetCharacters(game);
+            }
+            catch (UnityException ex)
+            {
+                Debug.LogWarning(ex);
+                Debug.LogWarning("Loading default characters for house.");
+                PlayerPrefs.DeleteKey(GameConstants.CURRENT_GAME);
+                players = db.GetDefaultCharacters(House.HouseName.STARK);
+            }
         }
         else
-            players = db.GetDefaultCharacters((House.HouseName) PlayerPrefs.GetInt(GameConstants.CURRENT_HOUSE));
+        {
+            if (PlayerPrefs.HasKey(GameConstants.CURRENT_HOUSE))
+                players = db.GetDefaultCharacters((House.HouseName)PlayerPrefs.GetInt(GameConstants.CURRENT_HOUSE));
+            else
+                players = db.GetDefaultCharacters(House.HouseName.STARK);
+        }
 
         return players;
     }
@@ -79,8 +94,8 @@ public class GameManager
     /// <returns></returns>
     public IList<Character> GetCurrentEnemies()
     {
-        var house = (House.HouseName) PlayerPrefs.GetInt(GameConstants.CURRENT_HOUSE);
-        var map = (Map) PlayerPrefs.GetInt(GameConstants.CURRENT_LEVEL);
+        var house = PlayerPrefs.HasKey(GameConstants.CURRENT_HOUSE) ? (House.HouseName) PlayerPrefs.GetInt(GameConstants.CURRENT_HOUSE) : House.HouseName.STARK;
+        // var map = PlayerPrefs.HasKey(GameConstants.CURRENT_LEVEL) ? (Map) PlayerPrefs.GetInt(GameConstants.CURRENT_LEVEL) : Map.Winterfell;
         var db = Database.getInstance();
 
         // Temporary

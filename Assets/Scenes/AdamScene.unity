@@ -1394,6 +1394,7 @@ GameObject:
   - 114: {fileID: 168150497}
   - 65: {fileID: 168150496}
   - 114: {fileID: 168150502}
+  - 114: {fileID: 168150503}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1441,16 +1442,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   pieceLeftToMove: 0
-  moveSpeed: 3
-  attack: 5
-  attackRange: 3
-  defense: 5
-  health: 40
-  luck: 2
-  playerSprites:
-  - {fileID: 21300000, guid: 55f015f0e263d04438995fb2ce9bcb24, type: 3}
-  - {fileID: 21300000, guid: d2c1df7c0fcaba24892f3b76d30ed58d, type: 3}
-  enemiesInRange: []
 --- !u!54 &168150498
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1521,8 +1512,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 3
   startDir: {x: 0, y: 1, z: 0}
+--- !u!114 &168150503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 168150494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8eae56f19c3b284195b69ca29c4f320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OverrideSpawn: 0
+  SpriteOverride: {fileID: 0}
+  OvName: Test Player
+  OvHP: 1000
+  OvATT: 250
+  OvDEF: 100
+  OvEVA: .5
+  OvCRIT: .100000001
+  OvMOV: 6
+  OvRANGE: 3
 --- !u!1 &169142494
 GameObject:
   m_ObjectHideFlags: 0
@@ -9627,16 +9638,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   pieceLeftToMove: 0
-  moveSpeed: 3
-  attack: 5
-  attackRange: 3
-  defense: 5
-  health: 40
-  luck: 2
-  playerSprites:
-  - {fileID: 21300000, guid: d2c1df7c0fcaba24892f3b76d30ed58d, type: 3}
-  - {fileID: 21300000, guid: 55f015f0e263d04438995fb2ce9bcb24, type: 3}
-  enemiesInRange: []
 --- !u!54 &1092856329
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9707,7 +9708,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 3
   startDir: {x: 0, y: 1, z: 0}
 --- !u!114 &1092856334
 MonoBehaviour:
@@ -9715,14 +9715,21 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1092856325}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8eae56f19c3b284195b69ca29c4f320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OverrideSpawn: 0
-  SpawnCharacterOverride: 0
   SpriteOverride: {fileID: 0}
+  OvName: Test Player
+  OvHP: 1000
+  OvATT: 250
+  OvDEF: 100
+  OvEVA: .5
+  OvCRIT: .100000001
+  OvMOV: 6
+  OvRANGE: 3
 --- !u!1 &1109684853
 GameObject:
   m_ObjectHideFlags: 0
@@ -10750,7 +10757,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1235800197}
-  - 114: {fileID: 1235800198}
   m_Layer: 0
   m_Name: Players
   m_TagString: Untagged
@@ -10772,17 +10778,6 @@ Transform:
   - {fileID: 168150495}
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!114 &1235800198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1235800196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63e7e090d53cdc5409b2eb13ffc1a5da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1241715260
 GameObject:
   m_ObjectHideFlags: 0
@@ -10791,9 +10786,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1241715261}
+  - 114: {fileID: 1241715262}
   m_Layer: 0
   m_Name: Map
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10824,6 +10820,17 @@ Transform:
   - {fileID: 493421238}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1241715262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1241715260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e7e090d53cdc5409b2eb13ffc1a5da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1245027281
 GameObject:
   m_ObjectHideFlags: 0
