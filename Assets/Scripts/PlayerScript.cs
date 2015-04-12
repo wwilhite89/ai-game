@@ -10,6 +10,7 @@ public class PlayerScript : MonoBehaviour {
 
     private Character character;
 	private GameObject[] enemiesInRange;
+	private GameObject levelManager;
 	private string opponent;
     private bool initialized = false;
 
@@ -19,6 +20,7 @@ public class PlayerScript : MonoBehaviour {
 		isActive = false;
         pieceLeftToMove = true;
 
+		levelManager = GameObject.FindGameObjectWithTag ("Map");
 		// Find out who the opponent is and set the string
 		opponent = gameObject.tag == GameConstants.TAG_ENEMY ? GameConstants.TAG_PLAYER : GameConstants.TAG_ENEMY;
 	}
@@ -30,7 +32,7 @@ public class PlayerScript : MonoBehaviour {
 
 	void OnMouseDown() {
 
-		this.GetComponentInParent<LevelManagerScript>().resetActive ();
+		levelManager.GetComponent<LevelManagerScript>().resetActive ();
 		isActive = true;
 
 	}
@@ -38,10 +40,10 @@ public class PlayerScript : MonoBehaviour {
 	void OnTriggerEnter( Collider col ) {
 
 		if (this.gameObject.tag == "Player" && col.gameObject.tag == "Enemy") {
-            gameObject.GetComponentInParent<LevelManagerScript>().attack();
+			levelManager.GetComponent<LevelManagerScript>().attack();
 		}
 		if (this.gameObject.tag == "Enemy" && col.gameObject.tag == "Player") {
-            gameObject.GetComponentInParent<LevelManagerScript>().attack();
+			levelManager.GetComponent<LevelManagerScript>().attack();
 		}
 	}
 

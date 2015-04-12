@@ -8,6 +8,7 @@ public class LandScript : MonoBehaviour {
 	private GameObject player;
 	private GameObject enemy;
 	private GameObject currentChar;
+	private GameObject levelManager;
 	public string LandType;
 	private Color highlighColor;
 	private GameObject[] players;
@@ -26,6 +27,8 @@ public class LandScript : MonoBehaviour {
 			landColor = renderer.material.color;
 			highlighColor = new Color (255, renderer.material.color.g, renderer.material.color.b);
 		}
+
+		levelManager = GameObject.FindGameObjectWithTag ("Map");
 		players = GameObject.FindGameObjectsWithTag (GameConstants.TAG_PLAYER);
 		enemies = GameObject.FindGameObjectsWithTag (GameConstants.TAG_ENEMY);
 //		Debug.Log ("player length" + players.Length);
@@ -90,7 +93,7 @@ public class LandScript : MonoBehaviour {
 				
 				//player.GetComponent<CameraScript>().(player.transform.position;
 				player.GetComponent<PlayerScript>().pieceLeftToMove = false;
-                player.GetComponentInParent<LevelManagerScript>().checkTurnEnd();
+                levelManager.GetComponent<LevelManagerScript>().checkTurnEnd();
 			}
 		}
 	}
