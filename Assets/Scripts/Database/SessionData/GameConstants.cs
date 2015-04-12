@@ -11,7 +11,14 @@ namespace GameDB.SessionData
             CURRENT_HOUSE = "CurrentHouse",
             CURRENT_GAME = "CurrentGameId",
             CURRENT_LEVEL = "CurrentLevel",
+
             SCENE_WINTERFELL = "AdamScene2",
-            SCENE_WHITE_HARBOR = "AdamScene";
+            SCENE_WHITE_HARBOR = "AdamScene",
+
+            TAG_PLAYER = "Player",
+            TAG_ENEMY = "Enemy",
+            TAG_MAP = "Map"
+            
+            ;
     }
 }

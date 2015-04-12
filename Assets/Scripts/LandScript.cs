@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GameDB.SessionData;
 using System;
 
 
@@ -25,8 +26,8 @@ public class LandScript : MonoBehaviour {
 			landColor = renderer.material.color;
 			highlighColor = new Color (255, renderer.material.color.g, renderer.material.color.b);
 		}
-		players = GameObject.FindGameObjectsWithTag ("Player");
-		enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		players = GameObject.FindGameObjectsWithTag (GameConstants.TAG_PLAYER);
+		enemies = GameObject.FindGameObjectsWithTag (GameConstants.TAG_ENEMY);
 //		Debug.Log ("player length" + players.Length);
 	}
 	
@@ -37,16 +38,16 @@ public class LandScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        currentTurn = GameObject.Find("Players").GetComponent<LevelManagerScript>().getTurn();
+        currentTurn = GameObject.Find(GameConstants.TAG_MAP).GetComponent<LevelManagerScript>().getTurn();
 		if (currentTurn == LevelManagerScript.Turn.PLAYER) {
 			for (int i = 0; i < players.Length; i++) {
-				if (players [i].GetComponent<PlayerScript> ().isActive == 1)
+				if (players [i].GetComponent<PlayerScript> ().isActive)
 					player = players [i];
 			}
 		}
 		else if(currentTurn == LevelManagerScript.Turn.ENEMY){
 			for (int i = 0; i < players.Length; i++) {
-				if (enemies [i].GetComponent<PlayerScript> ().isActive == 1)
+				if (enemies [i].GetComponent<PlayerScript> ().isActive)
 					player = enemies [i];
 			}
 		}
@@ -64,8 +65,8 @@ public class LandScript : MonoBehaviour {
 			this.renderer.material.color = landColor;
 			
 			// highlight the land around a selected player if he is active and able to move
-			if (dist < player.GetComponent<PlayerScript>().moveSpeed && gameObject.GetComponent<LandScript>().speed != 0) {
-				if (player.GetComponent<PlayerScript>().isActive == 1 && player.GetComponent<PlayerScript>().pieceLeftToMove == true)
+			if (dist < player.GetComponent<PlayerScript>().GetSpeed() && gameObject.GetComponent<LandScript>().speed != 0) {
+				if (player.GetComponent<PlayerScript>().isActive && player.GetComponent<PlayerScript>().pieceLeftToMove == true)
 					this.renderer.material.color = highlighColor;
 			}
 		}
@@ -81,9 +82,9 @@ public class LandScript : MonoBehaviour {
 			
 			Debug.Log("you clicked distance " + playerDist);
 			
-			if ( playerDist < player.GetComponent<PlayerScript>().moveSpeed && player.GetComponent<PlayerScript>().pieceLeftToMove == true ) {
+			if ( playerDist < player.GetComponent<PlayerScript>().GetSpeed() && player.GetComponent<PlayerScript>().pieceLeftToMove == true ) {
 
-				player.GetComponent<PlayerScript>().isActive = 0;
+				player.GetComponent<PlayerScript>().isActive = false;
 				
 				player.transform.position = blockPossition;
 				

@@ -54,7 +54,7 @@ public class GameManager
     }
 
     /// <summary>
-    /// Gets current players based off the saved game being played, or default characters if running a non-persistent game.
+    /// Gets current players based off the saved game being played.
     /// </summary>
     /// <returns></returns>
     public IList<Character> GetCurrentPlayers()
@@ -71,6 +71,21 @@ public class GameManager
             players = db.GetDefaultCharacters((House.HouseName) PlayerPrefs.GetInt(GameConstants.CURRENT_HOUSE));
 
         return players;
+    }
+
+    /// <summary>
+    /// Gets current enemies for the current level being played on. Currently just the subsequent house in the list.
+    /// </summary>
+    /// <returns></returns>
+    public IList<Character> GetCurrentEnemies()
+    {
+        var house = (House.HouseName) PlayerPrefs.GetInt(GameConstants.CURRENT_HOUSE);
+        var map = (Map) PlayerPrefs.GetInt(GameConstants.CURRENT_LEVEL);
+        var db = Database.getInstance();
+
+        // Temporary
+        var enemyHouse = (House.HouseName) ((int)house == 5 ? 0 : (int)house + 1);
+        return db.GetDefaultCharacters(enemyHouse);
     }
 
     /// <summary>

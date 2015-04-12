@@ -22,7 +22,7 @@ public class AttackRangeScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		range = gameObject.GetComponent<PlayerScript>().attackRange;
+		range = gameObject.GetComponent<PlayerScript>().GetAttackRange();
 
 		if (gameObject.tag == "Enemy") {
 			opponents = GameObject.FindGameObjectsWithTag ("Player");

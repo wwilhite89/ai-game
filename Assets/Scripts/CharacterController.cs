@@ -29,7 +29,7 @@ public class MouseClick : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		for (int i = 0; i < players.Length; i++) {
-			if (players [i].GetComponent<PlayerScript> ().isActive == 1)
+			if (players [i].GetComponent<PlayerScript> ().isActive)
 					player = players [i];
 
 		}
@@ -47,8 +47,8 @@ public class MouseClick : MonoBehaviour {
 			this.renderer.material.color = landColor;
 
 			// highlight the land around a selected player if he is active and able to move
-			if (dist < player.GetComponent<PlayerScript>().moveSpeed && gameObject.GetComponent<LandScript>().speed != 0) {
-				if (player.GetComponent<PlayerScript>().isActive == 1 && player.GetComponent<PlayerScript>().pieceLeftToMove == true)
+			if (dist < player.GetComponent<PlayerScript>().GetSpeed() && gameObject.GetComponent<LandScript>().speed != 0) {
+				if (player.GetComponent<PlayerScript>().isActive && player.GetComponent<PlayerScript>().pieceLeftToMove == true)
 					this.renderer.material.color = highlighColor;
 			}
 		}
@@ -64,8 +64,8 @@ public class MouseClick : MonoBehaviour {
 
 			Debug.Log("you clicked distance " + playerDist);
 
-			if ( playerDist < player.GetComponent<PlayerScript>().moveSpeed && player.GetComponent<PlayerScript>().pieceLeftToMove == true) {
-				player.GetComponent<PlayerScript>().isActive = 0;
+			if ( playerDist < player.GetComponent<PlayerScript>().GetSpeed() && player.GetComponent<PlayerScript>().pieceLeftToMove == true) {
+				player.GetComponent<PlayerScript>().isActive = false;
 
 				player.transform.position = blockPossition;
 

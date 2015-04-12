@@ -17,18 +17,10 @@ public class SpawnPointScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-        // Override
-        if (this.OverrideSpawn)
-            this.spawnCharacter();
-        else
-        { 
-            
-        }
 	}
 
     // TODO: Add stats and whatnot, copy over scripts?
-    private void spawnCharacter()
+    /*private void spawnCharacter()
     {
         if (this.SpriteOverride == null)
             throw new UnityException("SpriteOverride is null.");
@@ -61,11 +53,28 @@ public class SpawnPointScript : MonoBehaviour {
         // Remove the spawn point
         Destroy(gameObject);
     }
-
-	// Update is called once per frame
+    */
+	
+    // Update is called once per frame
 	void Update () {
 
 	}
 
+    public void SpawnPlayer(PlayerScript script, Character player)
+    {
+        if (this.OverrideSpawn)
+        {
+            Debug.Log("Overriding spawn for character: " + player.Name);
+            this.spawnOverrideCharacter(script);
+        }
+        else
+        {
+            Debug.Log("Spawning " + player.Name);
+        }
+    }
 
+    private void spawnOverrideCharacter(PlayerScript script)
+    {
+        throw new System.NotImplementedException();
+    }
 }

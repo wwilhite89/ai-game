@@ -17,6 +17,7 @@ namespace GameDB
         public float EVA { get; set; }
         public float CRIT { get; set; }
         public int MOV { get; set; }
+        public int RANGE { get; set; }
         public string resourcePath { get; set; }
 
         public int HouseId { get; private set; }
@@ -35,6 +36,7 @@ namespace GameDB
             this.EVA = 0.5f;
             this.CRIT = 0.01f;
             this.MOV = 6;
+            this.RANGE = 3;
         }
 
         #endregion

@@ -1,17 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using GameDB;
+using GameDB.SessionData;
 
 public class PlayerScript : MonoBehaviour {
 
-	public int isActive;
+	public bool isActive;
 	public bool pieceLeftToMove;
-	public float moveSpeed;
-	public int attack;
-	public float attackRange;
-	public int defense;
-	public int health;
-	public int luck;
+
 	public Sprite[] playerSprites;
     private Character character;
 	public GameObject[] enemiesInRange;
@@ -19,16 +15,15 @@ public class PlayerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		isActive = 0;
+		isActive = false;
+        pieceLeftToMove = true;
 
-		// find out who the opponent is and set the string
-		if (gameObject.tag == "Enemy") {
-			opponent = "Player";
-		} else if (gameObject.tag == "Player") {
-			opponent = "Enemy";
-		}
+		// Find out who the opponent is and set the string
+		if (gameObject.tag == GameConstants.TAG_ENEMY)
+			opponent = GameConstants.TAG_PLAYER;
+		else
+            opponent = GameConstants.TAG_ENEMY;
 
-		pieceLeftToMove = true;
 		SpriteRenderer[] sr = GetComponentsInChildren<SpriteRenderer>(true);
 		sr [0].sprite = playerSprites[0];
 	}
@@ -41,7 +36,7 @@ public class PlayerScript : MonoBehaviour {
 	void OnMouseDown() {
 
 		this.GetComponentInParent<LevelManagerScript>().resetActive ();
-		isActive = 1;
+		isActive = true;
 
 	}
 
@@ -59,4 +54,20 @@ public class PlayerScript : MonoBehaviour {
     {
         return this.character.HP;
     }
+
+    public int GetSpeed()
+    {
+        return this.character.MOV;
+    }
+
+    public int GetAttackRange()
+    {
+        return this.character.RANGE;
+    }
+
+    public void SetCharacter(Character c)
+    {
+        this.character = c;
+    }
+
 }

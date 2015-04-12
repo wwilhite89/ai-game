@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using GameDB.SessionData;
 using System.Linq;
 
 /// <summary>
@@ -14,11 +15,12 @@ public class LevelManagerScript : MonoBehaviour {
 	private GameObject[] enemies;
 	private Turn currentTurn;
 
+    private GameManager gameManager = new GameManager();
+
 	// Use this for initialization
 	void Start () {
-        players = GameObject.FindGameObjectsWithTag("Player");
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        currentTurn = Turn.PLAYER;
+        this.spawnCharacters();
+        this.currentTurn = Turn.PLAYER;
 	}
 	
 	// Update is called once per frame
@@ -29,11 +31,11 @@ public class LevelManagerScript : MonoBehaviour {
 	public void resetActive() {
         for (int i = 0; i < players.Length; i++)
         {
-            players[i].GetComponent<PlayerScript>().isActive = 0;
+            players[i].GetComponent<PlayerScript>().isActive = false;
 		}
         for (int i = 0; i < enemies.Length; i++)
         {
-            enemies[i].GetComponent<PlayerScript>().isActive = 0;
+            enemies[i].GetComponent<PlayerScript>().isActive = false;
 		}
 	}
 	public void resetLeftToMove(Turn currentTurn) {
@@ -111,4 +113,39 @@ public class LevelManagerScript : MonoBehaviour {
 		else
 			Debug.Log ("Player to attack AI");
 	}
+
+    private void spawnCharacters()
+    {
+        int taken = 0;
+
+        // Get enemies to fight
+        var enemyChars = gameManager.GetCurrentEnemies();
+        this.enemies = GameObject.FindGameObjectsWithTag(GameConstants.TAG_ENEMY);
+        this.enemies.ToList().ForEach(x =>
+        {
+            x.GetComponent<SpawnPointScript>()
+                .SpawnPlayer(
+                x.GetComponent<PlayerScript>(),
+                enemyChars.Skip(taken++).FirstOrDefault());
+        });
+
+        if (taken < enemyChars.Count)
+            Debug.LogWarning(string.Format("Only {0} out of {1} enemy characters were spawned.", taken, enemyChars.Count));
+
+        taken = 0;
+
+        // Get current players (some might have dies last level)
+        var playerChars = gameManager.GetCurrentPlayers();
+        this.players = GameObject.FindGameObjectsWithTag(GameConstants.TAG_PLAYER);
+        this.players.ToList().ForEach(x =>
+        {
+            x.GetComponent<SpawnPointScript>()
+                .SpawnPlayer(
+                x.GetComponent<PlayerScript>(),
+                playerChars.Skip(taken++).FirstOrDefault());
+        });
+
+        if (taken < playerChars.Count)
+            Debug.LogWarning(string.Format("Only {0} out of {1} player characters were spawned.", taken, playerChars.Count));
+    }
 }

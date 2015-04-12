@@ -1394,6 +1394,7 @@ GameObject:
   - 114: {fileID: 168150497}
   - 65: {fileID: 168150496}
   - 114: {fileID: 168150502}
+  - 114: {fileID: 168150503}
   m_Layer: 0
   m_Name: Human
   m_TagString: Player
@@ -1434,7 +1435,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 2051469201}
   m_GameObject: {fileID: 168150494}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a41e25e3dd4962c499aca2f794ce730d, type: 3}
   m_Name: 
@@ -1516,13 +1517,27 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 2051469201}
   m_GameObject: {fileID: 168150494}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   range: 3
   startDir: {x: 0, y: 1, z: 0}
+--- !u!114 &168150503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 168150494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8eae56f19c3b284195b69ca29c4f320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OverrideSpawn: 0
+  SpawnCharacterOverride: 0
+  SpriteOverride: {fileID: 0}
 --- !u!1 &169142494
 GameObject:
   m_ObjectHideFlags: 0
@@ -2440,6 +2455,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 451140, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11451140, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11461044, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -9567,6 +9590,7 @@ GameObject:
   - 114: {fileID: 1092856328}
   - 65: {fileID: 1092856327}
   - 114: {fileID: 1092856333}
+  - 114: {fileID: 1092856334}
   m_Layer: 0
   m_Name: AI
   m_TagString: Enemy
@@ -9607,7 +9631,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 309945673}
   m_GameObject: {fileID: 1092856325}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a41e25e3dd4962c499aca2f794ce730d, type: 3}
   m_Name: 
@@ -9689,13 +9713,27 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 309945673}
   m_GameObject: {fileID: 1092856325}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   range: 3
   startDir: {x: 0, y: 1, z: 0}
+--- !u!114 &1092856334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1092856325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8eae56f19c3b284195b69ca29c4f320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OverrideSpawn: 0
+  SpawnCharacterOverride: 0
+  SpriteOverride: {fileID: 0}
 --- !u!1 &1109684853
 GameObject:
   m_ObjectHideFlags: 0
@@ -10723,7 +10761,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1235800197}
-  - 114: {fileID: 1235800198}
   m_Layer: 0
   m_Name: Players
   m_TagString: Untagged
@@ -10745,17 +10782,6 @@ Transform:
   - {fileID: 168150495}
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!114 &1235800198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1235800196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63e7e090d53cdc5409b2eb13ffc1a5da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1241715260
 GameObject:
   m_ObjectHideFlags: 0
@@ -10764,6 +10790,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1241715261}
+  - 114: {fileID: 1241715262}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -10797,6 +10824,17 @@ Transform:
   - {fileID: 493421238}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1241715262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1241715260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e7e090d53cdc5409b2eb13ffc1a5da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1245027281
 GameObject:
   m_ObjectHideFlags: 0
@@ -17649,6 +17687,14 @@ Prefab:
     - target: {fileID: 435672, guid: 1fec240fe08e96e4dab091db4d40203b, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435674, guid: 1fec240fe08e96e4dab091db4d40203b, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435672, guid: 1fec240fe08e96e4dab091db4d40203b, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1fec240fe08e96e4dab091db4d40203b, type: 2}
