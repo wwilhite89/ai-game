@@ -11,7 +11,17 @@ namespace GameDB
     public class SavedGame
     {
         [AutoIncrement, PrimaryKey]
-        public int Id { get; set; }
+        public int Id { get; private set; }
+        public int PlayerHouseId { get; private set; }
+
+        [Ignore]
+        public House PlayerHouse
+        {
+            set
+            {
+                this.PlayerHouseId = value.Id;
+            }
+        }
 
         /// <summary>
         /// SavedGame saves the state of the current player's game.

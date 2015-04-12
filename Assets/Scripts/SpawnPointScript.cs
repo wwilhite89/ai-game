@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using GameDB;
 
 public class SpawnPointScript : MonoBehaviour {
@@ -26,16 +27,16 @@ public class SpawnPointScript : MonoBehaviour {
         if (this.SpriteOverride == null)
             throw new UnityException("SpriteOverride is null.");
 
-        var gameDb = new Database();
+        var gameDb = Database.getInstance();
         Character character = null;
 
         switch (this.SpawnCharacterOverride)
         {
             case SpawnCharacter.EddardStark:
-                character = gameDb.GetInitialCharacter("Eddard Stark");
+                //character = gameDb.GetDefaultCharacters(House.HouseName.STARK).GetEnumerator()("Eddard Stark");
                 break;
             case SpawnCharacter.JamieLannister:
-                character = gameDb.GetInitialCharacter("Jaime Lannister");
+                //character = gameDb.GetInitialCharacter("Jaime Lannister");
                 break;
             default:
                 break;

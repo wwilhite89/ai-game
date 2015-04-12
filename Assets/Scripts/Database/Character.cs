@@ -8,20 +8,6 @@ namespace GameDB
     public class Character
     {
 
-        #region Enumerations
-        public enum HouseName
-        {
-            STARK,
-            GREYJOY,
-            LANNISTER,
-            MARTELL,
-            TYRELL,
-            BARATHEON,
-            UNAFFILIATED,
-        }
-
-        #endregion
-
         #region Fields
 
         public string Name { get; set; }
@@ -31,23 +17,10 @@ namespace GameDB
         public float EVA { get; set; }
         public float CRIT { get; set; }
         public int MOV { get; set; }
-        public HouseName House { get; set; }
         public string resourcePath { get; set; }
+
+        public int HouseId { get; private set; }
         public int SavedGameId { get;  private set; }
-        
-        [Ignore]
-        public SavedGame SavedGame
-        {
-            get
-            {
-                // Later on, this could be a DB call
-                return null;// this.SavedGame;
-            }
-            set
-            {
-                this.SavedGameId = value.Id;
-            }
-        }
 
         #endregion
 
@@ -62,10 +35,24 @@ namespace GameDB
             this.EVA = 0.5f;
             this.CRIT = 0.01f;
             this.MOV = 6;
-            this.House = Character.HouseName.UNAFFILIATED;
         }
 
         #endregion
 
+        public void setHouse(House house)
+        {
+            if (house != null && house.Id != null)
+                this.HouseId = house.Id;
+            else
+                throw new ArgumentNullException();
+        }
+
+        public void setSavedGame(SavedGame game)
+        {
+            if (game != null && game.Id != null)
+                this.SavedGameId = game.Id;
+            else
+                throw new ArgumentNullException();
+        }
     }
 }

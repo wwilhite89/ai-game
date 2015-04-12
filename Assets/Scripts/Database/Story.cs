@@ -25,15 +25,15 @@ namespace GameDB
         #region Fields
 
         private Map currentMap;
-        private Character.HouseName house;
+        // private Character.HouseName house;
 
         #endregion
 
         #region Constructors
 
-        public Story (Character.HouseName house, Map currentMap)
+        public Story (/*Character.HouseName house, */Map currentMap)
         {
-            this.house = house;
+            // this.house = house;
             this.currentMap = currentMap;
         }
 

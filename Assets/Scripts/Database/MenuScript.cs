@@ -7,7 +7,7 @@ public class MenuScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        var gameDB = new Database();
+        var gameDB = Database.getInstance();
 	}
 	
 	// Update is called once per frame
