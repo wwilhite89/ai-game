@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
 using GameDB;
+using GameDB.SessionData;
 
 // TODO: GUI for saving and loading games
 
@@ -120,6 +121,8 @@ public class GOTMenuScript : MonoBehaviour {
                         Application.LoadLevel("AdamScene");
 
                     this.loadingLevel = true;
+
+                    PlayerPrefs.SetInt(GameConstants.CURRENT_HOUSE, (int)btn.house.Name);
                 }
             }
         }
