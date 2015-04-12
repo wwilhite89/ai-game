@@ -14,7 +14,7 @@ public class LandScript : MonoBehaviour {
 	private Vector3 blockPossition;
 	private float playerDist;
 	private Color landColor;
-	public ParentPlayerScript.Turn currentTurn;
+	public LevelManagerScript.Turn currentTurn;
 
 	// Modifies movement speed of characters. 1 is normal, 0 is unwalkable.
 	public float speed;
@@ -37,14 +37,14 @@ public class LandScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		currentTurn = GameObject.Find("Players").GetComponent<ParentPlayerScript> ().playerTurn;
-		if (currentTurn == ParentPlayerScript.Turn.player) {
+        currentTurn = GameObject.Find("Players").GetComponent<LevelManagerScript>().getTurn();
+		if (currentTurn == LevelManagerScript.Turn.PLAYER) {
 			for (int i = 0; i < players.Length; i++) {
 				if (players [i].GetComponent<PlayerScript> ().isActive == 1)
 					player = players [i];
 			}
 		}
-		else if(currentTurn == ParentPlayerScript.Turn.AI){
+		else if(currentTurn == LevelManagerScript.Turn.ENEMY){
 			for (int i = 0; i < players.Length; i++) {
 				if (enemies [i].GetComponent<PlayerScript> ().isActive == 1)
 					player = enemies [i];
@@ -89,7 +89,7 @@ public class LandScript : MonoBehaviour {
 				
 				//player.GetComponent<CameraScript>().(player.transform.position;
 				player.GetComponent<PlayerScript>().pieceLeftToMove = false;
-				player.GetComponentInParent<ParentPlayerScript>().checkTurnEnd();
+                player.GetComponentInParent<LevelManagerScript>().checkTurnEnd();
 			}
 		}
 	}

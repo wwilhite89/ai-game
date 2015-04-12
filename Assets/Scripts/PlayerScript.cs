@@ -3,7 +3,7 @@ using System.Collections;
 using GameDB;
 
 public class PlayerScript : MonoBehaviour {
-//TODO(wil) can this be removed since we have Database/Character.cs? 
+
 	public int isActive;
 	public bool pieceLeftToMove;
 	public float moveSpeed;
@@ -40,7 +40,7 @@ public class PlayerScript : MonoBehaviour {
 
 	void OnMouseDown() {
 
-		this.GetComponentInParent<ParentPlayerScript>().resetActive ();
+		this.GetComponentInParent<LevelManagerScript>().resetActive ();
 		isActive = 1;
 
 	}
@@ -48,10 +48,10 @@ public class PlayerScript : MonoBehaviour {
 	void OnTriggerEnter( Collider col ) {
 
 		if (this.gameObject.tag == "Player" && col.gameObject.tag == "Enemy") {
-			gameObject.GetComponentInParent<ParentPlayerScript>().attack();
+            gameObject.GetComponentInParent<LevelManagerScript>().attack();
 		}
 		if (this.gameObject.tag == "Enemy" && col.gameObject.tag == "Player") {
-			gameObject.GetComponentInParent<ParentPlayerScript>().attack();
+            gameObject.GetComponentInParent<LevelManagerScript>().attack();
 		}
 	}
 

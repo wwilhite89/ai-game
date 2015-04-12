@@ -79,6 +79,40 @@ namespace GameDB
             }
         }
 
+        public IList<Character> GetCharacters(int savedGameID)
+        {
+            using (var c = new SQLiteConnection(this.connectionString, false))
+            {
+                return c.Table<Character>().Where(x => x.SavedGameId == savedGameID).ToList();
+            }
+        }
+
+        public SavedGame CreateNewGame(House.HouseName house)
+        { 
+            // Create new save
+            var newGame = new SavedGame();
+
+            using (var c = new SQLiteConnection(this.connectionString, false))
+            {
+                c.BeginTransaction();
+
+                var h = c.Table<House>().Where(x => x.Name == house).FirstOrDefault();
+                newGame.SetPlayerHouse(h);
+
+                // Save game
+                c.Insert(newGame);
+
+                // Copy house characters
+                var characters = getDefaultCharacters(house);
+                characters.ToList().ForEach(x => { x.setHouse(h); x.setSavedGame(newGame); });
+                c.InsertAll(characters, false);
+
+                c.Commit();
+            }
+
+            return newGame;
+        }
+
         private IList<House> getDefaultHouses()
         {
             return new List<House>()

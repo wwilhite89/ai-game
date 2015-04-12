@@ -14,13 +14,9 @@ namespace GameDB
         public int Id { get; private set; }
         public int PlayerHouseId { get; private set; }
 
-        [Ignore]
-        public House PlayerHouse
+        public void SetPlayerHouse (House house)
         {
-            set
-            {
-                this.PlayerHouseId = value.Id;
-            }
+            this.PlayerHouseId = house.Id;
         }
 
         /// <summary>

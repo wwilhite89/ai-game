@@ -11,17 +11,23 @@ public class SpawnPointScript : MonoBehaviour {
         JamieLannister
     }
 
-    public bool ManualSpawn = false;
+    public bool OverrideSpawn = false;
     public SpawnCharacter SpawnCharacterOverride;
     public Sprite SpriteOverride;
 
 	// Use this for initialization
 	void Start () {
 
-        if (this.ManualSpawn)
+        // Override
+        if (this.OverrideSpawn)
             this.spawnCharacter();
+        else
+        { 
+            
+        }
 	}
 
+    // TODO: Add stats and whatnot, copy over scripts?
     private void spawnCharacter()
     {
         if (this.SpriteOverride == null)

@@ -115,14 +115,9 @@ public class GOTMenuScript : MonoBehaviour {
             {
                 if (!this.loadingLevel)
                 {
-                    if (btn.house.Name == House.HouseName.STARK)
-                        Application.LoadLevel("AdamScene2");
-                    else
-                        Application.LoadLevel("AdamScene");
-
                     this.loadingLevel = true;
-
-                    PlayerPrefs.SetInt(GameConstants.CURRENT_HOUSE, (int)btn.house.Name);
+                    var gameMgr = new GameManager();
+                    gameMgr.StartNewGame(btn.house.Name);
                 }
             }
         }
