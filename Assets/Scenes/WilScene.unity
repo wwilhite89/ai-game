@@ -3841,6 +3841,7 @@ GameObject:
   - 222: {fileID: 467233594}
   - 114: {fileID: 467233593}
   - 225: {fileID: 467233595}
+  - 114: {fileID: 467233596}
   m_Layer: 5
   m_Name: CharacterCard
   m_TagString: Untagged
@@ -3866,7 +3867,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 57, y: 88}
-  m_SizeDelta: {x: 100, y: 162}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &467233592
 MonoBehaviour:
@@ -3880,14 +3881,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 2
-    m_Right: 2
-    m_Top: 2
-    m_Bottom: 2
+    m_Left: 3
+    m_Right: 3
+    m_Top: 3
+    m_Bottom: 3
   m_ChildAlignment: 0
   m_Spacing: .119999997
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
 --- !u!114 &467233593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3925,6 +3926,19 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &467233596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 467233590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!1 &486264143
 GameObject:
   m_ObjectHideFlags: 0
@@ -4713,7 +4727,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22460002, guid: 056a2d1ecf280304eb0c15b3ca322336, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -38.7680817
+      value: -23.5
       objectReference: {fileID: 0}
     - target: {fileID: 22460002, guid: 056a2d1ecf280304eb0c15b3ca322336, type: 2}
       propertyPath: m_SizeDelta.x
@@ -5569,7 +5583,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Name
+  m_Text: 
 --- !u!222 &639779009
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5590,8 +5604,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: -1
-  m_PreferredHeight: -1
+  m_PreferredWidth: 100
+  m_PreferredHeight: 15.151515
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
 --- !u!1 &644085914
@@ -7516,6 +7530,7 @@ GameObject:
   - 222: {fileID: 825554618}
   - 114: {fileID: 825554617}
   - 114: {fileID: 825554616}
+  - 114: {fileID: 825554619}
   m_Layer: 5
   m_Name: Attack
   m_TagString: Untagged
@@ -7613,6 +7628,17 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 835163670}
   m_GameObject: {fileID: 825554614}
+--- !u!114 &825554619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 825554614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e46c919fbc5d014096e2b6c35008ee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &834310936
 GameObject:
   m_ObjectHideFlags: 0
@@ -10734,8 +10760,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 45
-  m_PreferredWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 100
   m_PreferredHeight: 45
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
@@ -12372,6 +12398,7 @@ GameObject:
   - 222: {fileID: 1289121669}
   - 114: {fileID: 1289121668}
   - 114: {fileID: 1289121670}
+  - 114: {fileID: 1289121671}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -12437,10 +12464,21 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: -1
-  m_PreferredHeight: -1
+  m_PreferredWidth: 100
+  m_PreferredHeight: 100
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+--- !u!114 &1289121671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1289121666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5de7a1e8f544547a7852f68453b4f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1297702693
 GameObject:
   m_ObjectHideFlags: 0
@@ -15045,7 +15083,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22460002, guid: 056a2d1ecf280304eb0c15b3ca322336, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -54.7680817
+      value: -39.5
       objectReference: {fileID: 0}
     - target: {fileID: 22460002, guid: 056a2d1ecf280304eb0c15b3ca322336, type: 2}
       propertyPath: m_SizeDelta.x
@@ -16115,7 +16153,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22460002, guid: 056a2d1ecf280304eb0c15b3ca322336, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -22.7680817
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 22460002, guid: 056a2d1ecf280304eb0c15b3ca322336, type: 2}
       propertyPath: m_SizeDelta.x
@@ -16312,7 +16350,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22460002, guid: 056a2d1ecf280304eb0c15b3ca322336, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -38.7680817
+      value: -23.5
       objectReference: {fileID: 0}
     - target: {fileID: 22460002, guid: 056a2d1ecf280304eb0c15b3ca322336, type: 2}
       propertyPath: m_SizeDelta.x
@@ -16584,7 +16622,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22460002, guid: 056a2d1ecf280304eb0c15b3ca322336, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -22.7680817
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 22460002, guid: 056a2d1ecf280304eb0c15b3ca322336, type: 2}
       propertyPath: m_SizeDelta.x
@@ -16775,7 +16813,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22460002, guid: 056a2d1ecf280304eb0c15b3ca322336, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -54.7680817
+      value: -39.5
       objectReference: {fileID: 0}
     - target: {fileID: 22460002, guid: 056a2d1ecf280304eb0c15b3ca322336, type: 2}
       propertyPath: m_SizeDelta.x
