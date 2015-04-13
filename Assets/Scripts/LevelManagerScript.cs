@@ -38,6 +38,7 @@ public class LevelManagerScript : MonoBehaviour {
             enemies[i].GetComponent<PlayerScript>().isActive = false;
 		}
 	}
+
 	public void resetLeftToMove(Turn currentTurn) {
 		if (currentTurn == Turn.PLAYER) {
             for (int i = 0; i < players.Length; i++)
@@ -105,13 +106,6 @@ public class LevelManagerScript : MonoBehaviour {
 			}
 		}
 
-	}
-
-	public void attack() {
-		if (currentTurn == Turn.ENEMY) 
-			Debug.Log ("AI to attack Player");
-		else
-			Debug.Log ("Player to attack AI");
 	}
 
     private void spawnCharacters()

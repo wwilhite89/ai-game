@@ -1442,6 +1442,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   pieceLeftToMove: 0
+  enemiesInRange: []
+  opponent: 
 --- !u!54 &168150498
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9780,6 +9782,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   pieceLeftToMove: 0
+  enemiesInRange: []
+  opponent: 
 --- !u!54 &1092856329
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10914,7 +10918,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1235800196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.86999989, y: .600000024, z: 1.88999999}
+  m_LocalPosition: {x: -5, y: .600000024, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1092856326}
@@ -13340,6 +13344,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   pieceLeftToMove: 0
+  enemiesInRange: []
+  opponent: 
 --- !u!54 &1444073024
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14107,6 +14113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   pieceLeftToMove: 0
+  enemiesInRange: []
+  opponent: 
 --- !u!54 &1552112758
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15368,6 +15376,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   pieceLeftToMove: 0
+  enemiesInRange: []
+  opponent: 
 --- !u!54 &1710983163
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17289,6 +17299,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   pieceLeftToMove: 0
+  enemiesInRange: []
+  opponent: 
 --- !u!54 &1916903693
 Rigidbody:
   m_ObjectHideFlags: 0

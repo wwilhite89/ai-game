@@ -29,9 +29,8 @@ public class LandScript : MonoBehaviour {
 		}
 
 		levelManager = GameObject.FindGameObjectWithTag ("Map");
-		players = GameObject.FindGameObjectsWithTag (GameConstants.TAG_PLAYER);
-		enemies = GameObject.FindGameObjectsWithTag (GameConstants.TAG_ENEMY);
-//		Debug.Log ("player length" + players.Length);
+		players = GameObject.FindGameObjectsWithTag ("Player");
+		enemies = GameObject.FindGameObjectsWithTag ("Enemy");
 	}
 	
 	void Awake() {
@@ -87,12 +86,7 @@ public class LandScript : MonoBehaviour {
 			
 			if ( playerDist < player.GetComponent<PlayerScript>().GetSpeed() && player.GetComponent<PlayerScript>().pieceLeftToMove == true ) {
 
-				player.GetComponent<PlayerScript>().isActive = false;
-				
-				player.transform.position = blockPossition;
-				
-				//player.GetComponent<CameraScript>().(player.transform.position;
-				player.GetComponent<PlayerScript>().pieceLeftToMove = false;
+				player.GetComponent<PlayerScript>().movePlayer(blockPossition);
                 levelManager.GetComponent<LevelManagerScript>().checkTurnEnd();
 			}
 		}
