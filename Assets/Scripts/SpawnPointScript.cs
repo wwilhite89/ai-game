@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using GameDB;
@@ -37,12 +37,12 @@ public class SpawnPointScript : MonoBehaviour {
 
             // Override stats
             player.Name = OvName;
-            player.ATT = OvATT;
-            player.DEF = OvDEF;
-            player.EVA = OvEVA;
-            player.CRIT = OvCRIT;
-            player.MOV = OvMOV;
-            player.RANGE = OvRANGE;
+            player.attack = OvATT;
+            player.defense = OvDEF;
+            player.evade = OvEVA;
+            player.critical = OvCRIT;
+            player.movement = OvMOV;
+            player.range = OvRANGE;
 
             // Override sprite
             renderer.sprite = this.SpriteOverride;

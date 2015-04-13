@@ -7,17 +7,26 @@ namespace GameDB
 {
     public class Character
     {
+		public enum Stats {
+			HP,
+			ATT,
+			DEF,
+			EVA,
+			CRIT,
+			MOV,
+			RANGE
+		}
 
         #region Fields
 
         public string Name { get; set; }
-        public int HP { get; set; }
-        public int ATT { get; set; }
-        public int DEF { get; set; }
-        public float EVA { get; set; }
-        public float CRIT { get; set; }
-        public int MOV { get; set; }
-        public int RANGE { get; set; }
+        public int health { get; set; }
+        public int attack { get; set; }
+        public int defense { get; set; }
+        public float evade { get; set; }
+        public float critical { get; set; }
+        public int movement { get; set; }
+        public int range { get; set; }
         public string resourcePath { get; set; }
 
         public int HouseId { get; private set; }
@@ -30,13 +39,13 @@ namespace GameDB
         public Character()
         {
             // Default stats
-            this.HP = 1000;
-            this.ATT = 250;
-            this.DEF = 100;
-            this.EVA = 0.5f;
-            this.CRIT = 0.01f;
-            this.MOV = 6;
-            this.RANGE = 3;
+            this.health = 1000;
+            this.attack = 250;
+            this.defense = 100;
+            this.evade = 0.5f;
+            this.critical = 0.01f;
+            this.movement = 6;
+            this.range = 3;
             this.resourcePath = "Rob";
         }
 

@@ -32,12 +32,13 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
-
 		levelManager.GetComponent<LevelManagerScript>().resetActive ();
 		isActive = true;
 
-		enemiesInRange = gameObject.GetComponent<AttackRangeScript> ().getObjectsInRadius (opponent);
+		//TODO (wil) This is bad. I need another way to identiy selected character
+		gameObject.tag = "Selected";
 
+		enemiesInRange = gameObject.GetComponent<AttackRangeScript> ().getObjectsInRadius (opponent);
 	}
 
 	public void movePlayer(Vector3 location) {
@@ -56,7 +57,6 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	public void attackPrompt(GameObject enemy) {
-
 	
 	}
 
@@ -65,13 +65,35 @@ public class PlayerScript : MonoBehaviour {
         return this.initialized;
     }
 
+	public float GetStat(Character.Stats stat) {
+		switch (stat) {
+		case Character.Stats.ATT:
+			return this.character.attack;
+		case Character.Stats.CRIT:
+			return this.character.critical;
+		case Character.Stats.DEF:
+			return this.character.defense;
+		case Character.Stats.EVA:
+			return this.character.evade;
+		case Character.Stats.HP:
+			return this.character.health;
+		case Character.Stats.MOV:
+			return this.character.movement;
+		case Character.Stats.RANGE:
+			return this.character.range;
+		default:
+			Debug.LogError(string.Format("Could not find appropriate stat for: {0}", stat));
+			return -1;
+		}
+	}
+
     /// <summary>
     /// Required: IsInitialized() 
     /// </summary>
     /// <returns>Returns the current health of the character.</returns>
     public int GetHealth()
     {
-        return this.character.HP;
+        return this.character.health;
     }
 
     /// <summary>
@@ -80,7 +102,7 @@ public class PlayerScript : MonoBehaviour {
     /// <returns>Returns the current speed of the character.</returns>
     public int GetSpeed()
     {
-        return this.character.MOV;
+        return this.character.movement;
     }
 
     /// <summary>
@@ -89,7 +111,7 @@ public class PlayerScript : MonoBehaviour {
     /// <returns>Returns the current attack range of the character.</returns>
     public int GetAttackRange()
     {
-        return this.character.RANGE;
+        return this.character.range;
     }
 
     /// <summary>
@@ -103,7 +125,6 @@ public class PlayerScript : MonoBehaviour {
     }
 
 	void OnGUI() {
-
 		if (GUI.Button (new Rect (10, 70, 60, 30), message)) {
 			Debug.Log ("Clicked the button with text");
 		}
