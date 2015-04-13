@@ -29,30 +29,17 @@ public class LandScript : MonoBehaviour {
 		}
 
 		levelManager = GameObject.FindGameObjectWithTag ("Map");
-		players = GameObject.FindGameObjectsWithTag ("Player");
-		enemies = GameObject.FindGameObjectsWithTag ("Enemy");
 	}
 	
 	void Awake() {
-		//player = GameObject.FindGameObjectWithTag ("Player").transform;
-		//players = GameObject.FindGameObjectsWithTag ("player");
+
 	}
 
 	// Update is called once per frame
 	void Update () {
         currentTurn = GameObject.Find(GameConstants.TAG_MAP).GetComponent<LevelManagerScript>().getTurn();
-		if (currentTurn == LevelManagerScript.Turn.PLAYER) {
-			for (int i = 0; i < players.Length; i++) {
-				if (players [i].GetComponent<PlayerScript> ().isActive)
-					player = players [i];
-			}
-		}
-		else if(currentTurn == LevelManagerScript.Turn.ENEMY){
-			for (int i = 0; i < players.Length; i++) {
-				if (enemies [i].GetComponent<PlayerScript> ().isActive)
-					player = enemies [i];
-			}
-		}
+
+		player = levelManager.GetComponent<LevelManagerScript> ().getActivePlayer ();
 		
 		HighlightLand ();
 	}

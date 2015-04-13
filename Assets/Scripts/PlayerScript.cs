@@ -10,9 +10,16 @@ public class PlayerScript : MonoBehaviour {
     private Character character;
 	public GameObject[] enemiesInRange;
 	private GameObject levelManager;
+	private GameObject[] Land;
 	public string opponent;
     private bool initialized = false;
 	private string message; // the text for the button
+	private int health;
+	private int speed;
+	private int defense;
+	private int attack;
+	private float evasion;
+	private float critical;
 
 	// Use this for initialization
 	void Start () {
@@ -20,10 +27,15 @@ public class PlayerScript : MonoBehaviour {
 		isActive = false;
         pieceLeftToMove = true;
 		message = "";
+		Land = GameObject.FindGameObjectsWithTag ("Land");
 
 		levelManager = GameObject.FindGameObjectWithTag ("Map");
 		// Find out who the opponent is and set the string
 		opponent = gameObject.tag == GameConstants.TAG_ENEMY ? GameConstants.TAG_PLAYER : GameConstants.TAG_ENEMY;
+		health = character.HP;
+		defense = character.DEF;
+		speed = character.MOV;
+		attack = character.ATT;
 	}
 	
 	// Update is called once per frame
@@ -35,7 +47,7 @@ public class PlayerScript : MonoBehaviour {
 
 		levelManager.GetComponent<LevelManagerScript>().resetActive ();
 		isActive = true;
-
+		levelManager.GetComponent<LevelManagerScript>().setActivePlayer(gameObject, true);
 		enemiesInRange = gameObject.GetComponent<AttackRangeScript> ().getObjectsInRadius (opponent);
 
 	}
@@ -51,13 +63,18 @@ public class PlayerScript : MonoBehaviour {
 		}
 
 		isActive = false;
+
 		pieceLeftToMove = false;
 		message = "";
 	}
 
 	public void attackPrompt(GameObject enemy) {
 
-	
+		enemy.GetComponent<PlayerScript>().health -= attack;
+
+		if (enemy.GetComponent<PlayerScript> ().health <= 0) {
+			levelManager.GetComponent<LevelManagerScript>().destroyEnemy(enemy);
+		}
 	}
 
     public bool IsInitialized()
@@ -101,14 +118,4 @@ public class PlayerScript : MonoBehaviour {
         this.character = c;
         this.initialized = true;
     }
-
-	void OnGUI() {
-
-		if (GUI.Button (new Rect (10, 70, 60, 30), message)) {
-			Debug.Log ("Clicked the button with text");
-		}
-		if (GUI.Button (new Rect (10, 105, 60, 30), "Continue")) {
-			Debug.Log ("Clicked the button with text");
-		}
-	}
 }
