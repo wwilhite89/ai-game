@@ -10,9 +10,16 @@ public class PlayerScript : MonoBehaviour {
     private Character character;
 	public GameObject[] enemiesInRange;
 	private GameObject levelManager;
+	private GameObject[] Land;
 	public string opponent;
     private bool initialized = false;
 	private string message; // the text for the button
+	private int health;
+	private int speed;
+	private int defense;
+	private int attack;
+	private float evasion;
+	private float critical;
 
 	// Use this for initialization
 	void Start () {
@@ -20,10 +27,15 @@ public class PlayerScript : MonoBehaviour {
 		isActive = false;
         pieceLeftToMove = true;
 		message = "";
+		Land = GameObject.FindGameObjectsWithTag ("Land");
 
 		levelManager = GameObject.FindGameObjectWithTag ("Map");
 		// Find out who the opponent is and set the string
 		opponent = gameObject.tag == GameConstants.TAG_ENEMY ? GameConstants.TAG_PLAYER : GameConstants.TAG_ENEMY;
+		health = character.health;
+		defense = character.defense;
+		speed = character.movement;
+		attack = character.attack;
 	}
 	
 	// Update is called once per frame
@@ -37,6 +49,9 @@ public class PlayerScript : MonoBehaviour {
 
 		//TODO (wil) This is bad. I need another way to identiy selected character
 		gameObject.tag = "Selected";
+
+		levelManager.GetComponent<LevelManagerScript>().setActivePlayer(gameObject, true);
+		enemiesInRange = gameObject.GetComponent<AttackRangeScript> ().getObjectsInRadius (opponent);
 
 		enemiesInRange = gameObject.GetComponent<AttackRangeScript> ().getObjectsInRadius (opponent);
 	}
@@ -52,12 +67,17 @@ public class PlayerScript : MonoBehaviour {
 		}
 
 		isActive = false;
+
 		pieceLeftToMove = false;
 		message = "";
 	}
 
 	public void attackPrompt(GameObject enemy) {
-	
+		enemy.GetComponent<PlayerScript>().health -= attack;
+
+		if (enemy.GetComponent<PlayerScript> ().health <= 0) {
+			levelManager.GetComponent<LevelManagerScript>().destroyEnemy(enemy);
+		}
 	}
 
     public bool IsInitialized()

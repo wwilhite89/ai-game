@@ -14,13 +14,14 @@ public class LevelManagerScript : MonoBehaviour {
 	private GameObject[] players;
 	private GameObject[] enemies;
 	private Turn currentTurn;
-
+	private GameObject activePlayer;
     private GameManager gameManager = new GameManager();
 
 	// Use this for initialization
 	void Start () {
         this.spawnCharacters();
         this.currentTurn = Turn.PLAYER;
+		activePlayer = null;
 	}
 	
 	// Update is called once per frame
@@ -29,14 +30,33 @@ public class LevelManagerScript : MonoBehaviour {
 	}
 
 	public void resetActive() {
-        for (int i = 0; i < players.Length; i++)
-        {
-            players[i].GetComponent<PlayerScript>().isActive = false;
+
+		resetPlayers ();
+
+		if (activePlayer != null) { 
+			for (int i = 0; i < players.Length; i++) {
+				players [i].GetComponent<PlayerScript> ().isActive = false;
+			}
+			for (int i = 0; i < enemies.Length; i++) {
+				enemies [i].GetComponent<PlayerScript> ().isActive = false;
+			}
 		}
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            enemies[i].GetComponent<PlayerScript>().isActive = false;
-		}
+	}
+
+	public void destroyEnemy (GameObject enemy) {
+		Destroy (enemy);
+		enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+	}
+
+	public GameObject getActivePlayer () {
+		return activePlayer;
+	}
+
+	public void setActivePlayer(GameObject actv, bool b) {
+		activePlayer = actv;
+
+		if (activePlayer != null)
+			activePlayer.GetComponent<PlayerScript>().isActive = b;
 	}
 
 	public void resetLeftToMove(Turn currentTurn) {
