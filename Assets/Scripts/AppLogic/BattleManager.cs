@@ -41,6 +41,7 @@ public class BattleManager
 
         // Determine damage
         var dmg = (attacker.GetStat(Character.Stats.ATT) * critVal) - attackee.GetStat(Character.Stats.DEF);
+        Debug.Log("Dealing " + dmg + " points of dmg.");
         
         // Apply damage
         this.applyDamage(attackee, (int) dmg);

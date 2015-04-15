@@ -15,13 +15,13 @@ public class PlayerScript : MonoBehaviour
 
     private bool initialized = false;
     private string message; // the text for the button
-    private int health;
-    private int speed;
-    private int defense;
-    private int attack;
-    private float evasion;
-    private float critical;
-    private int range;
+    public int health;
+    public int speed;
+    public int defense;
+    public int attack;
+    public float evasion;
+    public float critical;
+    public int range;
     private BattleManager battleMgr;
     private LevelManager levelManager;
 
@@ -47,15 +47,14 @@ public class PlayerScript : MonoBehaviour
 
     void OnMouseDown()
     {
-        // Set as active
-        this.levelManager.SetActivePlayer(this.gameObject);
+        if (this.levelManager.IsTurn(this.gameObject))
+        {
+            // Set as active
+            this.levelManager.SetActivePlayer(this.gameObject);
 
-        //TODO (wil) This is bad. I need another way to identiy selected character
-        gameObject.tag = "Selected";
-
-        levelManager.SetActivePlayer(gameObject);
-        enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
-        enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
+            enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
+            enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
+        }
     }
 
     public void movePlayer(Vector3 location)

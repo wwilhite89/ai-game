@@ -61,7 +61,14 @@ public class LevelManager {
     {
         this.ActivePlayer = player;
     }
-    
+
+    public bool IsTurn(GameObject player)
+    {
+        if (player.tag == GameConstants.TAG_ENEMY)
+            return this.CurrentTurn == Turn.ENEMY;
+        return this.CurrentTurn == Turn.PLAYER;
+    }
+
     public void CheckTurnEnd()
     {
         var players = this.CurrentTurn == Turn.ENEMY ? this.enemies : this.players;

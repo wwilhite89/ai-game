@@ -48,21 +48,21 @@ public class LandScript : MonoBehaviour
     {
         float dist;
         var player = lvlMgr.ActivePlayer;
+        bool highlight = false;
 
         if (player != null)
         {
             dist = Vector3.Distance(gameObject.transform.position, player.transform.position);
 
-            // set the land color to the default color
-            this.renderer.material.color = landColor;
-
             // highlight the land around a selected player if he is active and able to move
             if (dist < player.GetComponent<PlayerScript>().GetStat(GameDB.Character.Stats.MOV) && gameObject.GetComponent<LandScript>().speed != 0)
             {
                 if (!player.GetComponent<PlayerScript>().HasMoved)
-                    this.renderer.material.color = highlighColor;
+                    highlight = true;
             }
         }
+        
+        this.renderer.material.color = highlight ? highlighColor : landColor;
     }
 
     void OnMouseDown()
@@ -78,8 +78,8 @@ public class LandScript : MonoBehaviour
             playerDist = Vector3.Distance(gameObject.transform.position, player.transform.position);
 
             Debug.Log("you clicked distance " + playerDist);
-
-            if (playerDist < player.GetComponent<PlayerScript>().GetStat(GameDB.Character.Stats.MOV) && !player.GetComponent<PlayerScript>().HasMoved)
+            
+            if (playerDist < player.GetComponent<PlayerScript>().GetStat(GameDB.Character.Stats.MOV) && !player.GetComponent<PlayerScript>().HasMoved && lvlMgr.IsTurn(player))
             {
 
                 player.GetComponent<PlayerScript>().movePlayer(blockPossition);
