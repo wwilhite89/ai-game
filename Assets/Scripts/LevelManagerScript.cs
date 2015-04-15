@@ -13,6 +13,8 @@ public class LevelManagerScript : MonoBehaviour {
 
 	private GameObject[] players;
 	private GameObject[] enemies;
+	private int numPlayers;
+	private int numEnemies;
 	private Turn currentTurn;
 	private GameObject activePlayer;
     private GameManager gameManager = new GameManager();
@@ -62,17 +64,29 @@ public class LevelManagerScript : MonoBehaviour {
 	public void destroyEnemy (GameObject enemy) {
 		Destroy (enemy);
 
-		checkEndGame ();
+		checkEndGame (enemy);
 	}
 
-	public void checkEndGame() {
+	IEnumerator Wait(){
+		yield return new WaitForSeconds (0.5f);
+	}
+
+	public void checkEndGame(GameObject player) {
+
 		enemies = GameObject.FindGameObjectsWithTag ("Enemy");
 		players = GameObject.FindGameObjectsWithTag ("Player");
 
-		if (players.Length == 0)
-			Application.LoadLevel("MenuScene");
-		if (enemies.Length == 0)
-			Application.LoadLevel("MenuScene");
+		if (player.tag == "Player") {
+			numPlayers --;
+			if ( numPlayers == 0)
+				Application.LoadLevel ("MenuScene");
+		}
+
+		if (player.tag == "Enemy") {
+			numEnemies --;
+			if ( numEnemies == 0)
+				Application.LoadLevel ("MenuScene");
+		}
 	}
 
 	public GameObject getActivePlayer () {
@@ -162,6 +176,7 @@ public class LevelManagerScript : MonoBehaviour {
         // Get enemies to fight
         var enemyChars = gameManager.GetCurrentEnemies();
         this.enemies = GameObject.FindGameObjectsWithTag(GameConstants.TAG_ENEMY);
+		numEnemies = enemies.Length;
         this.enemies.ToList().ForEach(x =>
         {
             x.GetComponent<SpawnPointScript>()
@@ -178,6 +193,7 @@ public class LevelManagerScript : MonoBehaviour {
         // Get current players (some might have dies last level)
         var playerChars = gameManager.GetCurrentPlayers();
         this.players = GameObject.FindGameObjectsWithTag(GameConstants.TAG_PLAYER);
+		numPlayers = players.Length;
         this.players.ToList().ForEach(x =>
         {
             x.GetComponent<SpawnPointScript>()
