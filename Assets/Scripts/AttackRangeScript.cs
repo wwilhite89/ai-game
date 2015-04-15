@@ -44,7 +44,7 @@ public class AttackRangeScript : MonoBehaviour
     {
         if (!this.rangeSet && this.playerScript.IsInitialized())
         {
-            this.range = this.playerScript.GetAttackRange();
+            this.range = (int) this.playerScript.GetStat(GameDB.Character.Stats.RANGE);
             this.rangeSet = true;
         }
     }

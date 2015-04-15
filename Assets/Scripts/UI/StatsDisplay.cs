@@ -6,15 +6,20 @@ using GameDB;
 public class StatsDisplay : MonoBehaviour {
 	public string prefix;
 	public Character.Stats stat;
+    private LevelManager lvlMgr;
+    private Text text = null;
 
 	// Use this for initialization
 	void Start () {
-		gameObject.guiText.text = "";
+        this.lvlMgr = LevelManager.getInstance();
+        this.text = gameObject.GetComponent<Text>();
+		// gameObject.guiText.text = "";
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		GameObject player = GameObject.FindGameObjectWithTag("Selected");
-		gameObject.GetComponent<Text>().text = prefix + player.GetComponent<PlayerScript>().GetStat(stat).ToString();
+        GameObject player = lvlMgr.ActivePlayer;
+        var statVal = player != null ? player.GetComponent<PlayerScript>().GetStat(stat).ToString() : "";
+        this.text.text = prefix + statVal;
 	}
 }

@@ -12,6 +12,7 @@ namespace GameDB.SessionData
             CURRENT_GAME = "CurrentGameId",
             CURRENT_LEVEL = "CurrentLevel",
 
+            SCENE_MENU = "MenuScene",
             SCENE_WINTERFELL = "AdamScene2",
             SCENE_WHITE_HARBOR = "AdamScene",
 

@@ -16,7 +16,7 @@ namespace ArtificialNeuralNetworks.AttackNetwork.Inputs
         protected override void UpdateTraining()
         {
             if (this.player != null)
-                this.newValue = this.player.GetHealth();
+                this.newValue = this.player.GetStat(GameDB.Character.Stats.HP);
         }
 
     }

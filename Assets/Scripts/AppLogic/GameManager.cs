@@ -127,4 +127,13 @@ public class GameManager
 
     }
 
+
+    /// <summary>
+    /// Logic for game over
+    /// </summary>
+    public void GameOver()
+    {
+        PlayerPrefs.DeleteAll();
+        Application.LoadLevel(GameConstants.SCENE_MENU);
+    }
 }

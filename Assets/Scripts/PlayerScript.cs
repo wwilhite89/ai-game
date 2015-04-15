@@ -3,142 +3,154 @@ using System.Collections;
 using GameDB;
 using GameDB.SessionData;
 
-public class PlayerScript : MonoBehaviour {
+public class PlayerScript : MonoBehaviour
+{
 
-	public bool isActive;
-	public bool pieceLeftToMove;
     private Character character;
-	public GameObject[] enemiesInRange;
-	private GameObject levelManager;
-	private GameObject[] Land;
-	public string opponent;
-    private bool initialized = false;// the text for the button
-	public int health;
-	private int speed;
-	private int defense;
-	private int attack;
-	private float evasion;
-	private float critical;
-	private bool setStats = false; // use to set the player stats locally
+    public GameObject[] enemiesInRange;
+    private GameObject[] Land;
+    public string opponent;
+    public bool HasMoved { get; private set; }
+    public bool HasAttacked { get; private set; }
 
-	// Use this for initialization
-	void Start () {
+    private bool initialized = false;
+    private string message; // the text for the button
+    private int health;
+    private int speed;
+    private int defense;
+    private int attack;
+    private float evasion;
+    private float critical;
+    private int range;
+    private BattleManager battleMgr;
+    private LevelManager levelManager;
+
+    // Use this for initialization
+    void Start()
+    {
+        this.levelManager = LevelManager.getInstance();
+        this.battleMgr = new BattleManager();
+
         // Defaul values
-		isActive = false;
-        pieceLeftToMove = true;
-		Land = GameObject.FindGameObjectsWithTag ("Land");
+        message = "";
+        Land = GameObject.FindGameObjectsWithTag("Land");
 
-		levelManager = GameObject.FindGameObjectWithTag ("Map");
-		// Find out who the opponent is and set the string
-		opponent = gameObject.tag == GameConstants.TAG_ENEMY ? GameConstants.TAG_PLAYER : GameConstants.TAG_ENEMY;
+        // Find out who the opponent is and set the string
+        opponent = gameObject.tag == GameConstants.TAG_ENEMY ? GameConstants.TAG_PLAYER : GameConstants.TAG_ENEMY;
+    }
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
 
-		if (!setStats) {
-			InitializePlayerStats ();
-			setStats = true;
-		}
-	}
+    }
 
-	void OnMouseDown() {
-		levelManager.GetComponent<LevelManagerScript>().resetActive ();
+    void OnMouseDown()
+    {
+        // Set as active
+        this.levelManager.SetActivePlayer(this.gameObject);
 
-		// this keeps track of the active player
-		isActive = true;
+        //TODO (wil) This is bad. I need another way to identiy selected character
+        gameObject.tag = "Selected";
 
-		//TODO (wil) This is bad. I need another way to identiy selected character
-		// gameObject.tag = "Selected"; // this breaks a lot of code try using a boolean.
+        levelManager.SetActivePlayer(gameObject);
+        enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
+        enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
+    }
 
-		levelManager.GetComponent<LevelManagerScript>().setActivePlayer(gameObject, true);
-		enemiesInRange = gameObject.GetComponent<AttackRangeScript> ().getObjectsInRadius (opponent);
-	}
+    public void movePlayer(Vector3 location)
+    {
 
-	private void InitializePlayerStats() {
-		health = character.health;
-		defense = character.defense;
-		speed = character.movement;
-		attack = character.attack;
-	}
-	public void movePlayer(Vector3 location) {
+        transform.position = location;
+        enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
 
-		transform.position = location;
-		enemiesInRange = gameObject.GetComponent<AttackRangeScript> ().getObjectsInRadius (opponent);
+        if (enemiesInRange.Length > 0)
+        {
+            message = "Attack";
+            attackPrompt(enemiesInRange[0]);
+        }
+        else
+            this.HasAttacked = true;
 
-		if (enemiesInRange.Length > 0) {
+        message = "";
+        this.HasMoved = true;
+        this.checkPlayerTurnEnd();
+    }
 
-			Debug.Log("Attacking Player");
-			attackPrompt(enemiesInRange[0]);
-		}
-
-		isActive = false;
-
-		pieceLeftToMove = false;
-	}
-
-	public void attackPrompt(GameObject enemy) {
-
-		enemy.GetComponent<PlayerScript>().health -= this.attack;
-
-		if (enemy.GetComponent<PlayerScript> ().health <= 0) {
-			levelManager.GetComponent<LevelManagerScript>().destroyEnemy(enemy);
-		}
-	}
+    public void attackPrompt(GameObject enemy)
+    {
+        battleMgr.DoBattle(this, enemy.GetComponent<PlayerScript>());
+        this.HasAttacked = true;
+        this.checkPlayerTurnEnd();
+    }
 
     public bool IsInitialized()
     {
         return this.initialized;
     }
 
-	public float GetStat(Character.Stats stat) {
-		switch (stat) {
-		case Character.Stats.ATT:
-			return this.character.attack;
-		case Character.Stats.CRIT:
-			return this.character.critical;
-		case Character.Stats.DEF:
-			return this.character.defense;
-		case Character.Stats.EVA:
-			return this.character.evade;
-		case Character.Stats.HP:
-			return this.character.health;
-		case Character.Stats.MOV:
-			return this.character.movement;
-		case Character.Stats.RANGE:
-			return this.character.range;
-		default:
-			Debug.LogError(string.Format("Could not find appropriate stat for: {0}", stat));
-			return -1;
-		}
-	}
-
-    /// <summary>
-    /// Required: IsInitialized() 
-    /// </summary>
-    /// <returns>Returns the current health of the character.</returns>
-    public int GetHealth()
+    public float GetStat(Character.Stats stat)
     {
-        return this.character.health;
+        if (!this.initialized)
+        {
+            Debug.LogError("Character not initialized yet.");
+            return -1;
+        }
+
+        switch (stat)
+        {
+            case Character.Stats.ATT:
+                return this.character.attack;
+            case Character.Stats.CRIT:
+                return this.character.critical;
+            case Character.Stats.DEF:
+                return this.character.defense;
+            case Character.Stats.EVA:
+                return this.character.evade;
+            case Character.Stats.HP:
+                return this.character.health;
+            case Character.Stats.MOV:
+                return this.character.movement;
+            case Character.Stats.RANGE:
+                return this.character.range;
+            default:
+                Debug.LogError(string.Format("Could not find appropriate stat for: {0}", stat));
+                return -1;
+        }
     }
 
-    /// <summary>
-    /// Required: IsInitialized() 
-    /// </summary>
-    /// <returns>Returns the current speed of the character.</returns>
-    public int GetSpeed()
+    public void UpdateStat(Character.Stats stat, float value)
     {
-        return this.character.movement;
-    }
+        if (!this.initialized)
+            Debug.LogError("Character not initialized yet.");
 
-    /// <summary>
-    /// Required: IsInitialized() 
-    /// </summary>
-    /// <returns>Returns the current attack range of the character.</returns>
-    public int GetAttackRange()
-    {
-        return this.character.range;
+        switch (stat)
+        {
+            case Character.Stats.ATT:
+                this.attack = (int)value;
+                break;
+            case Character.Stats.CRIT:
+                this.critical = value;
+                break;
+            case Character.Stats.DEF:
+                this.defense = (int)value;
+                break;
+            case Character.Stats.EVA:
+                this.evasion = value;
+                break;
+            case Character.Stats.HP:
+                this.health = (int)value;
+                break;
+            case Character.Stats.MOV:
+                this.speed = (int)value;
+                break;
+            case Character.Stats.RANGE:
+                this.range = (int)value;
+                break;
+            default:
+                Debug.LogError(string.Format("Could not find appropriate stat for: {0}", stat));
+                break;
+        }
     }
 
     /// <summary>
@@ -148,6 +160,39 @@ public class PlayerScript : MonoBehaviour {
     public void SetCharacter(Character c)
     {
         this.character = c;
+        health = c.health;
+        defense = c.defense;
+        attack = c.attack;
+        evasion = c.evade;
+        speed = c.movement;
+        range = c.range;
+        critical = c.critical;
         this.initialized = true;
+    }
+
+    public void ResetTurn()
+    {
+        this.HasMoved = this.HasAttacked = false;
+    }
+
+    private void checkPlayerTurnEnd()
+    {
+        if (this.HasAttacked && this.HasMoved)
+        {
+            levelManager.SetActivePlayer(null);
+            levelManager.CheckTurnEnd();
+        }
+    }
+
+    void OnGUI()
+    {
+        if (GUI.Button(new Rect(10, 70, 60, 30), message))
+        {
+            Debug.Log("Clicked the button with text");
+        }
+        if (GUI.Button(new Rect(10, 105, 60, 30), "Continue"))
+        {
+            Debug.Log("Clicked the button with text");
+        }
     }
 }
