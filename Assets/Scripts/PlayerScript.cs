@@ -99,19 +99,19 @@ public class PlayerScript : MonoBehaviour
         switch (stat)
         {
             case Character.Stats.ATT:
-                return this.character.attack;
+                return this.attack;
             case Character.Stats.CRIT:
-                return this.character.critical;
+                return this.critical;
             case Character.Stats.DEF:
-                return this.character.defense;
+                return this.defense;
             case Character.Stats.EVA:
-                return this.character.evade;
+                return this.evasion;
             case Character.Stats.HP:
-                return this.character.health;
+                return this.health;
             case Character.Stats.MOV:
-                return this.character.movement;
+                return this.speed;
             case Character.Stats.RANGE:
-                return this.character.range;
+                return this.range;
             default:
                 Debug.LogError(string.Format("Could not find appropriate stat for: {0}", stat));
                 return -1;
