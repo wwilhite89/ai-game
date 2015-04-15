@@ -43,6 +43,22 @@ public class LevelManagerScript : MonoBehaviour {
 		}
 	}
 
+	public bool isTurn(GameObject player) {
+		if (player.tag == "Player") {
+			if (currentTurn == Turn.PLAYER)
+				return true;
+			else 
+				return false;
+		}
+		if (player.tag == "Enemy") {
+			if (currentTurn == Turn.PLAYER)
+				return false;
+			else 
+				return true;
+		}
+		return false;
+	}
+
 	public void destroyEnemy (GameObject enemy) {
 		Destroy (enemy);
 		enemies = GameObject.FindGameObjectsWithTag ("Enemy");

@@ -63,6 +63,9 @@ public class LandScript : MonoBehaviour {
 	
 	void OnMouseDown() {
 		// Land must be walkable
+
+		player = levelManager.GetComponent<LevelManagerScript> ().getActivePlayer ();
+
 		if(player != null && gameObject.GetComponent<LandScript>().speed != 0) {
 			blockPossition = gameObject.transform.position;
 			blockPossition.y += .6f;
@@ -73,8 +76,10 @@ public class LandScript : MonoBehaviour {
 			
 			if ( playerDist < player.GetComponent<PlayerScript>().GetSpeed() && player.GetComponent<PlayerScript>().pieceLeftToMove == true ) {
 
-				player.GetComponent<PlayerScript>().movePlayer(blockPossition);
-                levelManager.GetComponent<LevelManagerScript>().checkTurnEnd();
+				if (levelManager.GetComponent<LevelManagerScript>().isTurn(player)) {
+					player.GetComponent<PlayerScript>().movePlayer(blockPossition);
+	                levelManager.GetComponent<LevelManagerScript>().checkTurnEnd();
+				}
 			}
 		}
 	}

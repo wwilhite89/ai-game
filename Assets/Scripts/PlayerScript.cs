@@ -48,11 +48,9 @@ public class PlayerScript : MonoBehaviour {
 		isActive = true;
 
 		//TODO (wil) This is bad. I need another way to identiy selected character
-		gameObject.tag = "Selected";
+		// gameObject.tag = "Selected"; // this breaks a lot of code try using a boolean.
 
 		levelManager.GetComponent<LevelManagerScript>().setActivePlayer(gameObject, true);
-		enemiesInRange = gameObject.GetComponent<AttackRangeScript> ().getObjectsInRadius (opponent);
-
 		enemiesInRange = gameObject.GetComponent<AttackRangeScript> ().getObjectsInRadius (opponent);
 	}
 
