@@ -182,16 +182,4 @@ public class PlayerScript : MonoBehaviour
             levelManager.CheckTurnEnd();
         }
     }
-
-    void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 70, 60, 30), message))
-        {
-            Debug.Log("Clicked the button with text");
-        }
-        if (GUI.Button(new Rect(10, 105, 60, 30), "Continue"))
-        {
-            Debug.Log("Clicked the button with text");
-        }
-    }
 }

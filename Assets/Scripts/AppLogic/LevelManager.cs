@@ -132,8 +132,10 @@ public class LevelManager {
 
     private void checkGameEnd()
     {
-        if (this.players.Count() == 0)
-            gameManager.GameOver();
+        if (this.players.Count () == 0) {
+			gameManager.GameOver ();
+			Debug.Log ("Game Over");
+		}
         else if (this.enemies.Count() == 0)
         {
             gameManager.GameOver();
