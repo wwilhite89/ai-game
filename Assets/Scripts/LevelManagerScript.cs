@@ -61,7 +61,18 @@ public class LevelManagerScript : MonoBehaviour {
 
 	public void destroyEnemy (GameObject enemy) {
 		Destroy (enemy);
+
+		checkEndGame ();
+	}
+
+	public void checkEndGame() {
 		enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		players = GameObject.FindGameObjectsWithTag ("Player");
+
+		if (players.Length == 0)
+			Application.LoadLevel("MenuScene");
+		if (enemies.Length == 0)
+			Application.LoadLevel("MenuScene");
 	}
 
 	public GameObject getActivePlayer () {

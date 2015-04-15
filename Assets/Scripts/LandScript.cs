@@ -55,7 +55,8 @@ public class LandScript : MonoBehaviour {
 			
 			// highlight the land around a selected player if he is active and able to move
 			if (dist < player.GetComponent<PlayerScript>().GetSpeed() && gameObject.GetComponent<LandScript>().speed != 0) {
-				if (player.GetComponent<PlayerScript>().isActive && player.GetComponent<PlayerScript>().pieceLeftToMove == true)
+				if (player.GetComponent<PlayerScript>().isActive && player.GetComponent<PlayerScript>().pieceLeftToMove == true
+				    && levelManager.GetComponent<LevelManagerScript>().isTurn(player))
 					this.renderer.material.color = highlighColor;
 			}
 		}

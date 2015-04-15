@@ -12,39 +12,41 @@ public class PlayerScript : MonoBehaviour {
 	private GameObject levelManager;
 	private GameObject[] Land;
 	public string opponent;
-    private bool initialized = false;
-	private string message; // the text for the button
-	private int health;
+    private bool initialized = false;// the text for the button
+	public int health;
 	private int speed;
 	private int defense;
 	private int attack;
 	private float evasion;
 	private float critical;
+	private bool setStats = false; // use to set the player stats locally
 
 	// Use this for initialization
 	void Start () {
         // Defaul values
 		isActive = false;
         pieceLeftToMove = true;
-		message = "";
 		Land = GameObject.FindGameObjectsWithTag ("Land");
 
 		levelManager = GameObject.FindGameObjectWithTag ("Map");
 		// Find out who the opponent is and set the string
 		opponent = gameObject.tag == GameConstants.TAG_ENEMY ? GameConstants.TAG_PLAYER : GameConstants.TAG_ENEMY;
-		health = character.health;
-		defense = character.defense;
-		speed = character.movement;
-		attack = character.attack;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+		if (!setStats) {
+			InitializePlayerStats ();
+			setStats = true;
+		}
 	}
 
 	void OnMouseDown() {
 		levelManager.GetComponent<LevelManagerScript>().resetActive ();
+
+		// this keeps track of the active player
 		isActive = true;
 
 		//TODO (wil) This is bad. I need another way to identiy selected character
@@ -54,24 +56,31 @@ public class PlayerScript : MonoBehaviour {
 		enemiesInRange = gameObject.GetComponent<AttackRangeScript> ().getObjectsInRadius (opponent);
 	}
 
+	private void InitializePlayerStats() {
+		health = character.health;
+		defense = character.defense;
+		speed = character.movement;
+		attack = character.attack;
+	}
 	public void movePlayer(Vector3 location) {
 
 		transform.position = location;
 		enemiesInRange = gameObject.GetComponent<AttackRangeScript> ().getObjectsInRadius (opponent);
 
 		if (enemiesInRange.Length > 0) {
-			message = "Attack";
+
+			Debug.Log("Attacking Player");
 			attackPrompt(enemiesInRange[0]);
 		}
 
 		isActive = false;
 
 		pieceLeftToMove = false;
-		message = "";
 	}
 
 	public void attackPrompt(GameObject enemy) {
-		enemy.GetComponent<PlayerScript>().health -= attack;
+
+		enemy.GetComponent<PlayerScript>().health -= this.attack;
 
 		if (enemy.GetComponent<PlayerScript> ().health <= 0) {
 			levelManager.GetComponent<LevelManagerScript>().destroyEnemy(enemy);
@@ -141,13 +150,4 @@ public class PlayerScript : MonoBehaviour {
         this.character = c;
         this.initialized = true;
     }
-
-	void OnGUI() {
-		if (GUI.Button (new Rect (10, 70, 60, 30), message)) {
-			Debug.Log ("Clicked the button with text");
-		}
-		if (GUI.Button (new Rect (10, 105, 60, 30), "Continue")) {
-			Debug.Log ("Clicked the button with text");
-		}
-	}
 }

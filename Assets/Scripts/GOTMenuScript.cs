@@ -51,7 +51,7 @@ public class GOTMenuScript : MonoBehaviour {
 	void Update () {
 
         // Press Start
-        if ((Input.GetKey(this.StartKey) || (AltStartKey != null && Input.GetKey(this.AltStartKey))) && !this.started)
+        if ((Input.GetKey(this.StartKey) || (Input.GetKey(this.AltStartKey))) && !this.started)
         {
             this.started = true;
             this.createHouseSelection();
