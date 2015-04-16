@@ -11,7 +11,7 @@ namespace ArtificialNeuralNetworks.AttackNetwork.Inputs
 
 		public EnemyTeamHealthInput(PlayerScript player, int cycleTime)
             : base(player, cycleTime)
-        { }
+		{}
 
         protected override void UpdateTraining()
         {
