@@ -63,16 +63,16 @@ LightmapSettings:
 NavMeshSettings:
   m_ObjectHideFlags: 0
   m_BuildSettings:
-    agentRadius: .5
+    agentRadius: .100000001
     agentHeight: 2
-    agentSlope: 45
-    agentClimb: .400000006
+    agentSlope: 38.0999985
+    agentClimb: .5
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     accuratePlacement: 0
     minRegionArea: 2
-    widthInaccuracy: 16.666666
-    heightInaccuracy: 10
+    widthInaccuracy: 29.2000008
+    heightInaccuracy: 25.1000004
   m_NavMesh: {fileID: 19400000, guid: d520db7472749e94680a66c483d574d1, type: 2}
 --- !u!1 &22981917
 GameObject:
@@ -14486,7 +14486,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
@@ -18992,6 +18992,10 @@ Prefab:
     - target: {fileID: 469810, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469810, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
