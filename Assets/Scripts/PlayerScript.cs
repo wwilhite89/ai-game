@@ -5,7 +5,6 @@ using GameDB.SessionData;
 
 public class PlayerScript : MonoBehaviour
 {
-
     private Character character;
     public GameObject[] enemiesInRange;
     private GameObject[] Land;
@@ -59,7 +58,6 @@ public class PlayerScript : MonoBehaviour
 
     public void movePlayer(Vector3 location)
     {
-
         transform.position = location;
         enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
 
