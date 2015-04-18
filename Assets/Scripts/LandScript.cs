@@ -24,7 +24,7 @@ public class LandScript : MonoBehaviour
     void Start()
     {
 
-        this.lvlMgr = LevelManager.getInstance();
+        this.lvlMgr = GameObject.Find("Manager").GetComponent<LevelManager>();
 
         if (renderer.material.HasProperty("_Color"))
         {

@@ -9,7 +9,7 @@ public class ImageDisplay : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		image = GetComponent<Image>();
-        this.lvlMgr = LevelManager.getInstance();
+        this.lvlMgr = GameObject.Find("Manager").GetComponent<LevelManager>();
 	}
 	
 	// Update is called once per frame

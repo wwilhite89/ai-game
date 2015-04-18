@@ -7,7 +7,7 @@ public class MapScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        this.lvlMgr = LevelManager.getInstance();
+        this.lvlMgr = GameObject.Find("Manager").GetComponent<LevelManager>();
         this.lvlMgr.StartNewLevel();
 	}
 	

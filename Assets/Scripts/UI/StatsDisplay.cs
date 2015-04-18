@@ -10,7 +10,7 @@ public class StatsDisplay : MonoBehaviour {
     private Text text = null;
 
 	void Start () {
-        this.lvlMgr = LevelManager.getInstance();
+        this.lvlMgr = GameObject.Find("Manager").GetComponent<LevelManager>();
         this.text = gameObject.GetComponent<Text>();
 	}
 	

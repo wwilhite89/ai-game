@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using GameDB;
 using GameDB.SessionData;
@@ -11,6 +12,7 @@ public class CharacterController : MonoBehaviour
     public string opponent;
     public bool HasMoved { get; private set; }
     public bool HasAttacked { get; private set; }
+	public bool selected;
 
     private bool initialized = false;
     private string message; // the text for the button
@@ -21,14 +23,17 @@ public class CharacterController : MonoBehaviour
     public float evasion;
     public float critical;
     public int range;
+
+	private GameObject manager;
     private BattleManager battleMgr;
     private LevelManager levelManager;
 
     // Use this for initialization
     void Start()
     {
-        this.levelManager = LevelManager.getInstance();
-        this.battleMgr = new BattleManager();
+		manager = GameObject.Find("Manager");
+        this.levelManager = manager.GetComponent<LevelManager>();
+        this.battleMgr = manager.GetComponent<BattleManager>();
 
         // Defaul values
         message = "";
@@ -36,12 +41,6 @@ public class CharacterController : MonoBehaviour
 
         // Find out who the opponent is and set the string
         opponent = gameObject.tag == GameConstants.TAG_ENEMY ? GameConstants.TAG_PLAYER : GameConstants.TAG_ENEMY;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void OnMouseDown()
@@ -74,11 +73,10 @@ public class CharacterController : MonoBehaviour
         this.checkPlayerTurnEnd();
     }
 
-    public void attackPrompt(GameObject enemy)
+	// Method for being attacked
+    public void attackPrompt(GameObject opponent)
     {
-        battleMgr.DoBattle(this, enemy.GetComponent<CharacterController>());
-        this.HasAttacked = true;
-        this.checkPlayerTurnEnd();
+        battleMgr.DoBattle(opponent.GetComponent<CharacterController>(), this);
     }
 
     public bool IsInitialized()
@@ -171,6 +169,14 @@ public class CharacterController : MonoBehaviour
     {
         this.HasMoved = this.HasAttacked = false;
     }
+
+	public void OnSelect() {
+		this.selected = true;
+	}
+
+	public void OnDeselect() {
+		this.selected = false;
+	}
 
     private void checkPlayerTurnEnd()
     {

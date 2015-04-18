@@ -73,6 +73,7 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
+    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &22981917
 GameObject:
@@ -118,7 +119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &22981921
 Renderer:
@@ -206,7 +206,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &29955775
 Renderer:
@@ -294,7 +293,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &37476668
 Renderer:
@@ -382,7 +380,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &44941743
 Renderer:
@@ -457,6 +454,7 @@ RectTransform:
   m_Children:
   - {fileID: 467233591}
   - {fileID: 1137042167}
+  - {fileID: 834659917}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
@@ -486,8 +484,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreReversedGraphics: 1
-  blockingObjects: 0
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -573,7 +571,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &59233494
 Renderer:
@@ -661,7 +658,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &60376039
 Renderer:
@@ -788,7 +784,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &82567119
 Renderer:
@@ -876,7 +871,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &87355907
 Renderer:
@@ -964,7 +958,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &128013927
 Renderer:
@@ -1052,7 +1045,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &141522742
 Renderer:
@@ -1140,7 +1132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &145250814
 Renderer:
@@ -1245,7 +1236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &146141305
 Renderer:
@@ -1333,7 +1323,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &147170639
 Renderer:
@@ -1438,7 +1427,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &165177700
 Renderer:
@@ -1498,6 +1486,7 @@ GameObject:
   - 65: {fileID: 168150496}
   - 114: {fileID: 168150502}
   - 114: {fileID: 168150503}
+  - 114: {fileID: 168150504}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1540,14 +1529,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 168150494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a41e25e3dd4962c499aca2f794ce730d, type: 3}
+  m_Script: {fileID: 11500000, guid: 505f24eda3768674586625a17e0a0a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
-  pieceLeftToMove: 0
   enemiesInRange: []
   opponent: 
+  selected: 0
   health: 0
+  speed: 0
+  defense: 0
+  attack: 0
+  evasion: 0
+  critical: 0
+  range: 0
 --- !u!54 &168150498
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1641,6 +1635,43 @@ MonoBehaviour:
   OvCRIT: .100000001
   OvMOV: 6
   OvRANGE: 3
+--- !u!114 &168150504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11407186, guid: 02647a0f01a00134ab2a0ba15a03e9b1,
+    type: 2}
+  m_PrefabInternal: {fileID: 919507575}
+  m_GameObject: {fileID: 168150494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -234403039, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_ColorMultiplier: 1
+    m_FadeDuration: .100000001
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
 --- !u!1 &169142494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,7 +1716,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &169142498
 Renderer:
@@ -1773,7 +1803,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &210480076
 Renderer:
@@ -1861,7 +1890,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &210921311
 Renderer:
@@ -1949,7 +1977,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &230190587
 Renderer:
@@ -2110,7 +2137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &243796951
 Renderer:
@@ -2242,7 +2268,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &253554858
 Renderer:
@@ -2374,7 +2399,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &267440296
 Renderer:
@@ -2462,7 +2486,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &284215900
 Renderer:
@@ -2550,7 +2573,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &286168395
 Renderer:
@@ -2707,7 +2729,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &314186934
 Renderer:
@@ -2795,7 +2816,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &333612521
 Renderer:
@@ -2986,7 +3006,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &347256593
 Renderer:
@@ -3074,7 +3093,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &358618641
 Renderer:
@@ -3206,7 +3224,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &396947177
 Renderer:
@@ -3294,7 +3311,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &412837603
 Renderer:
@@ -3433,7 +3449,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &443747699
 Renderer:
@@ -3521,7 +3536,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &444965712
 Renderer:
@@ -3609,7 +3623,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &452924156
 Renderer:
@@ -3697,7 +3710,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &462537733
 Renderer:
@@ -3773,7 +3785,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &466559342
 Renderer:
@@ -3983,7 +3994,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &486264147
 Renderer:
@@ -4110,7 +4120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &502353052
 Renderer:
@@ -4198,7 +4207,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &507461292
 Renderer:
@@ -4330,7 +4338,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &525875936
 Renderer:
@@ -4462,7 +4469,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &533972218
 Renderer:
@@ -4550,7 +4556,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &536921548
 Renderer:
@@ -4822,7 +4827,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &569218427
 Renderer:
@@ -4910,7 +4914,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &569785229
 Renderer:
@@ -5015,7 +5018,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &580371385
 Renderer:
@@ -5120,7 +5122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &625666853
 Renderer:
@@ -5208,7 +5209,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &627244068
 Renderer:
@@ -5296,7 +5296,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &628373334
 Renderer:
@@ -5384,7 +5383,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &633858661
 Renderer:
@@ -5652,7 +5650,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &644085918
 Renderer:
@@ -5779,7 +5776,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &646068838
 Renderer:
@@ -5935,7 +5931,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &658143452
 Renderer:
@@ -6023,7 +6018,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &659736713
 Renderer:
@@ -6155,7 +6149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &683778003
 Renderer:
@@ -6243,7 +6236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &689214868
 Renderer:
@@ -6331,7 +6323,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &700015201
 Renderer:
@@ -6419,7 +6410,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &718869421
 Renderer:
@@ -6463,6 +6453,69 @@ MeshFilter:
   m_PrefabInternal: {fileID: 542509129}
   m_GameObject: {fileID: 718869417}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &720620757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 720620759}
+  - 114: {fileID: 720620758}
+  - 114: {fileID: 720620761}
+  - 114: {fileID: 720620760}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &720620758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 720620757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 464c9eee4347a124dae46a08da1584af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &720620759
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 720620757}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 202.147156, y: 171.406876, z: 8.8125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+--- !u!114 &720620760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 720620757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864a6d625a4e43f4fb8400596e54a4c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &720620761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 720620757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237246ba6f5aa9342a33c8502dc2abbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &720647582
 GameObject:
   m_ObjectHideFlags: 0
@@ -6507,7 +6560,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &720647586
 Renderer:
@@ -6595,7 +6647,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &723316246
 Renderer:
@@ -6683,7 +6734,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &727047558
 Renderer:
@@ -6879,7 +6929,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &738489495
 Renderer:
@@ -6967,7 +7016,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &758218333
 Renderer:
@@ -7055,7 +7103,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &761585688
 Renderer:
@@ -7143,7 +7190,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &770271219
 Renderer:
@@ -7231,7 +7277,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &796887370
 Renderer:
@@ -7336,7 +7381,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &822980929
 Renderer:
@@ -7475,7 +7519,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &824260066
 Renderer:
@@ -7683,7 +7726,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &834310940
 Renderer:
@@ -7727,6 +7769,101 @@ MeshFilter:
   m_PrefabInternal: {fileID: 509062686}
   m_GameObject: {fileID: 834310936}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &834659916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 834659917}
+  - 222: {fileID: 834659921}
+  - 114: {fileID: 834659920}
+  - 225: {fileID: 834659919}
+  - 114: {fileID: 834659918}
+  m_Layer: 5
+  m_Name: TurnButtons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &834659917
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 834659916}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1924856587}
+  m_Father: {fileID: 53965196}
+  m_RootOrder: 2
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 700, y: 100}
+  m_SizeDelta: {x: 100, y: 30}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &834659918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 834659916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1297475563, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+--- !u!225 &834659919
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 834659916}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &834659920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 834659916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &834659921
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 834659916}
 --- !u!1001 &835163670
 Prefab:
   m_ObjectHideFlags: 0
@@ -7863,7 +8000,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &838517072
 Renderer:
@@ -7951,7 +8087,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &846771080
 Renderer:
@@ -8039,7 +8174,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &849293648
 Renderer:
@@ -8127,7 +8261,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &851830737
 Renderer:
@@ -8215,7 +8348,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &864259255
 Renderer:
@@ -8303,7 +8435,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &867381439
 Renderer:
@@ -8430,7 +8561,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &873090941
 Renderer:
@@ -8518,7 +8648,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &873660700
 Renderer:
@@ -8650,7 +8779,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &893087612
 Renderer:
@@ -8738,7 +8866,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &912040439
 Renderer:
@@ -8870,7 +8997,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &935638120
 Renderer:
@@ -8958,7 +9084,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &936183055
 Renderer:
@@ -9090,7 +9215,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &944763092
 Renderer:
@@ -9178,7 +9302,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &954495661
 Renderer:
@@ -9283,7 +9406,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &965391455
 Renderer:
@@ -9432,7 +9554,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &974253700
 Renderer:
@@ -9520,7 +9641,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &986478928
 Renderer:
@@ -9625,7 +9745,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &1000918227
 Renderer:
@@ -9730,7 +9849,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &1001164261
 Renderer:
@@ -9872,7 +9990,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &1016007698
 Renderer:
@@ -9960,7 +10077,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &1024404237
 Renderer:
@@ -10048,7 +10164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1029000438
 Renderer:
@@ -10136,7 +10251,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &1054182125
 Renderer:
@@ -10224,7 +10338,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1054601316
 Renderer:
@@ -10329,7 +10442,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &1073623237
 Renderer:
@@ -10417,7 +10529,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1073987057
 Renderer:
@@ -10505,7 +10616,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1081504279
 Renderer:
@@ -10565,6 +10675,7 @@ GameObject:
   - 65: {fileID: 1092856327}
   - 114: {fileID: 1092856333}
   - 114: {fileID: 1092856334}
+  - 114: {fileID: 1092856335}
   m_Layer: 0
   m_Name: AI
   m_TagString: Enemy
@@ -10607,14 +10718,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1092856325}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a41e25e3dd4962c499aca2f794ce730d, type: 3}
+  m_Script: {fileID: 11500000, guid: 505f24eda3768674586625a17e0a0a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
-  pieceLeftToMove: 0
   enemiesInRange: []
   opponent: 
+  selected: 0
   health: 0
+  speed: 0
+  defense: 0
+  attack: 0
+  evasion: 0
+  critical: 0
+  range: 0
 --- !u!54 &1092856329
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10708,6 +10824,43 @@ MonoBehaviour:
   OvCRIT: .100000001
   OvMOV: 6
   OvRANGE: 3
+--- !u!114 &1092856335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11432252, guid: e34983747472a494286b19b7b7dbcf0a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1562640317}
+  m_GameObject: {fileID: 1092856325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -234403039, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_ColorMultiplier: 1
+    m_FadeDuration: .100000001
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
 --- !u!1 &1100277421
 GameObject:
   m_ObjectHideFlags: 0
@@ -10833,7 +10986,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1109684857
 Renderer:
@@ -10965,7 +11117,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1136691119
 Renderer:
@@ -11120,7 +11271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1137844608
 Renderer:
@@ -11292,7 +11442,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1139961709
 Renderer:
@@ -11458,7 +11607,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1157751792
 Renderer:
@@ -11546,7 +11694,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1159462332
 Renderer:
@@ -11695,7 +11842,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &1179399308
 Renderer:
@@ -11783,7 +11929,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1195011945
 Renderer:
@@ -11915,7 +12060,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1215777680
 Renderer:
@@ -11968,7 +12112,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1235800197}
   m_Layer: 0
-  m_Name: Players
+  m_Name: Characters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12042,9 +12186,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1241715260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63e7e090d53cdc5409b2eb13ffc1a5da, type: 3}
+  m_Script: {fileID: 11500000, guid: 505f24eda3768674586625a17e0a0a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesInRange: []
+  opponent: 
+  selected: 0
+  health: 0
+  speed: 0
+  defense: 0
+  attack: 0
+  evasion: 0
+  critical: 0
+  range: 0
 --- !u!1 &1245027281
 GameObject:
   m_ObjectHideFlags: 0
@@ -12089,7 +12243,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1245027285
 Renderer:
@@ -12177,7 +12330,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1245611335
 Renderer:
@@ -12265,7 +12417,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1253223138
 Renderer:
@@ -12309,6 +12460,72 @@ MeshFilter:
   m_PrefabInternal: {fileID: 937384947}
   m_GameObject: {fileID: 1253223134}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1261838005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1261838008}
+  - 222: {fileID: 1261838007}
+  - 114: {fileID: 1261838006}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1261838006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1261838005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: End Turn
+--- !u!222 &1261838007
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1261838005}
+--- !u!224 &1261838008
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1261838005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1924856587}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
 --- !u!1001 &1276051620
 Prefab:
   m_ObjectHideFlags: 0
@@ -12541,7 +12758,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &1297702698
 Renderer:
@@ -12629,7 +12845,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1298362673
 Renderer:
@@ -12717,7 +12932,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1312836039
 Renderer:
@@ -12805,7 +13019,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1313397873
 Renderer:
@@ -12893,7 +13106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &1319296005
 Renderer:
@@ -12998,7 +13210,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &1324099974
 Renderer:
@@ -13086,7 +13297,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1339363133
 Renderer:
@@ -13174,7 +13384,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1339981134
 Renderer:
@@ -13262,7 +13471,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1348512725
 Renderer:
@@ -13350,7 +13558,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1351604582
 Renderer:
@@ -13438,7 +13645,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1357119083
 Renderer:
@@ -13526,7 +13732,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1361089888
 Renderer:
@@ -13614,7 +13819,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1362111934
 Renderer:
@@ -13729,7 +13933,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1376947352
 Renderer:
@@ -13829,7 +14032,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1404046163
 Renderer:
@@ -13917,7 +14119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1418904352
 Renderer:
@@ -14005,7 +14206,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1426688996
 Renderer:
@@ -14093,7 +14293,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1435640694
 Renderer:
@@ -14181,7 +14380,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1438363813
 Renderer:
@@ -14269,7 +14467,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1439096199
 Renderer:
@@ -14357,7 +14554,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1443653061
 Renderer:
@@ -14417,6 +14613,7 @@ GameObject:
   - 65: {fileID: 1444073022}
   - 114: {fileID: 1444073021}
   - 114: {fileID: 1444073020}
+  - 114: {fileID: 1444073028}
   m_Layer: 0
   m_Name: AI
   m_TagString: Enemy
@@ -14494,14 +14691,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1444073018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a41e25e3dd4962c499aca2f794ce730d, type: 3}
+  m_Script: {fileID: 11500000, guid: 505f24eda3768674586625a17e0a0a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
-  pieceLeftToMove: 0
   enemiesInRange: []
   opponent: 
+  selected: 0
   health: 0
+  speed: 0
+  defense: 0
+  attack: 0
+  evasion: 0
+  critical: 0
+  range: 0
 --- !u!54 &1444073024
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14560,6 +14762,43 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1932159034}
   m_GameObject: {fileID: 1444073018}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1444073028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11432252, guid: e34983747472a494286b19b7b7dbcf0a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1932159034}
+  m_GameObject: {fileID: 1444073018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -234403039, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_ColorMultiplier: 1
+    m_FadeDuration: .100000001
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
 --- !u!1 &1444678324
 GameObject:
   m_ObjectHideFlags: 0
@@ -14604,7 +14843,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1444678328
 Renderer:
@@ -14736,7 +14974,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1463737621
 Renderer:
@@ -14824,7 +15061,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1468274661
 Renderer:
@@ -14990,6 +15226,10 @@ Prefab:
     - target: {fileID: 469810, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469806, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
+      propertyPath: OverrideSpawn
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
@@ -15219,7 +15459,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1510854707
 Renderer:
@@ -15436,6 +15675,7 @@ GameObject:
   - 65: {fileID: 1552112756}
   - 114: {fileID: 1552112755}
   - 114: {fileID: 1552112754}
+  - 114: {fileID: 1552112762}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -15513,14 +15753,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1552112752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a41e25e3dd4962c499aca2f794ce730d, type: 3}
+  m_Script: {fileID: 11500000, guid: 505f24eda3768674586625a17e0a0a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
-  pieceLeftToMove: 0
   enemiesInRange: []
   opponent: 
+  selected: 0
   health: 0
+  speed: 0
+  defense: 0
+  attack: 0
+  evasion: 0
+  critical: 0
+  range: 0
 --- !u!54 &1552112758
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15579,6 +15824,43 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2130874510}
   m_GameObject: {fileID: 1552112752}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1552112762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11407186, guid: 02647a0f01a00134ab2a0ba15a03e9b1,
+    type: 2}
+  m_PrefabInternal: {fileID: 2130874510}
+  m_GameObject: {fileID: 1552112752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -234403039, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_ColorMultiplier: 1
+    m_FadeDuration: .100000001
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
 --- !u!1001 &1562640317
 Prefab:
   m_ObjectHideFlags: 0
@@ -15667,7 +15949,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1572334708
 Renderer:
@@ -15755,7 +16036,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1575338419
 Renderer:
@@ -15978,7 +16258,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1601642311
 Renderer:
@@ -16264,7 +16543,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &1633506962
 Renderer:
@@ -16448,7 +16726,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1639365807
 Renderer:
@@ -16536,7 +16813,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1650642860
 Renderer:
@@ -16911,7 +17187,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1695482336
 Renderer:
@@ -16999,7 +17274,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1703276676
 Renderer:
@@ -17104,7 +17378,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: .5
 --- !u!23 &1704737239
 Renderer:
@@ -17164,6 +17437,7 @@ GameObject:
   - 65: {fileID: 1710983161}
   - 114: {fileID: 1710983160}
   - 114: {fileID: 1710983159}
+  - 114: {fileID: 1710983167}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -17241,14 +17515,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1710983157}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a41e25e3dd4962c499aca2f794ce730d, type: 3}
+  m_Script: {fileID: 11500000, guid: 505f24eda3768674586625a17e0a0a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
-  pieceLeftToMove: 0
   enemiesInRange: []
   opponent: 
+  selected: 0
   health: 0
+  speed: 0
+  defense: 0
+  attack: 0
+  evasion: 0
+  critical: 0
+  range: 0
 --- !u!54 &1710983163
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17307,6 +17586,43 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2103976850}
   m_GameObject: {fileID: 1710983157}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1710983167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11407186, guid: 02647a0f01a00134ab2a0ba15a03e9b1,
+    type: 2}
+  m_PrefabInternal: {fileID: 2103976850}
+  m_GameObject: {fileID: 1710983157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -234403039, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_ColorMultiplier: 1
+    m_FadeDuration: .100000001
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
 --- !u!1 &1717434188
 GameObject:
   m_ObjectHideFlags: 0
@@ -17414,7 +17730,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1727975764
 Renderer:
@@ -17502,7 +17817,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1754160121
 Renderer:
@@ -17590,7 +17904,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1757129692
 Renderer:
@@ -17809,7 +18122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &1767915946
 Renderer:
@@ -17897,7 +18209,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1792300545
 Renderer:
@@ -17985,7 +18296,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1792837018
 Renderer:
@@ -18073,7 +18383,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1795835416
 Renderer:
@@ -18161,7 +18470,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1798367821
 Renderer:
@@ -18249,7 +18557,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1812056299
 Renderer:
@@ -18337,7 +18644,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1831488406
 Renderer:
@@ -18425,7 +18731,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1840457053
 Renderer:
@@ -18513,7 +18818,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1841503059
 Renderer:
@@ -18685,7 +18989,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &1863036160
 Renderer:
@@ -18773,7 +19076,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1863457024
 Renderer:
@@ -18861,7 +19163,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1867748483
 Renderer:
@@ -18949,7 +19250,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1868227910
 Renderer:
@@ -19116,7 +19416,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1907633928
 Renderer:
@@ -19204,7 +19503,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1911219907
 Renderer:
@@ -19264,6 +19562,7 @@ GameObject:
   - 65: {fileID: 1916903691}
   - 114: {fileID: 1916903690}
   - 114: {fileID: 1916903689}
+  - 114: {fileID: 1916903697}
   m_Layer: 0
   m_Name: AI
   m_TagString: Enemy
@@ -19341,14 +19640,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1916903687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a41e25e3dd4962c499aca2f794ce730d, type: 3}
+  m_Script: {fileID: 11500000, guid: 505f24eda3768674586625a17e0a0a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
-  pieceLeftToMove: 0
   enemiesInRange: []
   opponent: 
+  selected: 0
   health: 0
+  speed: 0
+  defense: 0
+  attack: 0
+  evasion: 0
+  critical: 0
+  range: 0
 --- !u!54 &1916903693
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19407,6 +19711,43 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1470063760}
   m_GameObject: {fileID: 1916903687}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1916903697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11432252, guid: e34983747472a494286b19b7b7dbcf0a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1470063760}
+  m_GameObject: {fileID: 1916903687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -234403039, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_ColorMultiplier: 1
+    m_FadeDuration: .100000001
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
 --- !u!1 &1921257456
 GameObject:
   m_ObjectHideFlags: 0
@@ -19451,7 +19792,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1921257460
 Renderer:
@@ -19534,6 +19874,122 @@ Transform:
   - {fileID: 1404046160}
   m_Father: {fileID: 1241715261}
   m_RootOrder: 12
+--- !u!1 &1924856586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1924856587}
+  - 222: {fileID: 1924856590}
+  - 114: {fileID: 1924856589}
+  - 114: {fileID: 1924856588}
+  m_Layer: 5
+  m_Name: EndTurn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1924856587
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1924856586}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1261838008}
+  m_Father: {fileID: 834659917}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &1924856588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1924856586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_ColorMultiplier: 1
+    m_FadeDuration: .100000001
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1924856589}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 720620758}
+        m_MethodName: ChangeTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1924856589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1924856586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1924856590
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1924856586}
 --- !u!1001 &1932159034
 Prefab:
   m_ObjectHideFlags: 0
@@ -19750,7 +20206,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1942122364
 Renderer:
@@ -19838,7 +20293,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1953494457
 Renderer:
@@ -19995,7 +20449,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1983067408
 Renderer:
@@ -20083,7 +20536,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1985862496
 Renderer:
@@ -20171,7 +20623,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &1997055221
 Renderer:
@@ -20259,7 +20710,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &2003480207
 Renderer:
@@ -20431,7 +20881,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &2004692154
 Renderer:
@@ -20519,7 +20968,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &2011716905
 Renderer:
@@ -20607,7 +21055,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &2026325404
 Renderer:
@@ -20695,7 +21142,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &2026762170
 Renderer:
@@ -20783,7 +21229,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &2050390231
 Renderer:
@@ -20871,7 +21316,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &2056574730
 Renderer:
@@ -20959,7 +21403,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 0
 --- !u!23 &2058948004
 Renderer:
@@ -21047,7 +21490,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &2066945934
 Renderer:
@@ -21135,7 +21577,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &2067456676
 Renderer:
@@ -21267,7 +21708,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &2078248126
 Renderer:
@@ -21355,7 +21795,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &2083404525
 Renderer:
@@ -21487,7 +21926,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &2111039971
 Renderer:
@@ -21619,7 +22057,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LandType: 
-  currentTurn: 0
   speed: 1
 --- !u!23 &2132495426
 Renderer:

@@ -7,8 +7,7 @@ using GameDB;
 using GameDB.SessionData;
 using UnityEngine;
 
-public class GameManager
-{
+public class GameManager : MonoBehaviour {
 
     #region Enumerations
     public enum Map
@@ -24,15 +23,6 @@ public class GameManager
     #endregion
 
     #region Fields
-
-    #endregion
-
-    #region Constructors
-
-    public GameManager()
-    {
-        
-    }
 
     #endregion
 

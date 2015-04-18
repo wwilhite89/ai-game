@@ -7,27 +7,23 @@ using System.Linq;
 /// <summary>
 /// Singleton class that manages the actions of the Level, including players' turns.
 /// </summary>
-public class LevelManager {
+public class LevelManager : MonoBehaviour {
 
     public enum Turn { PLAYER, ENEMY, };
 
     public Turn CurrentTurn { get; private set; }
     public GameObject ActiveCharacter { get; private set; }
 
-    private static LevelManager instance = null;
-	
     private GameObject[] characters;
 	private GameObject[] enemies;
-    private GameManager gameManager = new GameManager();
+    private GameManager gameManager;
 
     #region Public Methods
 
-    public static LevelManager getInstance()
-    {
-        if (instance == null)
-            instance = new LevelManager();
-        return instance;
-    }
+	void Start() {
+		gameManager = GameObject.Find("Manager").GetComponent<GameManager>();
+
+	}
 
     public void StartNewLevel()
     {
@@ -80,8 +76,15 @@ public class LevelManager {
 
 
         if (allCharactersActioned)
-            this.changeTurn();
+            this.ChangeTurn();
 
+    }
+	
+    public void ChangeTurn()
+    {
+        this.CurrentTurn = this.CurrentTurn == Turn.ENEMY ? Turn.PLAYER : Turn.ENEMY;
+        var characters = this.CurrentTurn == Turn.ENEMY ? this.enemies : this.characters;
+        characters.ToList().ForEach(x => x.GetComponent<CharacterController>().ResetTurn());
     }
 
     #endregion
@@ -123,12 +126,6 @@ public class LevelManager {
             Debug.LogWarning(string.Format("Only {0} out of {1} player characters were spawned.", taken, playerChars.Count));
     }
 
-    private void changeTurn()
-    {
-        this.CurrentTurn = this.CurrentTurn == Turn.ENEMY ? Turn.PLAYER : Turn.ENEMY;
-        var characters = this.CurrentTurn == Turn.ENEMY ? this.enemies : this.characters;
-        characters.ToList().ForEach(x => x.GetComponent<CharacterController>().ResetTurn());
-    }
 
     private void checkGameEnd()
     {

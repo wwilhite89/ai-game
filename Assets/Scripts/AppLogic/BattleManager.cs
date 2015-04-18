@@ -7,18 +7,12 @@ using GameDB;
 using GameDB.SessionData;
 using UnityEngine;
 
-public class BattleManager
-{
+public class BattleManager : MonoBehaviour {
     private LevelManager lvlMgr;
 
-    #region Constructors
-
-    public BattleManager()
-    {
-        this.lvlMgr = LevelManager.getInstance();
-    }
-
-    #endregion
+	void Start() {
+        this.lvlMgr = gameObject.GetComponent<LevelManager>();
+	}
 
     public void DoBattle(CharacterController attacker, CharacterController attackee)
     {
@@ -45,7 +39,6 @@ public class BattleManager
         
         // Apply damage
         this.applyDamage(attackee, (int) dmg);
-
     }
 
     private void applyDamage(CharacterController player, int amount)
@@ -59,7 +52,4 @@ public class BattleManager
         if (newHP <= 0)
             this.lvlMgr.Kill(player.gameObject);
     }
-
-
-
 }

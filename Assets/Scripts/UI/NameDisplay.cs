@@ -6,7 +6,7 @@ public class NameDisplay : MonoBehaviour {
     private LevelManager lvlMgr;
 
 	void Start () {
-        this.lvlMgr = LevelManager.getInstance();
+        this.lvlMgr = GameObject.Find("Manager").GetComponent<LevelManager>();
 		GetComponent<Text>().text = "";
 	}
 	
