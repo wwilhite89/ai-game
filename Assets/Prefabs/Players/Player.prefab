@@ -32,6 +32,7 @@ GameObject:
   - 65: {fileID: 6521064}
   - 114: {fileID: 11421062}
   - 114: {fileID: 11421060}
+  - 114: {fileID: 11407186}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -130,6 +131,42 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.00000048, z: 1.00000048}
   m_Center: {x: 0, y: -7.94728621e-08, z: 0}
+--- !u!114 &11407186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -234403039, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_ColorMultiplier: 1
+    m_FadeDuration: .100000001
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
 --- !u!114 &11421060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,11 +208,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 121064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a41e25e3dd4962c499aca2f794ce730d, type: 3}
+  m_Script: {fileID: 11500000, guid: 505f24eda3768674586625a17e0a0a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
-  pieceLeftToMove: 0
+  enemiesInRange: []
+  opponent: 
+  health: 0
+  speed: 0
+  defense: 0
+  attack: 0
+  evasion: 0
+  critical: 0
+  range: 0
 --- !u!212 &21221064
 SpriteRenderer:
   m_ObjectHideFlags: 1

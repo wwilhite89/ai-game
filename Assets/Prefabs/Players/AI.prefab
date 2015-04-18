@@ -171,11 +171,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 169810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a41e25e3dd4962c499aca2f794ce730d, type: 3}
+  m_Script: {fileID: 11500000, guid: 505f24eda3768674586625a17e0a0a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
-  pieceLeftToMove: 0
+  enemiesInRange: []
+  opponent: 
+  health: 0
+  speed: 0
+  defense: 0
+  attack: 0
+  evasion: 0
+  critical: 0
+  range: 0
 --- !u!212 &21269810
 SpriteRenderer:
   m_ObjectHideFlags: 1
