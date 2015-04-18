@@ -1626,6 +1626,7 @@ MonoBehaviour:
   evasion: 0
   critical: 0
   range: 0
+  currentStatus: 0
 --- !u!54 &168150498
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11169,6 +11170,7 @@ MonoBehaviour:
   evasion: 0
   critical: 0
   range: 0
+  currentStatus: 0
 --- !u!54 &1092856329
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15011,6 +15013,7 @@ MonoBehaviour:
   evasion: 0
   critical: 0
   range: 0
+  currentStatus: 0
 --- !u!54 &1444073024
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15916,6 +15919,7 @@ MonoBehaviour:
   evasion: 0
   critical: 0
   range: 0
+  currentStatus: 0
 --- !u!54 &1552112758
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17448,6 +17452,7 @@ MonoBehaviour:
   evasion: 0
   critical: 0
   range: 0
+  currentStatus: 0
 --- !u!54 &1710983163
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19601,6 +19606,7 @@ MonoBehaviour:
   evasion: 0
   critical: 0
   range: 0
+  currentStatus: 0
 --- !u!54 &1916903693
 Rigidbody:
   m_ObjectHideFlags: 0
