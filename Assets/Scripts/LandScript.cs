@@ -1,11 +1,10 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 using GameDB.SessionData;
 using System;
 
-
-public class LandScript : MonoBehaviour
-{
+public class LandScript : MonoBehaviour, IPointerClickHandler {
     private GameObject enemy;
     private GameObject currentChar;
     private GameObject levelManager;
@@ -33,16 +32,34 @@ public class LandScript : MonoBehaviour
         }
     }
 
-    void Awake()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
         HighlightLand();
     }
+
+	public void OnPointerClick (PointerEventData eventData)
+	{
+		var player = lvlMgr.ActiveCharacter;
+
+        // Land must be walkable
+        if (player != null && gameObject.GetComponent<LandScript>().speed != 0)
+        {
+            blockPossition = gameObject.transform.position;
+            blockPossition.y += .6f;
+
+            playerDist = Vector3.Distance(gameObject.transform.position, player.transform.position);
+
+            Debug.Log("you clicked distance " + playerDist);
+            
+            if (playerDist < player.GetComponent<CharacterController>().GetStat(GameDB.Character.Stats.MOV) && !player.GetComponent<CharacterController>().HasMoved && lvlMgr.IsTurn(player))
+            {
+
+                player.GetComponent<CharacterController>().moveCharacter(blockPossition);
+                lvlMgr.CheckTurnEnd();
+            }
+        }
+	}
 
     void HighlightLand()
     {
@@ -65,30 +82,6 @@ public class LandScript : MonoBehaviour
         this.renderer.material.color = highlight ? highlighColor : landColor;
     }
 
-    void OnMouseDown()
-    {
-        var player = lvlMgr.ActiveCharacter;
-
-        // Land must be walkable
-        if (player != null && gameObject.GetComponent<LandScript>().speed != 0)
-        {
-            blockPossition = gameObject.transform.position;
-            blockPossition.y += .6f;
-
-            playerDist = Vector3.Distance(gameObject.transform.position, player.transform.position);
-
-            Debug.Log("you clicked distance " + playerDist);
-            
-            if (playerDist < player.GetComponent<CharacterController>().GetStat(GameDB.Character.Stats.MOV) && !player.GetComponent<CharacterController>().HasMoved && lvlMgr.IsTurn(player))
-            {
-
-                player.GetComponent<CharacterController>().moveCharacter(blockPossition);
-                lvlMgr.CheckTurnEnd();
-            }
-        }
-    }
-
-
     // is called every frame on objects that are colliding
     void OnCollisionStay(Collision col)
     {
@@ -97,15 +90,5 @@ public class LandScript : MonoBehaviour
         {
             this.renderer.material.color = landColor;
         }
-    }
-
-    void OnMouseOver()
-    {
-
-    }
-
-    void OnMouseExit()
-    {
-
     }
 }
