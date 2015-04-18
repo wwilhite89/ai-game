@@ -3,15 +3,16 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class NameDisplay : MonoBehaviour {
+    private LevelManager lvlMgr;
 
-	// Use this for initialization
 	void Start () {
+        this.lvlMgr = LevelManager.getInstance();
 		GetComponent<Text>().text = "";
 	}
 	
-	// Update is called once per frame
 	void Update () {
-		GameObject character = GameObject.FindGameObjectWithTag("Selected");
+        GameObject character = lvlMgr.ActiveCharacter;
+        var statVal = character != null ? character.GetComponent<CharacterController>().name.ToString() : "";
 		GetComponent<Text>().text = character.name;
 	}
 }

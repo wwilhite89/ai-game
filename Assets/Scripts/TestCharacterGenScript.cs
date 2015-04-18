@@ -9,13 +9,8 @@ public class TestCharacterGenScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        var jaime = new Character { Name = "Jaime", resourcePath = @"Players/JaimeLannister" };
+        var jaime = new Character { Name = "Jaime", resourcePath = @"Characters/JaimeLannister" };
         spawnCharacters(new List<Character> { jaime });
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
     // Input should be teams or charcaters

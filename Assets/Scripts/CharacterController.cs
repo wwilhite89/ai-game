@@ -3,7 +3,7 @@ using System.Collections;
 using GameDB;
 using GameDB.SessionData;
 
-public class PlayerScript : MonoBehaviour
+public class CharacterController : MonoBehaviour
 {
     private Character character;
     public GameObject[] enemiesInRange;
@@ -49,14 +49,14 @@ public class PlayerScript : MonoBehaviour
         if (this.levelManager.IsTurn(this.gameObject))
         {
             // Set as active
-            this.levelManager.SetActivePlayer(this.gameObject);
+            this.levelManager.SetActiveCharacter(this.gameObject);
 
             enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
             enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
         }
     }
 
-    public void movePlayer(Vector3 location)
+    public void moveCharacter(Vector3 location)
     {
         transform.position = location;
         enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
@@ -76,7 +76,7 @@ public class PlayerScript : MonoBehaviour
 
     public void attackPrompt(GameObject enemy)
     {
-        battleMgr.DoBattle(this, enemy.GetComponent<PlayerScript>());
+        battleMgr.DoBattle(this, enemy.GetComponent<CharacterController>());
         this.HasAttacked = true;
         this.checkPlayerTurnEnd();
     }
@@ -176,7 +176,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (this.HasAttacked && this.HasMoved)
         {
-            levelManager.SetActivePlayer(null);
+            levelManager.SetActiveCharacter(null);
             levelManager.CheckTurnEnd();
         }
     }

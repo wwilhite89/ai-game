@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +20,7 @@ public class BattleManager
 
     #endregion
 
-    public void DoBattle(PlayerScript attacker, PlayerScript attackee)
+    public void DoBattle(CharacterController attacker, CharacterController attackee)
     {
         System.Random r = new System.Random();
         
@@ -48,7 +48,7 @@ public class BattleManager
 
     }
 
-    private void applyDamage(PlayerScript player, int amount)
+    private void applyDamage(CharacterController player, int amount)
     {
         var newHP = player.GetStat(Character.Stats.HP) - amount;
 

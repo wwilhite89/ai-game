@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace ArtificialNeuralNetworks.AttackNetwork
     {
         public string FilePath = "..\\AttackNetworkTraining.txt";
         public int CycleUnits = 5;
-        public PlayerScript player;
+        public CharacterController player;
 
         private Trainer trainer;
         private int cycle;

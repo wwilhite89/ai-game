@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ namespace ArtificialNeuralNetworks.AttackNetwork.Inputs
     public class EnemyTeamHealthInput : TrainingComponent
     {
 
-		public EnemyTeamHealthInput(PlayerScript player, int cycleTime)
+		public EnemyTeamHealthInput(CharacterController player, int cycleTime)
             : base(player, cycleTime)
 		{}
 

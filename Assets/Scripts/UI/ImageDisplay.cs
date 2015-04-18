@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -14,7 +14,7 @@ public class ImageDisplay : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        GameObject player = lvlMgr.ActivePlayer;
+        GameObject player = lvlMgr.ActiveCharacter;
 
         if (player != null)
         {

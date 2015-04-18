@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Linq;
 
@@ -9,7 +9,7 @@ public class AttackRangeScript : MonoBehaviour
     
     private int[] actLevels = new int[4];
 
-    private PlayerScript playerScript;
+    private CharacterController charCtrl;
     private GameObject[] opponents;
 	
     private string opponent;
@@ -28,7 +28,7 @@ public class AttackRangeScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        this.playerScript = gameObject.GetComponent<PlayerScript>();
+        this.charCtrl = gameObject.GetComponent<CharacterController>();
 
 		if (gameObject.tag == "Enemy") {
 			opponents = GameObject.FindGameObjectsWithTag ("Player");
@@ -42,9 +42,9 @@ public class AttackRangeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!this.rangeSet && this.playerScript.IsInitialized())
+        if (!this.rangeSet && this.charCtrl.IsInitialized())
         {
-            this.range = (int) this.playerScript.GetStat(GameDB.Character.Stats.RANGE);
+            this.range = (int) this.charCtrl.GetStat(GameDB.Character.Stats.RANGE);
             this.rangeSet = true;
         }
     }

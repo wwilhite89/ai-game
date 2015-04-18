@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,10 +13,10 @@ namespace ArtificialNeuralNetworks.Training
         private int cycleTime;
         private int currentCycle;
 
-        protected PlayerScript player;
+        protected CharacterController player;
         protected double newValue;
 
-        public TrainingComponent(PlayerScript player, int cycleTime)
+        public TrainingComponent(CharacterController player, int cycleTime)
         {
             this.cycleTime = cycleTime;
             this.player = player;

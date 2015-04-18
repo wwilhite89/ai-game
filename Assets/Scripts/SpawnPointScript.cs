@@ -8,7 +8,7 @@ public class SpawnPointScript : MonoBehaviour {
     // Spawn override properties
     public bool OverrideSpawn = false;
     public Sprite SpriteOverride;
-    public string OvName = "Test Player";
+    public string OvName = "Test Character";
     public int OvHP = 1000;
     public int OvATT = 250;
     public int OvDEF = 100;
@@ -17,43 +17,32 @@ public class SpawnPointScript : MonoBehaviour {
     public int OvMOV = 6;
     public int OvRANGE = 3;
 
-	// Use this for initialization
-	void Start () {
-	}
-	
-    // Update is called once per frame
-	void Update () {
-
-	}
-
-    public void SpawnPlayer(PlayerScript script, Character player)
+    public void SpawnCharacter(CharacterController script, Character character)
     {
         var renderer = GetComponentInChildren<SpriteRenderer>();
-        script.SetCharacter(player);
+        script.SetCharacter(character);
 
         if (this.OverrideSpawn)
         {
-            Debug.Log("Overriding spawn for character: " + player.Name);
+            Debug.Log("Overriding spawn for character: " + character.Name);
 
             // Override stats
-            player.Name = OvName;
-            player.attack = OvATT;
-            player.defense = OvDEF;
-            player.evade = OvEVA;
-            player.critical = OvCRIT;
-            player.movement = OvMOV;
-            player.range = OvRANGE;
+            character.Name = OvName;
+            character.attack = OvATT;
+            character.defense = OvDEF;
+            character.evade = OvEVA;
+            character.critical = OvCRIT;
+            character.movement = OvMOV;
+            character.range = OvRANGE;
 
             // Override sprite
             renderer.sprite = this.SpriteOverride;
         }
         else
         {
-            Debug.Log("Spawning " + player.Name);
-            var sprite = Resources.Load<Sprite>(@"Players/" + player.resourcePath);
+            Debug.Log("Spawning " + character.Name);
+            var sprite = Resources.Load<Sprite>(@"Characters/" + character.resourcePath);
             renderer.sprite = sprite;
-
-
         }
     }
 }

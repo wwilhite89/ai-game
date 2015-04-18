@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using GameDB.SessionData;
 using System;
@@ -47,7 +47,7 @@ public class LandScript : MonoBehaviour
     void HighlightLand()
     {
         float dist;
-        var player = lvlMgr.ActivePlayer;
+        var player = lvlMgr.ActiveCharacter;
         bool highlight = false;
 
         if (player != null)
@@ -55,9 +55,9 @@ public class LandScript : MonoBehaviour
             dist = Vector3.Distance(gameObject.transform.position, player.transform.position);
 
             // highlight the land around a selected player if he is active and able to move
-            if (dist < player.GetComponent<PlayerScript>().GetStat(GameDB.Character.Stats.MOV) && gameObject.GetComponent<LandScript>().speed != 0)
+            if (dist < player.GetComponent<CharacterController>().GetStat(GameDB.Character.Stats.MOV) && gameObject.GetComponent<LandScript>().speed != 0)
             {
-                if (!player.GetComponent<PlayerScript>().HasMoved)
+                if (!player.GetComponent<CharacterController>().HasMoved)
                     highlight = true;
             }
         }
@@ -67,7 +67,7 @@ public class LandScript : MonoBehaviour
 
     void OnMouseDown()
     {
-        var player = lvlMgr.ActivePlayer;
+        var player = lvlMgr.ActiveCharacter;
 
         // Land must be walkable
         if (player != null && gameObject.GetComponent<LandScript>().speed != 0)
@@ -79,10 +79,10 @@ public class LandScript : MonoBehaviour
 
             Debug.Log("you clicked distance " + playerDist);
             
-            if (playerDist < player.GetComponent<PlayerScript>().GetStat(GameDB.Character.Stats.MOV) && !player.GetComponent<PlayerScript>().HasMoved && lvlMgr.IsTurn(player))
+            if (playerDist < player.GetComponent<CharacterController>().GetStat(GameDB.Character.Stats.MOV) && !player.GetComponent<CharacterController>().HasMoved && lvlMgr.IsTurn(player))
             {
 
-                player.GetComponent<PlayerScript>().movePlayer(blockPossition);
+                player.GetComponent<CharacterController>().moveCharacter(blockPossition);
                 lvlMgr.CheckTurnEnd();
             }
         }

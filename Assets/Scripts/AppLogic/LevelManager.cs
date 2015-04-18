@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using GameDB.SessionData;
@@ -12,11 +12,11 @@ public class LevelManager {
     public enum Turn { PLAYER, ENEMY, };
 
     public Turn CurrentTurn { get; private set; }
-    public GameObject ActivePlayer { get; private set; }
+    public GameObject ActiveCharacter { get; private set; }
 
     private static LevelManager instance = null;
 	
-    private GameObject[] players;
+    private GameObject[] characters;
 	private GameObject[] enemies;
     private GameManager gameManager = new GameManager();
 
@@ -31,35 +31,35 @@ public class LevelManager {
 
     public void StartNewLevel()
     {
-        this.players = null;
+        this.characters = null;
         this.enemies = null;
         this.CurrentTurn = Turn.PLAYER;
-        this.ActivePlayer = null;
+        this.ActiveCharacter = null;
         this.spawnCharacters();
     }
 
-    public void Kill(GameObject player)
+    public void Kill(GameObject character)
     {
-        bool playerExists = true;
+        bool characterExists = true;
 
-        if (this.enemies.FirstOrDefault(x => x == player) != null)
-            this.enemies = this.enemies.Where(x => x != player).ToArray();
-        else if (this.players.FirstOrDefault(x => x == player) != null)
-            this.players = this.players.Where(x => x != player).ToArray();
+        if (this.enemies.FirstOrDefault(x => x == character) != null)
+            this.enemies = this.enemies.Where(x => x != character).ToArray();
+        else if (this.characters.FirstOrDefault(x => x == character) != null)
+            this.characters = this.characters.Where(x => x != character).ToArray();
         else
-            playerExists = false;
+            characterExists = false;
 
-        if (playerExists)
-            UnityEngine.Object.Destroy(player);
+        if (characterExists)
+            UnityEngine.Object.Destroy(character);
         else
-            Debug.LogError("Cannot kill player. Player cannot be found.");
+            Debug.LogError("Cannot kill character. Character cannot be found.");
 
         this.checkGameEnd();
     }
 
-    public void SetActivePlayer(GameObject player)
+    public void SetActiveCharacter(GameObject character)
     {
-        this.ActivePlayer = player;
+        this.ActiveCharacter = character;
     }
 
     public bool IsTurn(GameObject player)
@@ -71,15 +71,15 @@ public class LevelManager {
 
     public void CheckTurnEnd()
     {
-        var players = this.CurrentTurn == Turn.ENEMY ? this.enemies : this.players;
-        bool allPlayersActioned = players.Count(x =>
+        var characters = this.CurrentTurn == Turn.ENEMY ? this.enemies : this.characters;
+        bool allCharactersActioned = characters.Count(x =>
             {
-                var p = x.GetComponent<PlayerScript>();
+                var p = x.GetComponent<CharacterController>();
                 return !p.HasAttacked || !p.HasMoved;
             }) == 0;
 
 
-        if (allPlayersActioned)
+        if (allCharactersActioned)
             this.changeTurn();
 
     }
@@ -98,8 +98,8 @@ public class LevelManager {
         this.enemies.ToList().ForEach(x =>
         {
             x.GetComponent<SpawnPointScript>()
-                .SpawnPlayer(
-                x.GetComponent<PlayerScript>(),
+                .SpawnCharacter(
+                x.GetComponent<CharacterController>(),
                 enemyChars.Skip(taken++).FirstOrDefault());
         });
 
@@ -108,14 +108,14 @@ public class LevelManager {
 
         taken = 0;
 
-        // Get current players (some might have died last level)
+        // Get current characters (some might have died last level)
         var playerChars = gameManager.GetCurrentPlayers();
-        this.players = GameObject.FindGameObjectsWithTag(GameConstants.TAG_PLAYER);
-        this.players.ToList().ForEach(x =>
+        this.characters = GameObject.FindGameObjectsWithTag(GameConstants.TAG_PLAYER);
+        this.characters.ToList().ForEach(x =>
         {
             x.GetComponent<SpawnPointScript>()
-                .SpawnPlayer(
-                x.GetComponent<PlayerScript>(),
+                .SpawnCharacter(
+                x.GetComponent<CharacterController>(),
                 playerChars.Skip(taken++).FirstOrDefault());
         });
 
@@ -126,13 +126,13 @@ public class LevelManager {
     private void changeTurn()
     {
         this.CurrentTurn = this.CurrentTurn == Turn.ENEMY ? Turn.PLAYER : Turn.ENEMY;
-        var players = this.CurrentTurn == Turn.ENEMY ? this.enemies : this.players;
-        players.ToList().ForEach(x => x.GetComponent<PlayerScript>().ResetTurn());
+        var characters = this.CurrentTurn == Turn.ENEMY ? this.enemies : this.characters;
+        characters.ToList().ForEach(x => x.GetComponent<CharacterController>().ResetTurn());
     }
 
     private void checkGameEnd()
     {
-        if (this.players.Count () == 0) {
+        if (this.characters.Count () == 0) {
 			gameManager.GameOver ();
 			Debug.Log ("Game Over");
 		}
