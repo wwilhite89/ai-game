@@ -6,6 +6,14 @@ using GameDB.SessionData;
 
 public class CharacterController : MonoBehaviour
 {
+	//TODO (wil) this might make more sense to be in Database/Character.cs. I'll put it here for now.
+	public enum Status {
+		READY,
+		ATTACKING,
+		RESTING,
+		DEAD
+	}
+
     private Character character;
     public GameObject[] enemiesInRange;
     private GameObject[] Land;
@@ -23,15 +31,15 @@ public class CharacterController : MonoBehaviour
     public float evasion;
     public float critical;
     public int range;
+	public Status currentStatus = Status.READY;
 
-	private GameObject manager;
     private BattleManager battleMgr;
     private LevelManager levelManager;
 
     // Use this for initialization
     void Start()
     {
-		manager = GameObject.Find("Manager");
+		GameObject manager = GameObject.Find("Manager");
         this.levelManager = manager.GetComponent<LevelManager>();
         this.battleMgr = manager.GetComponent<BattleManager>();
 
@@ -169,14 +177,6 @@ public class CharacterController : MonoBehaviour
     {
         this.HasMoved = this.HasAttacked = false;
     }
-
-	public void OnSelect() {
-		this.selected = true;
-	}
-
-	public void OnDeselect() {
-		this.selected = false;
-	}
 
     private void checkPlayerTurnEnd()
     {
