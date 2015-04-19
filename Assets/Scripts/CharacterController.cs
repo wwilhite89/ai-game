@@ -23,7 +23,6 @@ public class CharacterController : MonoBehaviour
 	public bool selected;
 
     private bool initialized = false;
-    private string message; // the text for the button
     public int health;
     public int speed;
     public int defense;
@@ -42,9 +41,7 @@ public class CharacterController : MonoBehaviour
 		GameObject manager = GameObject.Find("Manager");
         this.levelManager = manager.GetComponent<LevelManager>();
         this.battleMgr = manager.GetComponent<BattleManager>();
-
-        // Defaul values
-        message = "";
+		
         Land = GameObject.FindGameObjectsWithTag("Land");
 
         // Find out who the opponent is and set the string
@@ -70,13 +67,11 @@ public class CharacterController : MonoBehaviour
 
         if (enemiesInRange.Length > 0)
         {
-            message = "Attack";
             attackPrompt(enemiesInRange[0]);
         }
         else
             this.HasAttacked = true;
 
-        message = "";
         this.HasMoved = true;
         this.checkPlayerTurnEnd();
     }

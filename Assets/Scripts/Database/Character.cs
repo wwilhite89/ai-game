@@ -53,7 +53,7 @@ namespace GameDB
 
         public void setHouse(House house)
         {
-            if (house != null && house.Id != null)
+            if (house != null)
                 this.HouseId = house.Id;
             else
                 throw new ArgumentNullException();
@@ -61,7 +61,7 @@ namespace GameDB
 
         public void setSavedGame(SavedGame game)
         {
-            if (game != null && game.Id != null)
+            if (game != null)
                 this.SavedGameId = game.Id;
             else
                 throw new ArgumentNullException();
