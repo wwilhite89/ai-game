@@ -13,7 +13,6 @@ public class LevelManager : MonoBehaviour {
 
     public Turn CurrentTurn { get; private set; }
     public GameObject ActiveCharacter { get; private set; }
-
     private GameObject[] characters;
 	private GameObject[] enemies;
     private GameManager gameManager;
@@ -57,6 +56,14 @@ public class LevelManager : MonoBehaviour {
     {
         this.ActiveCharacter = character;
     }
+
+	public GameObject[] getEnemies() {
+			return enemies;
+	}
+
+	public GameObject[] getPlayers() {
+		return characters;
+	}
 
     public bool IsTurn(GameObject player)
     {
