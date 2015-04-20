@@ -72,6 +72,8 @@ public class CharacterController : MonoBehaviour
 	public void Rest() {
 		//TODO (wil) just a placeholder for now
 		character.health += 2;
+
+		this.HasAttacked = true;
 	}
 
     public bool IsInitialized()

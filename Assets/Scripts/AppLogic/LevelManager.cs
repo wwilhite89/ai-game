@@ -44,7 +44,6 @@ public class LevelManager : MonoBehaviour {
 					break;
 				case Character.Status.RESTING:
 					ActiveCharacterCtrl.Rest();
-					ChangeTurn();
 					break;
 				case Character.Status.DEAD:
 					Kill(ActiveCharacter);
@@ -108,7 +107,7 @@ public class LevelManager : MonoBehaviour {
 
         if (allCharactersActioned)
 			//TODO (wil) highlight end turn button
-//            this.ChangeTurn();
+            this.ChangeTurn();
     }
 	
     public void ChangeTurn()
