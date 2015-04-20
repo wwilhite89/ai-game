@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using GameDB;
 using GameDB.SessionData;
 using System.Linq;
 
@@ -9,10 +10,11 @@ using System.Linq;
 /// </summary>
 public class LevelManager : MonoBehaviour {
 
-    public enum Turn { PLAYER, ENEMY, };
+    public enum Turn { PLAYER, ENEMY };
 
     public Turn CurrentTurn { get; private set; }
-    public GameObject ActiveCharacter { get; private set; }
+    public GameObject ActiveCharacter { get; private set; } 
+	public CharacterController ActiveCharacterCtrl;
     private GameObject[] characters;
 	private GameObject[] enemies;
     private GameManager gameManager;
@@ -21,17 +23,39 @@ public class LevelManager : MonoBehaviour {
 
 	void Start() {
 		gameManager = GameObject.Find("Manager").GetComponent<GameManager>();
-
-	}
-
-    public void StartNewLevel()
-    {
         this.characters = null;
         this.enemies = null;
         this.CurrentTurn = Turn.PLAYER;
         this.ActiveCharacter = null;
         this.spawnCharacters();
-    }
+	}
+
+	/*
+	TODO (wil) if we want to keep treating AppLogic/ as a library then this can be moved elsewhere,
+	but I feel like this logic is convenient to have and I think it belongs in some kind of game manager.
+	*/
+	void Update() {
+		if(ActiveCharacter != null) {
+			switch(ActiveCharacterCtrl.character.status) {
+				case Character.Status.ATTACKING:
+				//TODO (wil) highlight adjacent enemies
+					break;
+				case Character.Status.READY:
+					break;
+				case Character.Status.RESTING:
+					ActiveCharacterCtrl.Rest();
+					ChangeTurn();
+					break;
+				case Character.Status.DEAD:
+					Kill(ActiveCharacter);
+					ChangeTurn();
+					break;
+				default:
+					break;
+			}
+		}
+		CheckTurnEnd();
+	}
 
     public void Kill(GameObject character)
     {
@@ -55,10 +79,11 @@ public class LevelManager : MonoBehaviour {
     public void SetActiveCharacter(GameObject character)
     {
         this.ActiveCharacter = character;
+		this.ActiveCharacterCtrl = character.GetComponent<CharacterController>();
     }
 
 	public GameObject[] getEnemies() {
-			return enemies;
+		return enemies;
 	}
 
 	public GameObject[] getPlayers() {
@@ -81,10 +106,9 @@ public class LevelManager : MonoBehaviour {
                 return !p.HasAttacked || !p.HasMoved;
             }) == 0;
 
-
         if (allCharactersActioned)
-            this.ChangeTurn();
-
+			//TODO (wil) highlight end turn button
+//            this.ChangeTurn();
     }
 	
     public void ChangeTurn()
@@ -133,7 +157,6 @@ public class LevelManager : MonoBehaviour {
             Debug.LogWarning(string.Format("Only {0} out of {1} player characters were spawned.", taken, playerChars.Count));
     }
 
-
     private void checkGameEnd()
     {
         if (this.characters.Count () == 0) {
@@ -148,5 +171,4 @@ public class LevelManager : MonoBehaviour {
     }
     
     #endregion
-
 }

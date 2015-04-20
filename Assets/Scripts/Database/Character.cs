@@ -7,6 +7,13 @@ namespace GameDB
 {
     public class Character
     {
+		public enum Status {
+			READY,
+			ATTACKING,
+			RESTING,
+			DEAD
+		}
+
 		public enum Stats {
 			HP,
 			ATT,
@@ -27,6 +34,7 @@ namespace GameDB
         public float critical { get; set; }
         public int movement { get; set; }
         public int range { get; set; }
+		public Status status {get; set; }
         public string resourcePath { get; set; }
 
         public int HouseId { get; private set; }
@@ -46,6 +54,7 @@ namespace GameDB
             this.critical = 0.01f;
             this.movement = 6;
             this.range = 3;
+			this.status = Status.READY;
             this.resourcePath = "Rob";
         }
 

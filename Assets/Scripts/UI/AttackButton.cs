@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections;
+using GameDB;
 
 public class AttackButton : MonoBehaviour {
     private LevelManager lvlMgr;
@@ -10,6 +11,7 @@ public class AttackButton : MonoBehaviour {
 
 	void Start () {
         this.lvlMgr = GameObject.Find("Manager").GetComponent<LevelManager>();
+		character = new GameObject();
 	}
 
 	void Update() {
@@ -17,6 +19,6 @@ public class AttackButton : MonoBehaviour {
 	}
 
 	public void OnClick() {
-		character.GetComponent<CharacterController>().currentStatus = CharacterController.Status.ATTACKING;
+		character.GetComponent<CharacterController>().character.status = Character.Status.ATTACKING;
 	}
 }

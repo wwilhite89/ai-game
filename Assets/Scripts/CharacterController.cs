@@ -6,15 +6,7 @@ using GameDB.SessionData;
 
 public class CharacterController : MonoBehaviour
 {
-	//TODO (wil) this might make more sense to be in Database/Character.cs. I'll put it here for now.
-	public enum Status {
-		READY,
-		ATTACKING,
-		RESTING,
-		DEAD
-	}
-
-    private Character character;
+    public Character character {get; set;}
     public GameObject[] enemiesInRange;
     private GameObject[] Land;
     public string opponent;
@@ -23,14 +15,6 @@ public class CharacterController : MonoBehaviour
 	public bool selected;
 
     private bool initialized = false;
-    public int health;
-    public int speed;
-    public int defense;
-    public int attack;
-    public float evasion;
-    public float critical;
-    public int range;
-	public Status currentStatus = Status.READY;
 
     private BattleManager battleMgr;
     private LevelManager levelManager;
@@ -57,7 +41,10 @@ public class CharacterController : MonoBehaviour
 
             enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
             enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
-        }
+		} else if(!gameObject.Equals(levelManager.ActiveCharacter) &&
+		          levelManager.ActiveCharacterCtrl.character.status == Character.Status.ATTACKING) {
+			attackPrompt(levelManager.ActiveCharacter);
+		}
     }
 
     public void moveCharacter(Vector3 location)
@@ -82,6 +69,11 @@ public class CharacterController : MonoBehaviour
         battleMgr.DoBattle(opponent.GetComponent<CharacterController>(), this);
     }
 
+	public void Rest() {
+		//TODO (wil) just a placeholder for now
+		character.health += 2;
+	}
+
     public bool IsInitialized()
     {
         return this.initialized;
@@ -98,19 +90,19 @@ public class CharacterController : MonoBehaviour
         switch (stat)
         {
             case Character.Stats.ATT:
-                return this.attack;
+                return this.character.attack;
             case Character.Stats.CRIT:
-                return this.critical;
+                return this.character.critical;
             case Character.Stats.DEF:
-                return this.defense;
+                return this.character.defense;
             case Character.Stats.EVA:
-                return this.evasion;
+                return this.character.evade;
             case Character.Stats.HP:
-                return this.health;
+                return this.character.health;
             case Character.Stats.MOV:
-                return this.speed;
+                return this.character.movement;
             case Character.Stats.RANGE:
-                return this.range;
+                return this.character.range;
             default:
                 Debug.LogError(string.Format("Could not find appropriate stat for: {0}", stat));
                 return -1;
@@ -125,25 +117,25 @@ public class CharacterController : MonoBehaviour
         switch (stat)
         {
             case Character.Stats.ATT:
-                this.attack = (int)value;
+                this.character.attack = (int)value;
                 break;
             case Character.Stats.CRIT:
-                this.critical = value;
+                this.character.critical = value;
                 break;
             case Character.Stats.DEF:
-                this.defense = (int)value;
+                this.character.defense = (int)value;
                 break;
             case Character.Stats.EVA:
-                this.evasion = value;
+                this.character.evade = value;
                 break;
             case Character.Stats.HP:
-                this.health = (int)value;
+                this.character.health = (int)value;
                 break;
             case Character.Stats.MOV:
-                this.speed = (int)value;
+                this.character.movement = (int)value;
                 break;
             case Character.Stats.RANGE:
-                this.range = (int)value;
+                this.character.range = (int)value;
                 break;
             default:
                 Debug.LogError(string.Format("Could not find appropriate stat for: {0}", stat));
@@ -158,13 +150,6 @@ public class CharacterController : MonoBehaviour
     public void SetCharacter(Character c)
     {
         this.character = c;
-        health = c.health;
-        defense = c.defense;
-        attack = c.attack;
-        evasion = c.evade;
-        speed = c.movement;
-        range = c.range;
-        critical = c.critical;
         this.initialized = true;
     }
 
