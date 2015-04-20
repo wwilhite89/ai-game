@@ -105,7 +105,7 @@ public class LevelManager : MonoBehaviour {
                 return !p.HasAttacked || !p.HasMoved;
             }) == 0;
 
-        if (allCharactersActioned)
+		//if (allCharactersActioned)
 			//TODO (wil) highlight end turn button
             this.ChangeTurn();
     }
