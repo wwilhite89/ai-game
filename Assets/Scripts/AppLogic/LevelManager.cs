@@ -53,7 +53,6 @@ public class LevelManager : MonoBehaviour {
 					break;
 			}
 		}
-		CheckTurnEnd();
 	}
 
     public void Kill(GameObject character)

@@ -42,8 +42,11 @@ public class CharacterController : MonoBehaviour
             enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
             enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
 		} else if(!gameObject.Equals(levelManager.ActiveCharacter) &&
-		          levelManager.ActiveCharacterCtrl.character.status == Character.Status.ATTACKING) {
+		          levelManager.ActiveCharacterCtrl.character.status == Character.Status.ATTACKING &&
+		          !levelManager.ActiveCharacterCtrl.HasAttacked) {
 			attackPrompt(levelManager.ActiveCharacter);
+			levelManager.ActiveCharacterCtrl.HasAttacked = true;
+			levelManager.ActiveCharacterCtrl.character.status = Character.Status.READY;
 		}
     }
 
@@ -64,7 +67,7 @@ public class CharacterController : MonoBehaviour
     }
 
 	// Method for being attacked
-    public void attackPrompt(GameObject opponent)
+    private void attackPrompt(GameObject opponent)
     {
         battleMgr.DoBattle(opponent.GetComponent<CharacterController>(), this);
     }
@@ -74,6 +77,7 @@ public class CharacterController : MonoBehaviour
 		character.health += 2;
 
 		this.HasAttacked = true;
+		this.character.status = Character.Status.READY;
 	}
 
     public bool IsInitialized()
