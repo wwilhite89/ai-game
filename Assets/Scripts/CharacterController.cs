@@ -43,7 +43,8 @@ public class CharacterController : MonoBehaviour
             enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
 		} else if(!gameObject.Equals(levelManager.ActiveCharacter) &&
 		          levelManager.ActiveCharacterCtrl.character.status == Character.Status.ATTACKING &&
-		          !levelManager.ActiveCharacterCtrl.HasAttacked) {
+		          !levelManager.ActiveCharacterCtrl.HasAttacked &&
+		          this.character.HouseId != levelManager.ActiveCharacterCtrl.character.HouseId) {
 			attackPrompt(levelManager.ActiveCharacter);
 			levelManager.ActiveCharacterCtrl.HasAttacked = true;
 			levelManager.ActiveCharacterCtrl.character.status = Character.Status.READY;
@@ -74,10 +75,12 @@ public class CharacterController : MonoBehaviour
 
 	public void Rest() {
 		//TODO (wil) just a placeholder for now
-		character.health += 2;
+		if(!this.HasAttacked) {
+			character.health += 2;
 
-		this.HasAttacked = true;
-		this.character.status = Character.Status.READY;
+			this.HasAttacked = true;
+			this.character.status = Character.Status.READY;
+		}
 	}
 
     public bool IsInitialized()
