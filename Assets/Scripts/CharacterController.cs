@@ -13,11 +13,10 @@ public class CharacterController : MonoBehaviour
     public bool HasMoved { get; private set; }
     public bool HasAttacked { get; private set; }
 	public bool selected;
-
     private bool initialized = false;
-
     private BattleManager battleMgr;
     private LevelManager levelManager;
+	private GameObject attackButton;
 
     // Use this for initialization
     void Start()
@@ -27,6 +26,7 @@ public class CharacterController : MonoBehaviour
         this.battleMgr = manager.GetComponent<BattleManager>();
 		
         Land = GameObject.FindGameObjectsWithTag("Land");
+		attackButton = GameObject.Find ("Attack");
 
         // Find out who the opponent is and set the string
         opponent = gameObject.tag == GameConstants.TAG_ENEMY ? GameConstants.TAG_PLAYER : GameConstants.TAG_ENEMY;
@@ -34,20 +34,24 @@ public class CharacterController : MonoBehaviour
 
     void OnMouseDown()
     {
+		// check if it is the characters turn
         if (this.levelManager.IsTurn(this.gameObject))
         {
             // Set as active
             this.levelManager.SetActiveCharacter(this.gameObject);
+            enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
+            
+		} 
 
-            enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
-            enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
-		} else if(!gameObject.Equals(levelManager.ActiveCharacter) &&
-		          levelManager.ActiveCharacterCtrl.character.status == Character.Status.ATTACKING &&
-		          !levelManager.ActiveCharacterCtrl.HasAttacked &&
-		          this.character.HouseId != levelManager.ActiveCharacterCtrl.character.HouseId) {
-			attackPrompt(levelManager.ActiveCharacter);
-			levelManager.ActiveCharacterCtrl.HasAttacked = true;
-			levelManager.ActiveCharacterCtrl.character.status = Character.Status.READY;
+		// is the active character attacking an Enemy
+		else if (levelManager.ActiveCharacterCtrl.character.status == Character.Status.ATTACKING) {
+		
+			if (levelManager.ActiveCharacterCtrl.character.status == Character.Status.ATTACKING &&
+		          !levelManager.ActiveCharacterCtrl.HasAttacked)
+
+				attackPrompt(levelManager.ActiveCharacter);
+				levelManager.ActiveCharacterCtrl.HasAttacked = true;
+				levelManager.ActiveCharacterCtrl.character.status = Character.Status.READY;
 		}
     }
 
@@ -58,6 +62,7 @@ public class CharacterController : MonoBehaviour
 
         if (enemiesInRange.Length > 0)
         {
+			attackButton.GetComponent<AttackButton>().buttonOn();
             attackPrompt(enemiesInRange[0]);
         }
         else

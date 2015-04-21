@@ -11,6 +11,7 @@ public class AttackButton : MonoBehaviour {
 
 	void Start () {
         this.lvlMgr = GameObject.Find("Manager").GetComponent<LevelManager>();
+		gameObject.GetComponent<Button> ().interactable = false;
 	}
 
 	void Update() {
@@ -19,5 +20,9 @@ public class AttackButton : MonoBehaviour {
 
 	public void OnClick() {
 		character.GetComponent<CharacterController>().character.status = Character.Status.ATTACKING;
+	}
+
+	public void buttonOn() {
+		gameObject.GetComponent<Button> ().interactable = true;
 	}
 }
