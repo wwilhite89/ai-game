@@ -43,7 +43,7 @@ public class CharacterController : MonoBehaviour
 		} 
 
 		// is the active character attacking an Enemy
-		else if (!gameObject.Equals(levelManager.ActiveCharacter) &&
+		else if ( levelManager.ActiveCharacter != null && !gameObject.Equals(levelManager.ActiveCharacter) && 
 		      levelManager.ActiveCharacterCtrl.character.status == Character.Status.ATTACKING &&
 	          !levelManager.ActiveCharacterCtrl.HasAttacked &&
 		      this.character.HouseId != levelManager.ActiveCharacterCtrl.character.HouseId) {
@@ -71,7 +71,8 @@ public class CharacterController : MonoBehaviour
 	// Method for being attacked
     private void attackPrompt(GameObject opponent)
     {
-        battleMgr.DoBattle(opponent.GetComponent<CharacterController>(), this);
+		if ( opponent != null )
+        	battleMgr.DoBattle(opponent.GetComponent<CharacterController>(), this);
     }
 
 	public void Rest() {
