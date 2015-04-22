@@ -55,8 +55,9 @@ public class CharacterController : MonoBehaviour
 
     public void moveCharacter(Vector3 location)
     {
-        transform.position = location;
-        enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
+		this.gameObject.GetComponentInParent<NavScript> ().moveAgent (location);
+
+        enemiesInRange = gameObject.GetComponentInParent <AttackRangeScript>().getObjectsInRadius(opponent);
 
         if (enemiesInRange.Length > 0)
         {

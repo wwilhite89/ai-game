@@ -2,20 +2,26 @@
 using System.Collections;
 
 public class NavScript : MonoBehaviour {
-
+	public GameObject gameManager;
+	
+	
 	NavMeshAgent agent;
-
+	
 	void Start () {
+		gameManager = GameObject.FindGameObjectWithTag ("GameController");
 		agent = GetComponent<NavMeshAgent>();
 	}
 	
 	void Update () {
-		if (Input.GetMouseButtonDown(0)) {
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-			RaycastHit hit;
-			if (Physics.Raycast(ray, out hit, 100))
-			    agent.SetDestination(hit.point);
-		}
+		
 	}
+	
+	public void moveAgent ( Vector3 loc ) {
+		agent.SetDestination(loc);
+	}
+	/*
+	void OnMouseDown () {
+		gameManager.GetComponent<CharacterController> ().activePlayer = this.gameObject;
+		
+	}*/
 }
