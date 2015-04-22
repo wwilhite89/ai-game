@@ -14,6 +14,7 @@ public class ImageDisplay : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//TODO (wil) view image of enemies as well
         GameObject player = lvlMgr.ActiveCharacter;
 
         if (player != null)

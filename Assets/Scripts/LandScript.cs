@@ -11,7 +11,7 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
     public string LandType;
 
     private Color highlighColor;
-    private Vector3 blockPossition;
+    private Vector3 blockPosition;
     private float playerDist;
     private Color landColor;
     private LevelManager lvlMgr;
@@ -22,7 +22,6 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
     // Use this for initialization
     void Start()
     {
-
         this.lvlMgr = GameObject.Find("Manager").GetComponent<LevelManager>();
 
         if (renderer.material.HasProperty("_Color"))
@@ -45,8 +44,8 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
         // Land must be walkable
         if (player != null && gameObject.GetComponent<LandScript>().speed != 0)
         {
-            blockPossition = gameObject.transform.position;
-            blockPossition.y += .6f;
+            blockPosition = gameObject.transform.position;
+            blockPosition.y += .6f;
 
             playerDist = Vector3.Distance(gameObject.transform.position, player.transform.position);
 
@@ -54,9 +53,7 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
             
             if (playerDist < player.GetComponent<CharacterController>().GetStat(GameDB.Character.Stats.MOV) && !player.GetComponent<CharacterController>().HasMoved && lvlMgr.IsTurn(player))
             {
-
-                player.GetComponent<CharacterController>().moveCharacter(blockPossition);
-                lvlMgr.CheckTurnEnd();
+                player.GetComponent<CharacterController>().moveCharacter(blockPosition);
             }
         }
 	}

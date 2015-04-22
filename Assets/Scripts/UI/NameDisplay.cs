@@ -11,6 +11,7 @@ public class NameDisplay : MonoBehaviour {
 	}
 	
 	void Update () {
+		//TODO (wil) view name of enemies as well
         GameObject character = lvlMgr.ActiveCharacter;
         var statVal = character != null ? character.GetComponent<CharacterController>().name.ToString() : "";
 		GetComponent<Text>().text = character.name;

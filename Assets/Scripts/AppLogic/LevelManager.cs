@@ -45,9 +45,9 @@ public class LevelManager : MonoBehaviour {
 				case Character.Status.RESTING:
 					ActiveCharacterCtrl.Rest();
 					break;
+				// (wil) this probably isn't necessary
 				case Character.Status.DEAD:
 					Kill(ActiveCharacter);
-					ChangeTurn();
 					break;
 				default:
 					break;
@@ -105,8 +105,7 @@ public class LevelManager : MonoBehaviour {
             }) == 0;
 
 		//if (allCharactersActioned)
-			//TODO (wil) highlight end turn button
-            this.ChangeTurn();
+			//TODO (wil) highlight end turn button instead
     }
 	
     public void ChangeTurn()

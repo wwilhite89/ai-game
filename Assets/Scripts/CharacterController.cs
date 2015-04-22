@@ -40,18 +40,16 @@ public class CharacterController : MonoBehaviour
             // Set as active
             this.levelManager.SetActiveCharacter(this.gameObject);
             enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
-            
 		} 
 
 		// is the active character attacking an Enemy
-		else if (levelManager.ActiveCharacterCtrl.character.status == Character.Status.ATTACKING) {
-		
-			if (levelManager.ActiveCharacterCtrl.character.status == Character.Status.ATTACKING &&
-		          !levelManager.ActiveCharacterCtrl.HasAttacked)
-
-				attackPrompt(levelManager.ActiveCharacter);
-				levelManager.ActiveCharacterCtrl.HasAttacked = true;
-				levelManager.ActiveCharacterCtrl.character.status = Character.Status.READY;
+		else if (!gameObject.Equals(levelManager.ActiveCharacter) &&
+		      levelManager.ActiveCharacterCtrl.character.status == Character.Status.ATTACKING &&
+	          !levelManager.ActiveCharacterCtrl.HasAttacked &&
+		      this.character.HouseId != levelManager.ActiveCharacterCtrl.character.HouseId) {
+			attackPrompt(levelManager.ActiveCharacter);
+			levelManager.ActiveCharacterCtrl.HasAttacked = true;
+			levelManager.ActiveCharacterCtrl.character.status = Character.Status.READY;
 		}
     }
 
@@ -64,12 +62,10 @@ public class CharacterController : MonoBehaviour
         {
 			attackButton.GetComponent<AttackButton>().buttonOn();
             attackPrompt(enemiesInRange[0]);
-        }
-        else
             this.HasAttacked = true;
+        }
 
         this.HasMoved = true;
-        this.checkPlayerTurnEnd();
     }
 
 	// Method for being attacked
@@ -79,8 +75,8 @@ public class CharacterController : MonoBehaviour
     }
 
 	public void Rest() {
-		//TODO (wil) just a placeholder for now
 		if(!this.HasAttacked) {
+			//TODO (wil) just a placeholder for now
 			character.health += 2;
 
 			this.HasAttacked = true;
@@ -170,14 +166,5 @@ public class CharacterController : MonoBehaviour
     public void ResetTurn()
     {
         this.HasMoved = this.HasAttacked = false;
-    }
-
-    private void checkPlayerTurnEnd()
-    {
-        if (this.HasAttacked && this.HasMoved)
-        {
-            levelManager.SetActiveCharacter(null);
-            levelManager.CheckTurnEnd();
-        }
     }
 }
