@@ -5,7 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 public class AdjacentAgentSensor : MonoBehaviour {
-	public GameObject LvlMgr;
+	public LevelManager LvlMgr;
 	private GameObject[] enemies;
 	private GameObject enemy;
 	public int range;
@@ -14,13 +14,14 @@ public class AdjacentAgentSensor : MonoBehaviour {
     void Start()
     {
 		this.GetComponent<CharacterController> ().GetStat (GameDB.Character.Stats.RANGE);
+		LvlMgr = GameObject.Find("Manager").GetComponent<LevelManager>();
     }
 
     void FixedUpdate()
     {
 		Vector3 newPos;
 
-		enemies = LvlMgr.GetComponent<LevelManager> ().getEnemies ();
+		enemies = LvlMgr.getEnemies();
         
 		for (int i = 0; i < enemies.Length; i++) {
 			dist = Vector3.Distance(enemies[0].transform.position, this.transform.position);

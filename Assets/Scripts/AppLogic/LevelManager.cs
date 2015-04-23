@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour {
     #region Public Methods
 
 	void Start() {
-		gameManager = GameObject.Find("Manager").GetComponent<GameManager>();
+		gameManager = new GameManager();
         this.characters = null;
         this.enemies = null;
         this.CurrentTurn = Turn.PLAYER;

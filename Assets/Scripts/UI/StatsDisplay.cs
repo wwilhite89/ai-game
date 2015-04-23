@@ -4,14 +4,15 @@ using System.Collections;
 using GameDB;
 
 public class StatsDisplay : MonoBehaviour {
-	public string prefix;
+	private string prefix;
 	public Character.Stats stat;
     private LevelManager lvlMgr;
-    private Text text = null;
+    private Text text;
 
 	void Start () {
         this.lvlMgr = GameObject.Find("Manager").GetComponent<LevelManager>();
         this.text = gameObject.GetComponent<Text>();
+		this.prefix = stat.ToString() + ": ";
 	}
 	
 	void Update () {

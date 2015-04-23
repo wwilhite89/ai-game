@@ -7,7 +7,7 @@ using GameDB;
 using GameDB.SessionData;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager {
 
     #region Enumerations
     public enum Map

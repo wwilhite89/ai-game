@@ -9,7 +9,6 @@ namespace GameDB
 {
     // Singleton
     public class Database {
-    
         private readonly string connectionString = "GameDev.db";
         private static Database instance = null;
 
@@ -24,7 +23,6 @@ namespace GameDB
         }
 
         protected Database () {
-
             if (!System.IO.File.Exists("GameDev.db"))
             {
                 // Create database
@@ -140,68 +138,68 @@ namespace GameDB
             {
                 case House.HouseName.GREYJOY:
                     #region Greyjoy
-                    c.Add(new Character { Name = "Balon Greyjoy"});
-                    c.Add(new Character { Name = "Theon Greyjoy" });
-                    c.Add(new Character { Name = "Victarian Greyjoy" });
-                    c.Add(new Character { Name = "Euron Crow's Eye"});
-                    c.Add(new Character { Name = "Ashsa Greyjoy"});
-                    c.Add(new Character { Name = "Dagmar Cleftjaw" });
-                    c.Add(new Character { Name = "Aaron Damphair" });
+//                    c.Add(new Character { Name = "Balon Greyjoy"});
+                    c.Add(new Character { Name = "Theon Greyjoy", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath = "Theon" });
+					c.Add(new Character { Name = "Victarian Greyjoy", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1 });
+//                    c.Add(new Character { Name = "Euron Crow's Eye"});
+					c.Add(new Character { Name = "Ashsa Greyjoy", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1});
+//                    c.Add(new Character { Name = "Dagmar Cleftjaw" });
+//                    c.Add(new Character { Name = "Aaron Damphair" });
                     #endregion
                     break;
                 case House.HouseName.STARK:
                     #region Stark
-                    c.Add(new Character { Name = "Eddard Stark" });
-                    c.Add(new Character { Name = "Robb Stark" });
-                    c.Add(new Character { Name = "Catelyn Stark" });
-                    c.Add(new Character { Name = "Roose Bolton" });
-                    c.Add(new Character { Name = "Greation Umber" });
-                    c.Add(new Character { Name = "The Blackfish" });
-                    c.Add(new Character { Name = "Ser Rodrick Cassel" });
+					c.Add(new Character { Name = "Eddard Stark", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="Ned"});
+					c.Add(new Character { Name = "Robb Stark", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="Rob"});
+//                    c.Add(new Character { Name = "Catelyn Stark" });
+					c.Add(new Character { Name = "Roose Bolton", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1 });
+//                    c.Add(new Character { Name = "Greation Umber" });
+//                    c.Add(new Character { Name = "The Blackfish" });
+//                    c.Add(new Character { Name = "Ser Rodrick Cassel" });
                     #endregion
                     break;
                 case House.HouseName.LANNISTER:
                     #region Lannister
-                    c.Add(new Character { Name = "Jaime Lannister" });
-                    c.Add(new Character { Name = "The Hound" });
-                    c.Add(new Character { Name = "The Mountain" });
-                    c.Add(new Character { Name = "Tywin Lannister" });
-                    c.Add(new Character { Name = "Cersei Lannister" });
-                    c.Add(new Character { Name = "Ser Kevan Lannister" });
-                    c.Add(new Character { Name = "Tyrion Lannister" });
+					c.Add(new Character { Name = "Jaime Lannister", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="Jaime" });
+					c.Add(new Character { Name = "The Hound", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="The Hound" });
+//					c.Add(new Character { Name = "The Mountain", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="" });
+					c.Add(new Character { Name = "Tywin Lannister", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="Tywin" });
+//                    c.Add(new Character { Name = "Cersei Lannister" });
+//                    c.Add(new Character { Name = "Ser Kevan Lannister" });
+//                    c.Add(new Character { Name = "Tyrion Lannister" });
                     #endregion
                     break;
                 case House.HouseName.MARTELL:
                     #region MARTELL
-                    c.Add(new Character { Name = "The Red Viper" });
-                    c.Add(new Character { Name = "Areo Hotah" });
-                    c.Add(new Character { Name = "Obara Sand" });
-                    c.Add(new Character { Name = "Darkstar" });
-                    c.Add(new Character { Name = "Nymeria Sand" });
-                    c.Add(new Character { Name = "Arianne Martell" });
-                    c.Add(new Character { Name = "Doran Martell" });
+				c.Add(new Character { Name = "The Red Viper", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="Jaime" });
+				c.Add(new Character { Name = "Areo Hotah", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="Jaime" });
+//                    c.Add(new Character { Name = "Obara Sand" });
+				c.Add(new Character { Name = "Darkstar", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="Jaime" });
+//                    c.Add(new Character { Name = "Nymeria Sand" });
+//                    c.Add(new Character { Name = "Arianne Martell" });
+//                    c.Add(new Character { Name = "Doran Martell" });
                     #endregion
                     break;
                 case House.HouseName.TYRELL:
                     #region TYRELL
-                    c.Add(new Character { Name = "Randell Tarli" });
-                    c.Add(new Character { Name = "Ser Garlen Tyrell" });
-                    c.Add(new Character { Name = "Ser Loras Tyrell" });
-                    c.Add(new Character { Name = "Mace Tyrell" });
-                    c.Add(new Character { Name = "Queen of Thorns" });
-                    c.Add(new Character { Name = "Margaery Tyrell" });
-                    c.Add(new Character { Name = "Alester Florent" });
+					c.Add(new Character { Name = "Randell Tarli", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="Jaime" });
+//                    c.Add(new Character { Name = "Ser Garlen Tyrell" });
+					c.Add(new Character { Name = "Ser Loras Tyrell", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="Jaime" });
+//                    c.Add(new Character { Name = "Mace Tyrell" });
+//                    c.Add(new Character { Name = "Queen of Thorns" });
+//                    c.Add(new Character { Name = "Margaery Tyrell" });
+					c.Add(new Character { Name = "Alester Florent", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="Jaime" });
                     #endregion
                     break;
                 case House.HouseName.BARATHEON:
                     #region BARATHEON
-                    c.Add(new Character { Name = "Stannis Baratheon" });
-                    c.Add(new Character { Name = "Renly Baratheon" });
-                    c.Add(new Character { Name = "Ser Davos Seaworth" });
-                    c.Add(new Character { Name = "Brienne of Tarth" });
-                    c.Add(new Character { Name = "Melisandre" });
-                    c.Add(new Character { Name = "Sallandhor Saan" });
-                    c.Add(new Character { Name = "Patchface" });
+					c.Add(new Character { Name = "Stannis Baratheon", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="Jaime"  });
+					c.Add(new Character { Name = "Renly Baratheon", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="Jaime"  });
+					c.Add(new Character { Name = "Ser Davos Seaworth", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="Jaime"  });
+//                    c.Add(new Character { Name = "Brienne of Tarth" });
+//                    c.Add(new Character { Name = "Melisandre" });
+//                    c.Add(new Character { Name = "Sallandhor Saan" });
+//                    c.Add(new Character { Name = "Patchface" });
                     #endregion
                     break;
                 default:
@@ -210,7 +208,5 @@ namespace GameDB
 
             return c.AsEnumerable();
         }
-
     }
-
 }
