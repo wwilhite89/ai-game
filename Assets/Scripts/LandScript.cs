@@ -82,7 +82,6 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
     // is called every frame on objects that are colliding
     void OnCollisionStay(Collision col)
     {
-
         if (col.collider.tag == GameConstants.TAG_PLAYER || col.collider.tag == GameConstants.TAG_ENEMY)
         {
             this.renderer.material.color = landColor;

@@ -73,6 +73,7 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 28.5
     heightInaccuracy: 28.5
+    tileSizeHint: 0
   m_NavMesh: {fileID: 19400000, guid: 49c6a9c9673dd7c43a2bd22f562ee848, type: 2}
 --- !u!1 &22981917
 GameObject:
@@ -14393,8 +14394,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreReversedGraphics: 1
-  blockingObjects: 0
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -20365,6 +20366,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e46c919fbc5d014096e2b6c35008ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  engagedColor:
+    m_NormalColor: {r: 1, g: 0, b: 0, a: 0}
+    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 0}
+    m_PressedColor: {r: 1, g: 0, b: 0, a: 0}
+    m_DisabledColor: {r: 1, g: 0, b: 0, a: 0}
+    m_ColorMultiplier: 0
+    m_FadeDuration: 0
 --- !u!114 &1878654106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20386,7 +20394,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: .996078432, g: .996078432, b: .996078432, a: 1}
-    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
     m_DisabledColor: {r: .917647064, g: .917647064, b: .917647064, a: .501960814}
     m_ColorMultiplier: 1

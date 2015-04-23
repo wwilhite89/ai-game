@@ -40,7 +40,7 @@ public class CharacterController : MonoBehaviour
             // Set as active
             this.levelManager.SetActiveCharacter(this.gameObject);
             enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
-		} 
+		}
 
 		// is the active character attacking an Enemy
 		else if ( levelManager.ActiveCharacter != null && !gameObject.Equals(levelManager.ActiveCharacter) && 
@@ -50,6 +50,7 @@ public class CharacterController : MonoBehaviour
 			Attack(levelManager.ActiveCharacter);
 			levelManager.ActiveCharacterCtrl.HasAttacked = true;
 			levelManager.ActiveCharacterCtrl.character.status = Character.Status.READY;
+			GameObject.Find("Attack").GetComponent<AttackButton>().OnClick();
 		}
     }
 
