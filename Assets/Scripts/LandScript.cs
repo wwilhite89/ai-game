@@ -53,7 +53,7 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
             
             if (playerDist < player.GetComponent<CharacterController>().GetStat(GameDB.Character.Stats.MOV) && !player.GetComponent<CharacterController>().HasMoved && lvlMgr.IsTurn(player))
             {
-                player.GetComponent<CharacterController>().moveCharacter(blockPosition);
+                player.GetComponent<CharacterController>().Move(blockPosition);
             }
         }
 	}
