@@ -47,40 +47,30 @@ public class CharacterController : MonoBehaviour
 		      levelManager.ActiveCharacterCtrl.character.status == Character.Status.ATTACKING &&
 	          !levelManager.ActiveCharacterCtrl.HasAttacked &&
 		      this.character.HouseId != levelManager.ActiveCharacterCtrl.character.HouseId) {
-			attackPrompt(levelManager.ActiveCharacter);
+			Attack(levelManager.ActiveCharacter);
 			levelManager.ActiveCharacterCtrl.HasAttacked = true;
 			levelManager.ActiveCharacterCtrl.character.status = Character.Status.READY;
 		}
     }
 
-    public void moveCharacter(Vector3 location)
+    public void Move(Vector3 location)
     {
 		this.gameObject.GetComponentInParent<NavScript> ().moveAgent (location);
-
-        enemiesInRange = gameObject.GetComponentInParent <AttackRangeScript>().getObjectsInRadius(opponent);
-
-        if (enemiesInRange.Length > 0)
-        {
-			attackButton.GetComponent<AttackButton>().buttonOn();
-            attackPrompt(enemiesInRange[0]);
-            this.HasAttacked = true;
-        }
-
         this.HasMoved = true;
     }
 
 	// Method for being attacked
-    private void attackPrompt(GameObject opponent)
+    private void Attack(GameObject opponent)
     {
-		if ( opponent != null )
+		if(opponent != null) {
         	battleMgr.DoBattle(opponent.GetComponent<CharacterController>(), this);
+		}
     }
 
 	public void Rest() {
 		if(!this.HasAttacked) {
 			//TODO (wil) just a placeholder for now
 			character.health += 2;
-
 			this.HasAttacked = true;
 			this.character.status = Character.Status.READY;
 		}
