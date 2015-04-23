@@ -30,15 +30,16 @@ public class AttackButton : MonoBehaviour {
 	public void OnClick() {
 		if(this.engaged) {
 			this.engaged= false;
-			this.ChangeColor(normalColor);
+			this.ChangeColor(Color.white);
+			lvlMgr.resetCharColor();
 		} else if(this.character != null) {
 			this.character.GetComponent<CharacterController>().character.status = Character.Status.ATTACKING;
-			this.ChangeColor(engagedColor);
+			this.ChangeColor(Color.red);
 			this.engaged = true;
 		}
 	}
 
-	private void ChangeColor(ColorBlock cb) {
-		b.colors = cb;
+	private void ChangeColor(Color c) {
+		this.gameObject.GetComponent<Button> ().image.color = c;
 	}
 }

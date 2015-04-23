@@ -32,6 +32,10 @@ public class CharacterController : MonoBehaviour
         opponent = gameObject.tag == GameConstants.TAG_ENEMY ? GameConstants.TAG_PLAYER : GameConstants.TAG_ENEMY;
     }
 
+	void Update () {
+
+	}
+
     void OnMouseDown()
     {
 		// check if it is the characters turn
@@ -57,6 +61,7 @@ public class CharacterController : MonoBehaviour
     public void Move(Vector3 location)
     {
 		this.gameObject.GetComponentInParent<NavScript> ().moveAgent (location);
+		enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
         this.HasMoved = true;
     }
 
@@ -64,6 +69,7 @@ public class CharacterController : MonoBehaviour
     private void Attack(GameObject opponent)
     {
 		if(opponent != null) {
+			levelManager.resetCharColor();
         	battleMgr.DoBattle(opponent.GetComponent<CharacterController>(), this);
 		}
     }

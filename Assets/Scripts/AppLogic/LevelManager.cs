@@ -38,6 +38,7 @@ public class LevelManager : MonoBehaviour {
 		if(ActiveCharacter != null) {
 			switch(ActiveCharacterCtrl.character.status) {
 				case Character.Status.ATTACKING:
+					highlightEnemies (Color.red);
 				//TODO (wil) highlight adjacent enemies
 					break;
 				case Character.Status.READY:
@@ -153,6 +154,19 @@ public class LevelManager : MonoBehaviour {
         if (taken < playerChars.Count)
             Debug.LogWarning(string.Format("Only {0} out of {1} player characters were spawned.", taken, playerChars.Count));
     }
+
+	private void highlightEnemies(Color c) {
+		for (int i = 0; i < ActiveCharacterCtrl.enemiesInRange.Length; i++) {
+			ActiveCharacterCtrl.enemiesInRange[i].renderer.material.color = c;
+		}
+	}
+
+	public void resetCharColor() {
+		for (int i = 0; i < characters.Length; i++)
+			characters [i].renderer.material.color = Color.grey;
+		for (int i = 0; i < enemies.Length; i++)
+			enemies [i].renderer.material.color = Color.grey;
+	}
 
     private void checkGameEnd()
     {
