@@ -94,11 +94,6 @@ public class CharacterController : MonoBehaviour
 			}
 
 			Move (enemy.transform.position);
-			newDist = Vector3.Distance(this.gameObject.transform.position, enemy.transform.position);
-			// attack the enemy if character can reach him
-			if (newDist < this.character.range)
-				Attack(enemy);
-
 			break;
 		case Decision.ATTWEAK:
 			break;
