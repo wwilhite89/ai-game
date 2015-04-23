@@ -10,7 +10,7 @@ using System.Linq;
 /// </summary>
 public class LevelManager : MonoBehaviour {
 
-    public enum Turn { PLAYER, ENEMY };
+    public enum Turn { PLAYER, ENEMY }
 
     public Turn CurrentTurn { get; private set; }
     public GameObject ActiveCharacter { get; private set; } 
@@ -180,6 +180,10 @@ public class LevelManager : MonoBehaviour {
             Debug.Log("Level Complete!");
         }
     }
+
+	public void manageAIMove (CharacterController.Decision decision) {
+		ActiveCharacterCtrl.MoveAI (decision);
+	}
     
     #endregion
 }
