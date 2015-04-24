@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using GameDB;
@@ -82,6 +82,7 @@ public class CharacterController : MonoBehaviour
 			this.HasAttacked = true;
 			this.character.status = Character.Status.READY;
 		}
+		this.character.status = Character.Status.READY;
 	}
 
     public bool IsInitialized()
