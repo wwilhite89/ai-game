@@ -16,6 +16,7 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
     private float playerDist;
     private Color landColor;
     private LevelManager lvlMgr;
+	public bool walkable;
 
     // Modifies movement speed of characters. 1 is normal, 0 is unwalkable.
     public float speed;
@@ -33,7 +34,7 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 		enemies = lvlMgr.getEnemies ();
 		characters = lvlMgr.getPlayers ();
@@ -64,6 +65,7 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
 	bool LandCheck() {
 		var player = lvlMgr.ActiveCharacter;
 		float dist;
+		walkable = false;
 		// is there an enemy on the land tile
 		for (int i = 0; i < enemies.Length; i++) {
 			if ( enemies[i].transform.position.x == this.transform.position.x
@@ -84,10 +86,13 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
 			// highlight the land around a selected player if he is active and able to move
 			if (dist < player.GetComponent<CharacterController>().GetStat(GameDB.Character.Stats.MOV) && gameObject.GetComponent<LandScript>().speed != 0)
 			{
-				if (!player.GetComponent<CharacterController>().HasMoved)
+				if (!player.GetComponent<CharacterController>().HasMoved) {
+					walkable = true;
 					return true;
+				}
 			}
 		}
+		walkable = false;
 		return false;
 	}
 
@@ -96,13 +101,9 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
         this.renderer.material.color = b ? highlighColor : landColor;
     }
 
-
-
     // is called every frame on objects that are colliding
     void OnCollisionStay(Collision col)
     {
     
-		Debug.Log(col.gameObject.name);
-         
     }
 }

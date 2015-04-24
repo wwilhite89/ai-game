@@ -76,6 +76,7 @@ public class LevelManager : MonoBehaviour {
     {
         this.ActiveCharacter = character;
 		this.ActiveCharacterCtrl = character.GetComponent<CharacterController>();
+		this.ActiveCharacterCtrl.setWalkableLand ();
     }
 
     public void SetSelectedCharacter(GameObject character)

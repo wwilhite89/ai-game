@@ -8,7 +8,9 @@ public class CharacterController : MonoBehaviour
 {
     public Character character {get; set;}
     public GameObject[] enemiesInRange;
+	public GameObject[] enemies;
     private GameObject[] Land;
+	public GameObject[] walkableLand;
     public string opponent;
     public bool HasMoved { get; private set; }
     public bool HasAttacked { get; private set; }
@@ -32,10 +34,15 @@ public class CharacterController : MonoBehaviour
         // Find out who the opponent is and set the string
         opponent = gameObject.tag == GameConstants.TAG_ENEMY ? GameConstants.TAG_PLAYER : GameConstants.TAG_ENEMY;
 
+		enemies = GameObject.FindGameObjectsWithTag (opponent);
     }
 
 	void Update () {
 
+	}
+
+	void FixedUpdate() {
+		this.setWalkableLand ();
 	}
 
     void OnMouseDown()
@@ -94,6 +101,26 @@ public class CharacterController : MonoBehaviour
     {
         return this.initialized;
     }
+
+	public void setWalkableLand () {
+		GameObject [] temp;
+		int count = 0;
+
+		for (int i = 0; i < Land.Length; i++) {
+			if (Land [i].GetComponent<LandScript> ().walkable == true)
+				count++;
+		}
+		temp = new GameObject[count];
+		for (int i = 0, j = 0; i < Land.Length; i++) {
+			if (Land [i].GetComponent<LandScript> ().walkable == true)
+				temp[j++] = Land[i];
+		}
+		walkableLand = temp;
+	}
+
+	public GameObject[] getWalkableLand() {
+		return walkableLand;
+	}
 
     public float GetStat(Character.Stats stat)
     {
