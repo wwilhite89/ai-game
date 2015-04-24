@@ -9,7 +9,8 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
     private GameObject currentChar;
     private GameObject levelManager;
     public string LandType;
-
+	private GameObject [] enemies;
+	private GameObject[] characters;
     private Color highlighColor;
     private Vector3 blockPosition;
     private float playerDist;
@@ -34,7 +35,9 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
     // Update is called once per frame
     void Update()
     {
-        HighlightLand();
+		enemies = lvlMgr.getEnemies ();
+		characters = lvlMgr.getPlayers ();
+        HighlightLand(LandCheck());
     }
 
 	public void OnPointerClick (PointerEventData eventData)
@@ -58,33 +61,48 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
         }
 	}
 
-    void HighlightLand()
+	bool LandCheck() {
+		var player = lvlMgr.ActiveCharacter;
+		float dist;
+		// is there an enemy on the land tile
+		for (int i = 0; i < enemies.Length; i++) {
+			if ( enemies[i].transform.position.x == this.transform.position.x
+			    && enemies[i].transform.position.z == this.transform.position.z)
+				return false;
+		}
+		// is there a character on the land tile
+		for (int i = 0; i < characters.Length; i++) {
+			if ( characters[i].transform.position.x == this.transform.position.x
+			    && characters[i].transform.position.z == this.transform.position.z)
+				return false;
+		}
+
+		if (player != null)
+		{
+			dist = Vector3.Distance(gameObject.transform.position, player.transform.position);
+			
+			// highlight the land around a selected player if he is active and able to move
+			if (dist < player.GetComponent<CharacterController>().GetStat(GameDB.Character.Stats.MOV) && gameObject.GetComponent<LandScript>().speed != 0)
+			{
+				if (!player.GetComponent<CharacterController>().HasMoved)
+					return true;
+			}
+		}
+		return false;
+	}
+
+    void HighlightLand( bool b)
     {
-        float dist;
-        var player = lvlMgr.ActiveCharacter;
-        bool highlight = false;
-
-        if (player != null)
-        {
-            dist = Vector3.Distance(gameObject.transform.position, player.transform.position);
-
-            // highlight the land around a selected player if he is active and able to move
-            if (dist < player.GetComponent<CharacterController>().GetStat(GameDB.Character.Stats.MOV) && gameObject.GetComponent<LandScript>().speed != 0)
-            {
-                if (!player.GetComponent<CharacterController>().HasMoved)
-                    highlight = true;
-            }
-        }
-        
-        this.renderer.material.color = highlight ? highlighColor : landColor;
+        this.renderer.material.color = b ? highlighColor : landColor;
     }
+
+
 
     // is called every frame on objects that are colliding
     void OnCollisionStay(Collision col)
     {
-        if (col.collider.tag == GameConstants.TAG_PLAYER || col.collider.tag == GameConstants.TAG_ENEMY)
-        {
-            this.renderer.material.color = landColor;
-        }
+    
+		Debug.Log(col.gameObject.name);
+         
     }
 }
