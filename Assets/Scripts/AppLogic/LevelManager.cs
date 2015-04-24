@@ -13,8 +13,10 @@ public class LevelManager : MonoBehaviour {
     public enum Turn { PLAYER, ENEMY }
 
     public Turn CurrentTurn { get; private set; }
-    public GameObject ActiveCharacter { get; private set; } 
+    public GameObject ActiveCharacter { get; private set; }
+    public GameObject SelectedCharacter;
 	public CharacterController ActiveCharacterCtrl;
+    public CharacterController SelectedCharacterCtrl;
     private GameObject[] characters;
 	private GameObject[] enemies;
     private GameManager gameManager;
@@ -30,16 +32,11 @@ public class LevelManager : MonoBehaviour {
         this.spawnCharacters();
 	}
 
-	/*
-	TODO (wil) if we want to keep treating AppLogic/ as a library then this can be moved elsewhere,
-	but I feel like this logic is convenient to have and I think it belongs in some kind of game manager.
-	*/
 	void Update() {
 		if(ActiveCharacter != null) {
 			switch(ActiveCharacterCtrl.character.status) {
 				case Character.Status.ATTACKING:
 					highlightEnemies (Color.red);
-				//TODO (wil) highlight adjacent enemies
 					break;
 				case Character.Status.READY:
 					break;
@@ -79,6 +76,12 @@ public class LevelManager : MonoBehaviour {
     {
         this.ActiveCharacter = character;
 		this.ActiveCharacterCtrl = character.GetComponent<CharacterController>();
+    }
+
+    public void SetSelectedCharacter(GameObject character)
+    {
+        this.SelectedCharacter = character;
+        this.SelectedCharacterCtrl = character.GetComponent<CharacterController>();
     }
 
 	public GameObject[] getEnemies() {

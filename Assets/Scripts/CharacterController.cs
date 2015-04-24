@@ -31,6 +31,7 @@ public class CharacterController : MonoBehaviour
 
         // Find out who the opponent is and set the string
         opponent = gameObject.tag == GameConstants.TAG_ENEMY ? GameConstants.TAG_PLAYER : GameConstants.TAG_ENEMY;
+
     }
 
 	void Update () {
@@ -44,9 +45,9 @@ public class CharacterController : MonoBehaviour
         {
             // Set as active
             this.levelManager.SetActiveCharacter(this.gameObject);
+            this.levelManager.SetSelectedCharacter(this.gameObject);
             enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
 		}
-
 		// is the active character attacking an Enemy
 		else if ( levelManager.ActiveCharacter != null && !gameObject.Equals(levelManager.ActiveCharacter) && 
 		      levelManager.ActiveCharacterCtrl.character.status == Character.Status.ATTACKING &&
@@ -56,7 +57,11 @@ public class CharacterController : MonoBehaviour
 			levelManager.ActiveCharacterCtrl.HasAttacked = true;
 			levelManager.ActiveCharacterCtrl.character.status = Character.Status.READY;
 			GameObject.Find("Attack").GetComponent<AttackButton>().OnClick();
-		}
+              }
+        else
+        {
+            this.levelManager.SetSelectedCharacter(this.gameObject);
+        }
     }
 
     public void Move(Vector3 location)

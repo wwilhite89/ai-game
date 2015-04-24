@@ -16,9 +16,8 @@ public class StatsDisplay : MonoBehaviour {
 	}
 	
 	void Update () {
-		//TODO (wil) display stats of enemy characters as well
-        GameObject character = lvlMgr.ActiveCharacter;
-        var statVal = character != null ? character.GetComponent<CharacterController>().GetStat(stat).ToString() : "";
+        CharacterController character = lvlMgr.SelectedCharacterCtrl;
+        var statVal = character != null ? character.GetStat(stat).ToString() : "";
         this.text.text = prefix + statVal;
 	}
 }

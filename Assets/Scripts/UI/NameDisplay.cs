@@ -12,9 +12,8 @@ public class NameDisplay : MonoBehaviour {
 	}
 	
 	void Update () {
-		//TODO (wil) view name of enemies as well
-        GameObject character = lvlMgr.ActiveCharacter;
-        var statVal = character != null ? character.GetComponent<CharacterController>().character.Name : "";
+        CharacterController character = lvlMgr.SelectedCharacterCtrl;
+        var statVal = character != null ? character.character.Name : "";
 		this.text.text = statVal;
 	}
 }
