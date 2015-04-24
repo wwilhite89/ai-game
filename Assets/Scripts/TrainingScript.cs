@@ -6,7 +6,7 @@ public class TrainingScript : MonoBehaviour {
 	public GameObject LvlMgr;
 	// Use this for initialization
 	void Start () {
-	
+		LvlMgr = GameObject.FindGameObjectWithTag ("GameController");
 	}
 	
 	// Update is called once per frame
@@ -15,6 +15,6 @@ public class TrainingScript : MonoBehaviour {
 	}
 
 	public void AttClose( ) {
-		LvlMgr.GetComponent<LevelManager> ().manageAIMove (CharacterController.Decision.ATTCLOSE);
+		LvlMgr.GetComponent<LevelManager> ().manageAIMove (AIChoiceScript.Decision.ATTCLOSE);
 	}
 }

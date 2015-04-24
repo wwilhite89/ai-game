@@ -88,7 +88,7 @@ public class LevelManager : MonoBehaviour {
 	public GameObject[] getPlayers() {
 		return characters;
 	}
-
+	
     public bool IsTurn(GameObject player)
     {
         if (player.tag == GameConstants.TAG_ENEMY)
@@ -181,8 +181,8 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
-	public void manageAIMove (CharacterController.Decision decision) {
-		ActiveCharacterCtrl.MoveAI (decision);
+	public void manageAIMove (AIChoiceScript.Decision decision) {
+		ActiveCharacterCtrl.GetComponent<AIChoiceScript>().MoveAI (decision);
 	}
     
     #endregion

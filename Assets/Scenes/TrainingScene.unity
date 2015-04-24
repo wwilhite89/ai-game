@@ -91,6 +91,7 @@ GameObject:
   - 114: {fileID: 8522016}
   - 114: {fileID: 8522015}
   - 114: {fileID: 8522014}
+  - 114: {fileID: 8522023}
   m_Layer: 0
   m_Name: AI
   m_TagString: Enemy
@@ -123,8 +124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa0dca60a953a44790c9c7ba5fb27d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LvlMgr: {fileID: 708922733}
+  LvlMgr: {fileID: 0}
   range: 2
+  speed: 0
 --- !u!114 &8522015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +214,7 @@ MonoBehaviour:
   enemiesInRange: []
   opponent: 
   selected: 0
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!54 &8522019
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -270,6 +273,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 651540597}
   m_GameObject: {fileID: 8522012}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &8522023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 8522012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9b499306334754ea4c1ebed473484d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &22981917
 GameObject:
   m_ObjectHideFlags: 0
@@ -2386,7 +2400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0d8b9efa2ef7e468cd1b7421489815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefix: 'DEF: '
   stat: 2
 --- !u!114 &228055088
 MonoBehaviour:
@@ -2648,7 +2661,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0d8b9efa2ef7e468cd1b7421489815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefix: 'MOV: '
   stat: 5
 --- !u!114 &241110406
 MonoBehaviour:
@@ -4136,6 +4148,7 @@ GameObject:
   - 114: {fileID: 378799521}
   - 114: {fileID: 378799520}
   - 114: {fileID: 378799519}
+  - 114: {fileID: 378799528}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4168,8 +4181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa0dca60a953a44790c9c7ba5fb27d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LvlMgr: {fileID: 708922733}
+  LvlMgr: {fileID: 0}
   range: 3
+  speed: 0
 --- !u!114 &378799520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4257,6 +4271,7 @@ MonoBehaviour:
   enemiesInRange: []
   opponent: 
   selected: 0
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!54 &378799524
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4315,6 +4330,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1669756427}
   m_GameObject: {fileID: 378799517}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &378799528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 378799517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9b499306334754ea4c1ebed473484d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &396947173
 GameObject:
   m_ObjectHideFlags: 0
@@ -4501,7 +4527,7 @@ GameObject:
   - 114: {fileID: 435382653}
   - 114: {fileID: 435382652}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Attack Close
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6376,6 +6402,7 @@ GameObject:
   - 114: {fileID: 617748924}
   - 114: {fileID: 617748923}
   - 114: {fileID: 617748922}
+  - 114: {fileID: 617748931}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6408,8 +6435,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa0dca60a953a44790c9c7ba5fb27d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LvlMgr: {fileID: 708922733}
+  LvlMgr: {fileID: 0}
   range: 3
+  speed: 0
 --- !u!114 &617748923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6497,6 +6525,7 @@ MonoBehaviour:
   enemiesInRange: []
   opponent: 
   selected: 0
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!54 &617748927
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6555,6 +6584,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 975837240}
   m_GameObject: {fileID: 617748920}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &617748931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 617748920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9b499306334754ea4c1ebed473484d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &624945261
 GameObject:
   m_ObjectHideFlags: 0
@@ -7010,6 +7050,7 @@ GameObject:
   - 114: {fileID: 632661665}
   - 114: {fileID: 632661664}
   - 114: {fileID: 632661663}
+  - 114: {fileID: 632661672}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -7042,8 +7083,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa0dca60a953a44790c9c7ba5fb27d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LvlMgr: {fileID: 708922733}
+  LvlMgr: {fileID: 0}
   range: 3
+  speed: 0
 --- !u!114 &632661664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7131,6 +7173,7 @@ MonoBehaviour:
   enemiesInRange: []
   opponent: 
   selected: 0
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!54 &632661668
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7189,6 +7232,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1804426610}
   m_GameObject: {fileID: 632661661}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &632661672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 632661661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9b499306334754ea4c1ebed473484d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &633858657
 GameObject:
   m_ObjectHideFlags: 0
@@ -8371,25 +8425,13 @@ GameObject:
   - 4: {fileID: 708922737}
   - 114: {fileID: 708922736}
   - 114: {fileID: 708922735}
-  - 114: {fileID: 708922734}
   m_Layer: 0
   m_Name: Manager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &708922734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 708922733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 864a6d625a4e43f4fb8400596e54a4c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &708922735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11234,7 +11276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0d8b9efa2ef7e468cd1b7421489815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefix: 'CRIT: '
   stat: 4
 --- !u!114 &956512101
 MonoBehaviour:
@@ -17732,7 +17773,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0d8b9efa2ef7e468cd1b7421489815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefix: 'HP: '
   stat: 0
 --- !u!114 &1579849841
 MonoBehaviour:
@@ -19334,6 +19374,7 @@ GameObject:
   - 114: {fileID: 1757507034}
   - 114: {fileID: 1757507033}
   - 114: {fileID: 1757507032}
+  - 114: {fileID: 1757507041}
   m_Layer: 0
   m_Name: AI
   m_TagString: Enemy
@@ -19366,8 +19407,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa0dca60a953a44790c9c7ba5fb27d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LvlMgr: {fileID: 708922733}
+  LvlMgr: {fileID: 0}
   range: 2
+  speed: 0
 --- !u!114 &1757507033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19455,6 +19497,7 @@ MonoBehaviour:
   enemiesInRange: []
   opponent: 
   selected: 0
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!54 &1757507037
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19513,6 +19556,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 909890048}
   m_GameObject: {fileID: 1757507030}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1757507041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1757507030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9b499306334754ea4c1ebed473484d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1764782892
 GameObject:
   m_ObjectHideFlags: 0
@@ -20495,7 +20549,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0d8b9efa2ef7e468cd1b7421489815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefix: 'ATT: '
   stat: 1
 --- !u!114 &1842314544
 MonoBehaviour:
@@ -21292,6 +21345,7 @@ GameObject:
   - 114: {fileID: 1916903689}
   - 114: {fileID: 1916903697}
   - 114: {fileID: 1916903691}
+  - 114: {fileID: 1916903698}
   m_Layer: 0
   m_Name: AI
   m_TagString: Enemy
@@ -21359,8 +21413,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa0dca60a953a44790c9c7ba5fb27d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LvlMgr: {fileID: 708922733}
+  LvlMgr: {fileID: 0}
   range: 2
+  speed: 0
 --- !u!114 &1916903692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21376,6 +21431,7 @@ MonoBehaviour:
   enemiesInRange: []
   opponent: 
   selected: 0
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!54 &1916903693
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21471,6 +21527,17 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
+--- !u!114 &1916903698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1916903687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9b499306334754ea4c1ebed473484d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1921257456
 GameObject:
   m_ObjectHideFlags: 0
@@ -21936,7 +22003,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0d8b9efa2ef7e468cd1b7421489815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefix: 'EVA: '
   stat: 3
 --- !u!114 &1962077098
 MonoBehaviour:

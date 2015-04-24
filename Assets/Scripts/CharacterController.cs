@@ -6,7 +6,6 @@ using GameDB.SessionData;
 
 public class CharacterController : MonoBehaviour
 {
-	public enum Decision {ATTCLOSE,ATTWEAK,RUN}
     public Character character {get; set;}
     public GameObject[] enemiesInRange;
     private GameObject[] Land;
@@ -18,6 +17,7 @@ public class CharacterController : MonoBehaviour
     private BattleManager battleMgr;
     private LevelManager levelManager;
 	private GameObject attackButton;
+	public Vector3 startPos;
 
     // Use this for initialization
     void Start()
@@ -74,34 +74,6 @@ public class CharacterController : MonoBehaviour
         	battleMgr.DoBattle(opponent.GetComponent<CharacterController>(), this);
 		}
     }
-
-	public void MoveAI ( Decision decision ) {
-		GameObject enemy = null;
-		float dist = 0.0f;
-		float newDist = 100.0f;
-		GameObject[] enemies = levelManager.getEnemies();
-
-		switch(decision) {
-		case Decision.ATTCLOSE:
-
-			// look through the enemies in range and see if any are in reach
-			for (int i = 0; i < enemies.Length; i++) {
-				dist = Vector3.Distance(this.gameObject.transform.position, enemies[i].transform.position);
-				if (dist < newDist) {
-					newDist = dist;
-					enemy = enemies[i];
-				}
-			}
-
-			Move (enemy.transform.position);
-			break;
-		case Decision.ATTWEAK:
-			break;
-		case Decision.RUN:
-			break;
-		}
-
-	}
 
 	public void Rest() {
 		if(!this.HasAttacked) {
