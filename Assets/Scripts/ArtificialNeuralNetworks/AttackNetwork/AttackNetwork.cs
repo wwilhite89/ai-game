@@ -34,15 +34,6 @@ namespace ArtificialNeuralNetworks.AttackNetwork
         public TRAINING_STATE Mode = TRAINING_STATE.TRAIN;
         public bool OnlyLoadCharacterData = false;
 
-        // ANN Input Options
-        public bool 
-            UsePlayerHealthInput = true,
-            UsePlayerPowerInput = true,
-            UseTeamHealthInput = true,
-            UseTeamPowerInput = true,
-            UseEnemyHealthInput = true,
-            UseEnemyPowerInput = true;
-
         // ANN Controls
         public double LearnRate = 0.2;
         public double Momentum = 0.2;
@@ -72,13 +63,22 @@ namespace ArtificialNeuralNetworks.AttackNetwork
 
             if (player == null)
                 throw new UnityException("Character controller null");
+            
+            // Health Inputs
+            inputs.Add(new PlayerHealthInput(player, "Player Health"));
 
-            if (UsePlayerHealthInput) inputs.Add(new PlayerHealthInput(player));
-            if (UsePlayerPowerInput) inputs.Add(new PlayerPowerInput(player));
-            if (UseTeamHealthInput) inputs.Add(new PlayerTeamHealthInput(player));
-            if (UseTeamPowerInput) inputs.Add(new PlayerTeamPowerInput(player));
-            if (UseEnemyHealthInput) inputs.Add(new EnemyTeamHealthInput(player));
-            if (UseEnemyPowerInput) inputs.Add(new EnemyTeamPowerInput(player));
+            inputs.Add(new ImmediateTeamHealthInput(player, "Immediate Team Health"));
+            inputs.Add(new ImmediateEnemyHealthInput(player, "Immediate Enemy Health"));
+
+            inputs.Add(new GeneralTeamHealthInput(player, "Total Team Health"));
+            inputs.Add(new GeneralEnemyHealthInput(player, "Total Enemy Health"));
+
+            inputs.Add(new ImmediatePlayerPowerInput(player, "Immediate Player Power"));
+            inputs.Add(new ImmediateTeamPowerInput(player, "Immediate Team Power"));
+
+            inputs.Add(new GeneralPlayerPowerInput(player, "Total Player Power"));
+            inputs.Add(new GeneralTeamPowerInput(player, "Total Team Power"));
+
         }
 
         void Update()

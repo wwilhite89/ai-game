@@ -212,14 +212,22 @@ public class CharacterController : MonoBehaviour
 
     public List<CharacterController> GetTeamMembers()
     {
-        var teammates = this.levelManager.GetTeammates(this.gameObject.tag);
-        return teammates != null ? teammates.Select(x => x.GetComponent<CharacterController>()).ToList() : null;
+        var teammates = this.levelManager.GetTeam(this.gameObject.tag);
+        return teammates != null ? 
+            teammates
+            .Select(x => x.GetComponent<CharacterController>())
+            .Where(y => y.character.status != Character.Status.DEAD)
+            .ToList() : null;
     }
 
     public List<CharacterController> GetEnemyTeamMembers()
     {
-        var teammates = this.levelManager.GetTeammates(this.gameObject.tag == GameConstants.TAG_PLAYER ? GameConstants.TAG_ENEMY : this.gameObject.tag);
-        return teammates != null ? teammates.Select(x => x.GetComponent<CharacterController>()).ToList() : null;
+        var teammates = this.levelManager.GetTeam(this.gameObject.tag == GameConstants.TAG_PLAYER ? GameConstants.TAG_ENEMY : this.gameObject.tag);
+        return teammates != null ? 
+            teammates
+            .Select(x => x.GetComponent<CharacterController>())
+            .Where(y => y.character.status != Character.Status.DEAD)
+            .ToList() : null;
     }
 
     /// <summary>

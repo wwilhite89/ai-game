@@ -59,7 +59,7 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-    public GameObject[] GetTeammates(string team)
+    public GameObject[] GetTeam(string team)
     {
         if (team == GameConstants.TAG_ENEMY)
             return this.enemies;
