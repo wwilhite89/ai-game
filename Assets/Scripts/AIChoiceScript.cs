@@ -43,6 +43,16 @@ public class AIChoiceScript : MonoBehaviour {
 		case Decision.ATTWEAK:
 			break;
 		case Decision.RUN:
+			// who is the closest enemy
+			for (int i = 0; i < enemies.Length; i++) {
+				dist = Vector3.Distance(this.transform.position, enemies[i].transform.position);
+				if (dist < newDist) {
+					newDist = dist;
+					enemy = enemies[i];
+				}
+			}
+			
+			this.GetComponent<CharacterController>(). Move (walkFrom(enemy));	
 			break;
 		}
 		
@@ -64,6 +74,25 @@ public class AIChoiceScript : MonoBehaviour {
 		if (Land != null)
 			return Land.transform.position;
 
+		return this.transform.position;
+	}
+
+	Vector3 walkFrom(GameObject enemy) {
+		float dist;
+		float newDist = 0.0f;
+		GameObject Land = null;
+		
+		// what walkable land is closest to the enemy
+		for (int i = 0; i < walkable.Length; i++) {
+			dist = Vector3.Distance(enemy.transform.position, walkable[i].transform.position);
+			if (dist > newDist) {
+				newDist = dist;
+				Land = walkable[i];
+			}
+		}
+		if (Land != null)
+			return Land.transform.position;
+		
 		return this.transform.position;
 	}
 }

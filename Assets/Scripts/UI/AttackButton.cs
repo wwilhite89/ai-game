@@ -11,7 +11,6 @@ public class AttackButton : MonoBehaviour {
 	CharacterController characterCtrl;
 	private bool engaged;
 	Button b;
-	ColorBlock normalColor;
 	public ColorBlock engagedColor;
 
 	void Start () {
@@ -19,7 +18,6 @@ public class AttackButton : MonoBehaviour {
 		this.character = null;
 		this.engaged = false;
 		this.b = this.gameObject.GetComponent<Button>();
-		this.normalColor = b.colors;
 	}
 
 	void Update() {
