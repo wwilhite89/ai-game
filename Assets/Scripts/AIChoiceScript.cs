@@ -58,12 +58,13 @@ public class AIChoiceScript : MonoBehaviour {
 			//Debug.Log ("actlevel 0: "+actLvls[4]);
 			top = actLvls[0]+actLvls[1]+actLvls[4];
 			bottom = actLvls[2]+actLvls[3]+actLvls[6];
-			left = actLvls[1]+actLvls[3]+actLvls[3];
+			left = actLvls[1]+actLvls[3]+actLvls[5];
 			right = actLvls[0]+actLvls[2]+actLvls[7];
 			zMoves = bottom-top;
 			xMoves = left - right;
-			//Debug.Log (zMoves);
-			//Debug.Log (xMoves);
+			Debug.Log (zMoves);
+			Debug.Log (xMoves);
+			Debug.Log (string.Format ("Activation Levels: {0},{1},{2},{3},{4},{5},{6},{7}", actLvls[0], actLvls [1], actLvls [2], actLvls [3], actLvls [4], actLvls [5], actLvls [6], actLvls [7]));
 			//Debug.Log (left+" "+right);
 			//Debug.Log (top+" "+bottom);
 			if(zMoves>1){
@@ -84,17 +85,13 @@ public class AIChoiceScript : MonoBehaviour {
 
 			newLocation = new Vector3(curLocation.x+xMoves,curLocation.y,curLocation.z+zMoves);
 			//Debug.Log ("player"+this.transform.position.ToString());
-			Debug.Log ("cur"+curLocation.x+" "+curLocation.z);
+			//Debug.Log ("cur"+curLocation.x+" "+curLocation.z);
 			//Debug.Log (newLocation.x+" "+newLocation.y);
-			for (int i = 0; i < walkable.Length; i++) {
-				dist = Vector3.Distance(newLocation, walkable[i].transform.position);
-				Debug.Log("new x"+newLocation.x+" y"+newLocation.y+" z"+newLocation.z);
-				Debug.Log("walk x"+walkable[i].transform.position.x+" y"+walkable[i].transform.position.y+" z"+walkable[i].transform.position.z);
-				Debug.Log("Dist Up "+dist);
 
+			if(zMoves!=0||xMoves!=0){
+				runMove(newLocation);
 			}
 
-			runMove(newLocation);
 
 			
 			
