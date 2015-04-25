@@ -5,9 +5,10 @@ using System.Linq;
 public class AttackRangeScript : MonoBehaviour
 {
 
-    public Vector3 startDir = new Vector3(0, 1, 0);
+    public Vector3 startDir = new Vector3(0, 0, 1);
+	public float realtiveAngle;
     
-    private int[] actLevels = new int[4];
+    private int[] actLevels = new int[8];
 
     private CharacterController charCtrl;
     private GameObject[] opponents;
@@ -22,7 +23,11 @@ public class AttackRangeScript : MonoBehaviour
         TOP_RIGHT = 0,
         TOP_LEFT = 1,
         BOTTOM_RIGHT = 2,
-        BOTTOM_LEFT = 3
+        BOTTOM_LEFT = 3,
+		FRONT = 4,
+		LEFT =5,
+		BACK = 6,
+		RIGHT = 7
     }
 
     // Use this for initialization
@@ -44,7 +49,7 @@ public class AttackRangeScript : MonoBehaviour
     {
         if (!this.rangeSet && this.charCtrl.IsInitialized())
         {
-            this.range = (int) this.charCtrl.GetStat(GameDB.Character.Stats.RANGE);
+            this.range = (int) this.charCtrl.GetStat(GameDB.Character.Stats.RANGE)+1;
             this.rangeSet = true;
         }
     }
@@ -59,29 +64,42 @@ public class AttackRangeScript : MonoBehaviour
     }
 
     private void drawPieSlices() {
-        Debug.DrawRay(transform.position, this.transform.up * range, Color.yellow);
-        Debug.DrawRay(transform.position, -this.transform.up * range, Color.yellow);
-        Debug.DrawRay(transform.position, this.transform.right * range, Color.yellow);
+        Debug.DrawRay(transform.position, this.transform.up * range, Color.red);
+        Debug.DrawRay(transform.position, -this.transform.up * range, Color.blue);
+        Debug.DrawRay(transform.position, this.transform.right * range, Color.green);
         Debug.DrawRay(transform.position, -this.transform.right * range, Color.yellow);
     }
 
     private void updateActivationLevels() {
-        int[] oldLevels = new int[4];
+        int[] oldLevels = new int[8];
         actLevels.CopyTo(oldLevels, 0);
 
         actLevels[0] = getActivationLevel(Slice.TOP_RIGHT);
         actLevels[1] = getActivationLevel(Slice.TOP_LEFT);
         actLevels[2] = getActivationLevel(Slice.BOTTOM_RIGHT);
         actLevels[3] = getActivationLevel(Slice.BOTTOM_LEFT);
+		actLevels[4] = getActivationLevel(Slice.FRONT);
+		actLevels[5] = getActivationLevel(Slice.LEFT);
+		actLevels[6] = getActivationLevel(Slice.BACK);
+		actLevels[7] = getActivationLevel(Slice.RIGHT);
 
-        if (oldLevels[0] != actLevels[0] ||
-            oldLevels[1] != actLevels[1] ||
-            oldLevels[2] != actLevels[2] ||
-            oldLevels[3] != actLevels[3])
-            Debug.Log(string.Format("Activation Levels: {0},{1},{2},{3}", actLevels[0], actLevels[1], actLevels[2], actLevels[3]));
-    }
 
-    /// <summary>
+        if (oldLevels [0] != actLevels [0] ||
+			oldLevels [1] != actLevels [1] ||
+			oldLevels [2] != actLevels [2] ||
+			oldLevels [3] != actLevels [3] ||
+			oldLevels [4] != actLevels [4] ||
+			oldLevels [5] != actLevels [5] ||
+			oldLevels [6] != actLevels [6] ||
+			oldLevels [7] != actLevels [7]) {
+			Debug.Log (string.Format ("Activation Levels: {0},{1},{2},{3},{4},{5},{6},{7}", actLevels [0], actLevels [1], actLevels [2], actLevels [3], actLevels [4], actLevels [5], actLevels [6], actLevels [7]));
+
+		}
+	}
+
+
+	
+	/// <summary>
     /// Returns the number of agents in an activation level given a slice.
     /// </summary>
     /// <param name="slice">Slice area relative to the main agent</param>
@@ -89,41 +107,54 @@ public class AttackRangeScript : MonoBehaviour
     private int getActivationLevel(Slice slice)
     {
         int levels = 0;
-        float offsetRotation = transform.rotation.eulerAngles.z;
+        float offsetRotation = transform.rotation.eulerAngles.y;
 
 
         foreach (var agent in this.getObjectsInRadius(opponent))
         {
             Vector3 objDir = (agent.transform.position - gameObject.transform.position).normalized;
-            objDir.z = 0;
+            objDir.y = 0;
 
             float angle = Vector3.Angle(startDir, objDir);
 
-            if (Vector3.Cross(startDir, objDir).z < 0)
+            if (Vector3.Cross(startDir, objDir).y < 0)
                 angle = 180 + (180 - angle);
 
             float relativeAngle = (360.0f + angle - offsetRotation) % 360.0f;
-
+			//relativeAngle= (relativeAngle+45.0f)%360.0f;
+			//Debug.Log(relativeAngle);
             switch (slice)
             {
-                case Slice.TOP_LEFT:
-                    levels += relativeAngle >= 0.0f && relativeAngle < 90.0f ? 1 : 0;
-                    break;
-                case Slice.BOTTOM_LEFT:
-                    levels += relativeAngle >= 90.0f && relativeAngle < 180.0f ? 1 : 0;
+                case Slice.TOP_RIGHT:
+                    levels += relativeAngle >= 15.0f && relativeAngle < 75.0f ? 1 : 0;
                     break;
                 case Slice.BOTTOM_RIGHT:
-                    levels += relativeAngle >= 180.0f && relativeAngle < 270.0f ? 1 : 0;
+                    levels += relativeAngle >= 105.0f && relativeAngle < 165.0f ? 1 : 0;
                     break;
-                case Slice.TOP_RIGHT:
-                    levels += relativeAngle >= 270.0f ? 1 : 0;
+                case Slice.BOTTOM_LEFT:
+                    levels += relativeAngle >= 195.0f && relativeAngle < 255.0f ? 1 : 0;
                     break;
-                default:
-                    break;
-            }
-        }
-
-        return levels;
+                case Slice.TOP_LEFT:
+					levels += relativeAngle >= 285.0f && relativeAngle < 345.0f ? 1 : 0;
+					break;
+				case Slice.FRONT:
+					levels += relativeAngle >= 345.0f || relativeAngle < 15.0f ? 1 : 0;
+					break;
+				case Slice.RIGHT:
+					levels += relativeAngle >= 75.0f && relativeAngle < 105.0f ? 1 : 0;
+					break;
+				case Slice.BACK:
+					levels += relativeAngle >= 165.0f && relativeAngle < 195.0f ? 1 : 0;
+					break;
+				case Slice.LEFT:
+					levels += relativeAngle >= 255.0f && relativeAngle < 285.0f ? 1 : 0;
+					break;
+			default:
+				break;
+			}
+		}
+		
+		return levels;
     }
 
     public GameObject[] getObjectsInRadius(string agentName)
@@ -136,5 +167,10 @@ public class AttackRangeScript : MonoBehaviour
 
         return agents;
     }
-
+	public int[] getLvls(){
+		return actLevels;
+	}
+	private void setRelativeAngle(float a){
+		realtiveAngle = a;
+	}
 }

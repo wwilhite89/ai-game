@@ -23,6 +23,7 @@ public class AIChoiceScript : MonoBehaviour {
 		GameObject enemy = null;
 		float dist = 0.0f;
 		float newDist = 100.0f;
+		bool moved=false;
 	
 		enemies = this.GetComponent<CharacterController>().enemies;
 		walkable = this.GetComponent<CharacterController> ().getWalkableLand ();
@@ -43,16 +44,64 @@ public class AIChoiceScript : MonoBehaviour {
 		case Decision.ATTWEAK:
 			break;
 		case Decision.RUN:
-			// who is the closest enemy
-			for (int i = 0; i < enemies.Length; i++) {
-				dist = Vector3.Distance(this.transform.position, enemies[i].transform.position);
-				if (dist < newDist) {
-					newDist = dist;
-					enemy = enemies[i];
-				}
+			Debug.Log ("RUN");
+			int zMoves =0; // moves to make on the z-axis
+			int xMoves =0; // moves to make on  the x-axis
+			int top=0;	   // Enemies above the player
+			int bottom=0;  // Enemies bellow the player
+			int left=0;    // Enemies to the left of the player
+			int right=0;   // Enemies to the right of the player
+			Vector3 curLocation = this.transform.position; //current location of the player
+			Vector3 newLocation;  // Location for the player to move to;
+			int[]actLvls=this.GetComponent<AttackRangeScript>().getLvls();
+
+			//Debug.Log ("actlevel 0: "+actLvls[4]);
+			top = actLvls[0]+actLvls[1]+actLvls[4];
+			bottom = actLvls[2]+actLvls[3]+actLvls[6];
+			left = actLvls[1]+actLvls[3]+actLvls[3];
+			right = actLvls[0]+actLvls[2]+actLvls[7];
+			zMoves = bottom-top;
+			xMoves = left - right;
+			//Debug.Log (zMoves);
+			//Debug.Log (xMoves);
+			//Debug.Log (left+" "+right);
+			//Debug.Log (top+" "+bottom);
+			if(zMoves>1){
+				zMoves=1;
 			}
+			if(xMoves>1){
+				xMoves=1;
+			}
+			if(zMoves<-1){
+				zMoves=-1;
+			}
+			if(xMoves<-1){
+				xMoves=-1;
+			}
+
+
+
+
+			newLocation = new Vector3(curLocation.x+xMoves,curLocation.y,curLocation.z+zMoves);
+			//Debug.Log ("player"+this.transform.position.ToString());
+			Debug.Log ("cur"+curLocation.x+" "+curLocation.z);
+			//Debug.Log (newLocation.x+" "+newLocation.y);
+			for (int i = 0; i < walkable.Length; i++) {
+				dist = Vector3.Distance(newLocation, walkable[i].transform.position);
+				Debug.Log("new x"+newLocation.x+" y"+newLocation.y+" z"+newLocation.z);
+				Debug.Log("walk x"+walkable[i].transform.position.x+" y"+walkable[i].transform.position.y+" z"+walkable[i].transform.position.z);
+				Debug.Log("Dist Up "+dist);
+
+			}
+
+			runMove(newLocation);
+
 			
-			this.GetComponent<CharacterController>(). Move (walkFrom(enemy));	
+			
+			
+
+
+
 			break;
 		}
 		
@@ -65,6 +114,7 @@ public class AIChoiceScript : MonoBehaviour {
 
 		// what walkable land is closest to the enemy
 		for (int i = 0; i < walkable.Length; i++) {
+
 			dist = Vector3.Distance(enemy.transform.position, walkable[i].transform.position);
 			if (dist < newDist) {
 				newDist = dist;
@@ -76,6 +126,30 @@ public class AIChoiceScript : MonoBehaviour {
 
 		return this.transform.position;
 	}
+	private void runMove(Vector3 v){
+		bool moved = false;
+		float dist;
+		float newDist = 1000.0f;
+		Vector3 Land=new Vector3();
+		for (int i = 0; i < walkable.Length; i++) {
+			Vector3 square = walkable[i].transform.position;
+			dist = Vector3.Distance(v, walkable[i].transform.position);
+			if (dist < newDist) {
+				newDist = dist;
+				Land = walkable[i].transform.position;
+			}
+			if (dist<1.0f) {
+			
+				this.GetComponent<CharacterController>(). Move (walkable[i].transform.position);
+				moved = true;
+			}
+		}
+		if(!moved&&Land!=null){
+			this.GetComponent<CharacterController>(). Move (Land);
+		}
+
+	}
+	
 
 	Vector3 walkFrom(GameObject enemy) {
 		float dist;

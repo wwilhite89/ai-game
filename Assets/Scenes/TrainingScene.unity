@@ -198,7 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDir: {x: 0, y: 1, z: 0}
+  startDir: {x: 0, y: 0, z: 1}
+  realtiveAngle: 0
 --- !u!114 &8522018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4286,7 +4287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDir: {x: 0, y: 1, z: 0}
+  startDir: {x: 0, y: 0, z: 1}
+  realtiveAngle: 0
 --- !u!114 &378799523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6560,7 +6562,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDir: {x: 0, y: 1, z: 0}
+  startDir: {x: 0, y: 0, z: 1}
+  realtiveAngle: 0
 --- !u!114 &617748926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7215,7 +7218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDir: {x: 0, y: 1, z: 0}
+  startDir: {x: 0, y: 0, z: 1}
+  realtiveAngle: 0
 --- !u!114 &632661667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7743,6 +7747,14 @@ Prefab:
       propertyPath: LvlMgr
       value: 
       objectReference: {fileID: 708922733}
+    - target: {fileID: 11407042, guid: e05eddcec88a2114b86148c34df99b83, type: 2}
+      propertyPath: startDir.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11407042, guid: e05eddcec88a2114b86148c34df99b83, type: 2}
+      propertyPath: startDir.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e05eddcec88a2114b86148c34df99b83, type: 2}
   m_RootGameObject: {fileID: 1366775996}
@@ -8524,7 +8536,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464c9eee4347a124dae46a08da1584af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectedCharacter: {fileID: 0}
   ActiveCharacterCtrl: {fileID: 0}
+  SelectedCharacterCtrl: {fileID: 0}
 --- !u!4 &708922737
 Transform:
   m_ObjectHideFlags: 0
@@ -10787,6 +10801,14 @@ Prefab:
       propertyPath: LvlMgr
       value: 
       objectReference: {fileID: 708922733}
+    - target: {fileID: 11407042, guid: e05eddcec88a2114b86148c34df99b83, type: 2}
+      propertyPath: startDir.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11407042, guid: e05eddcec88a2114b86148c34df99b83, type: 2}
+      propertyPath: startDir.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e05eddcec88a2114b86148c34df99b83, type: 2}
   m_RootGameObject: {fileID: 897298988}
@@ -11739,6 +11761,14 @@ Prefab:
     - target: {fileID: 11470838, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
       propertyPath: range
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470832, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
+      propertyPath: startDir.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470832, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
+      propertyPath: startDir.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
@@ -14404,7 +14434,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1286719761}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 258646927}
+        m_MethodName: Run
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1286719761
@@ -18614,6 +18656,14 @@ Prefab:
       propertyPath: range
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11470832, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
+      propertyPath: startDir.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470832, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
+      propertyPath: startDir.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
   m_RootGameObject: {fileID: 624945261}
@@ -19639,7 +19689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDir: {x: 0, y: 1, z: 0}
+  startDir: {x: 0, y: 0, z: 1}
+  realtiveAngle: 0
 --- !u!114 &1757507036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19911,6 +19962,14 @@ Prefab:
       propertyPath: LvlMgr
       value: 
       objectReference: {fileID: 708922733}
+    - target: {fileID: 11407042, guid: e05eddcec88a2114b86148c34df99b83, type: 2}
+      propertyPath: startDir.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11407042, guid: e05eddcec88a2114b86148c34df99b83, type: 2}
+      propertyPath: startDir.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e05eddcec88a2114b86148c34df99b83, type: 2}
   m_RootGameObject: {fileID: 1640917562}
@@ -20314,6 +20373,14 @@ Prefab:
     - target: {fileID: 11470838, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
       propertyPath: range
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470832, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
+      propertyPath: startDir.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470832, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
+      propertyPath: startDir.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
@@ -21577,7 +21644,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDir: {x: 0, y: 1, z: 0}
+  startDir: {x: 0, y: 0, z: 1}
+  realtiveAngle: 0
 --- !u!114 &1916903691
 MonoBehaviour:
   m_ObjectHideFlags: 0
