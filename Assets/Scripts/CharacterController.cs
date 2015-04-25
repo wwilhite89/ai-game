@@ -28,6 +28,8 @@ public class CharacterController : MonoBehaviour
     private INeuralNetwork attackNetwork;
     private bool hasNetworkAttached;
 
+    private int HP;
+
     // Use this for initialization
     void Start()
     {
@@ -97,7 +99,7 @@ public class CharacterController : MonoBehaviour
 	public void Rest() {
 		if(!this.HasAttacked) {
 			//TODO (wil) just a placeholder for now
-			character.health += 2;
+			this.HP += 2;
 			this.HasAttacked = true;
 			this.character.status = Character.Status.READY;
 		}
@@ -129,6 +131,11 @@ public class CharacterController : MonoBehaviour
 		return walkableLand;
 	}
 
+    public int GetMaxHP()
+    {
+        return this.character.health;
+    }
+
     public float GetStat(Character.Stats stat)
     {
         if (!this.initialized)
@@ -148,7 +155,7 @@ public class CharacterController : MonoBehaviour
             case Character.Stats.EVA:
                 return this.character.evade;
             case Character.Stats.HP:
-                return this.character.health;
+                return this.HP;
             case Character.Stats.MOV:
                 return this.character.movement;
             case Character.Stats.RANGE:
@@ -179,7 +186,7 @@ public class CharacterController : MonoBehaviour
                 this.character.evade = value;
                 break;
             case Character.Stats.HP:
-                this.character.health = (int)value;
+                this.HP = (int)value;
                 break;
             case Character.Stats.MOV:
                 this.character.movement = (int)value;
@@ -208,6 +215,7 @@ public class CharacterController : MonoBehaviour
     public void SetCharacter(Character c)
     {
         this.character = c;
+        this.HP = c.health;
         this.initialized = true;
     }
 

@@ -21,6 +21,7 @@ namespace ArtificialNeuralNetworks.Core
 
         public double GetCurrentTraining()
         {
+            this.UpdateTraining();
             return this.currentValue;
         }
 

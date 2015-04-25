@@ -12,7 +12,7 @@ namespace ArtificialNeuralNetworks.AttackNetwork.Inputs
 
         protected override void UpdateTraining()
         {
-            this.currentValue = controller.GetStat(GameDB.Character.Stats.HP);
+            this.currentValue = 0;// controller.GetStat(GameDB.Character.Stats.HP);
         }
     }
 }
