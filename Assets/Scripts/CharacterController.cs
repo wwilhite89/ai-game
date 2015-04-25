@@ -99,7 +99,7 @@ public class CharacterController : MonoBehaviour
 	public void Rest() {
 		if(!this.HasAttacked) {
 			//TODO (wil) just a placeholder for now
-			this.HP += 2;
+            this.HP = Mathf.Min(this.HP + 2, this.character.health);
 			this.HasAttacked = true;
 			this.character.status = Character.Status.READY;
 		}
