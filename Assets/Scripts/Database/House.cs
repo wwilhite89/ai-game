@@ -15,9 +15,9 @@ namespace GameDB
             STARK = 0,
             GREYJOY = 1,
             LANNISTER = 2,
-            MARTELL = 3,
-            TYRELL = 4,
-            BARATHEON = 5,
+            //MARTELL = 3,
+            //TYRELL = 4,
+            //BARATHEON = 5,
         }
 
         #endregion

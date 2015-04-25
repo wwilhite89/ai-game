@@ -13,7 +13,7 @@ namespace GameDB.SessionData
             CURRENT_LEVEL = "CurrentLevel",
 
             SCENE_MENU = "MenuScene",
-            SCENE_WINTERFELL = "AdamScene2",
+            SCENE_WINTERFELL = "AdamScene",
             SCENE_WHITE_HARBOR = "AdamScene",
 
             TAG_PLAYER = "Player",
