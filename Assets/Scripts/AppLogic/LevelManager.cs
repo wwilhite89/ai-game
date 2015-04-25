@@ -56,11 +56,11 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-    public GameObject[] GetTeammates(GameObject teamMember)
+    public GameObject[] GetTeammates(string team)
     {
-        if (teamMember.tag == GameConstants.TAG_ENEMY)
+        if (team == GameConstants.TAG_ENEMY)
             return this.enemies;
-        else if (teamMember.tag == GameConstants.TAG_PLAYER)
+        else if (team == GameConstants.TAG_PLAYER)
             return this.characters;
         return null;
     }
