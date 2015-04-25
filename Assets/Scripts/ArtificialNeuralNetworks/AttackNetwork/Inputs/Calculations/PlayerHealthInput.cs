@@ -6,9 +6,12 @@ using ArtificialNeuralNetworks.Core;
 
 namespace ArtificialNeuralNetworks.AttackNetwork.Inputs
 {
+    /// <summary>
+    /// Measures the current player's health.
+    /// </summary>
     public class PlayerHealthInput : InputComponent
     {
-        public PlayerHealthInput(CharacterController controller) : base(controller) { }
+        public PlayerHealthInput(CharacterController controller, string description) : base(controller, description) { }
 
         protected override void UpdateTraining()
         {

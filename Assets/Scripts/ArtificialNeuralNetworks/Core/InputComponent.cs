@@ -11,10 +11,12 @@ namespace ArtificialNeuralNetworks.Core
     {
         protected double currentValue;
         protected CharacterController controller;
+        protected string description;
 
-        public InputComponent(CharacterController controller)
+        public InputComponent(CharacterController controller, string description)
         {
             this.controller = controller;
+            this.description = description;
         }
 
         protected abstract void UpdateTraining();
@@ -27,7 +29,7 @@ namespace ArtificialNeuralNetworks.Core
 
         public override string ToString()
         {
-            return this.GetType().Name;
+            return this.description;
         }
     }
 }

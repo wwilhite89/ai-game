@@ -102,19 +102,19 @@ namespace ArtificialNeuralNetworks.Training
                 { 
                     double d = double.MinValue;
                     currentSensorValues.TryGetValue(key, out d);
-                    text.AppendLine(string.Format("{0}: {1}", key, d.ToString("F3")));
+                    text.AppendLine(string.Format("{0}: {1}", key, (100f*d).ToString("F2") + " %"));
                 }
 
-                text.AppendLine("\r\nPress (FKey) to log decision.");
+                text.AppendLine("\r\nPress (F-key) to log decision.");
 
                 // Display values
-                GUI.Label(new Rect(0, 0, this.outputWidth, 170), text.ToString(), style);
+                GUI.Label(new Rect(0, 0, this.outputWidth, 250), text.ToString(), style);
             }
         }
 
         private void showOutputs()
         {
-            int offset = 170;
+            int offset = 250;
             GUIStyle style = GUI.skin.button;
             style.alignment = TextAnchor.UpperLeft;
 
