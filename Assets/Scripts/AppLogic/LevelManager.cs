@@ -56,6 +56,15 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
+    public GameObject[] GetTeammates(GameObject teamMember)
+    {
+        if (teamMember.tag == GameConstants.TAG_ENEMY)
+            return this.enemies;
+        else if (teamMember.tag == GameConstants.TAG_PLAYER)
+            return this.characters;
+        return null;
+    }
+
     public void Kill(GameObject character)
     {
         bool characterExists = true;

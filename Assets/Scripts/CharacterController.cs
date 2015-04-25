@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using GameDB;
 using GameDB.SessionData;
+using System.Linq;
 using ArtificialNeuralNetworks.Core;
 using ArtificialNeuralNetworks.Training;
 
@@ -206,6 +208,12 @@ public class CharacterController : MonoBehaviour
             return this.character.Name;
         else
             return null;
+    }
+
+    public List<CharacterController> GetTeamMembers()
+    {
+        var teammates = this.levelManager.GetTeammates(this.gameObject);
+        return teammates != null ? teammates.Select(x => x.GetComponent<CharacterController>()).ToList() : null;
     }
 
     /// <summary>
