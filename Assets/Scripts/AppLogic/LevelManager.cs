@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using GameDB;
@@ -20,6 +21,7 @@ public class LevelManager : MonoBehaviour {
     private GameObject[] characters;
 	private GameObject[] enemies;
     private GameManager gameManager;
+    public Text next;
 
     #region Public Methods
 
@@ -30,6 +32,7 @@ public class LevelManager : MonoBehaviour {
         this.CurrentTurn = Turn.PLAYER;
         this.ActiveCharacter = null;
         this.spawnCharacters();
+        next.gameObject.SetActive(false);
 	}
 
 	void Update() {
@@ -88,21 +91,28 @@ public class LevelManager : MonoBehaviour {
     {
         // Hide training for previous character
         if (ActiveCharacterCtrl != null && ActiveCharacterCtrl.IsTraining())
+        {
             ActiveCharacterCtrl.HideTraining();
+        }
 
         this.ActiveCharacter = character;
-		this.ActiveCharacterCtrl = character.GetComponent<CharacterController>();
-		this.ActiveCharacterCtrl.setWalkableLand ();
-
-        // Show training for new selected character
-        if (ActiveCharacterCtrl != null && ActiveCharacterCtrl.IsTraining())
-            ActiveCharacterCtrl.ShowTraining();
+        if (character != null)
+        {
+            this.ActiveCharacterCtrl = character.GetComponent<CharacterController>();
+            this.ActiveCharacterCtrl.setWalkableLand();
+            // Show training for new selected character
+            if (ActiveCharacterCtrl != null && ActiveCharacterCtrl.IsTraining())
+                ActiveCharacterCtrl.ShowTraining();
+        }
     }
 
     public void SetSelectedCharacter(GameObject character)
     {
         this.SelectedCharacter = character;
-        this.SelectedCharacterCtrl = character.GetComponent<CharacterController>();
+        if (character != null)
+        {
+            this.SelectedCharacterCtrl = character.GetComponent<CharacterController>();
+        }
     }
 
 	public GameObject[] getEnemies() {
@@ -138,6 +148,9 @@ public class LevelManager : MonoBehaviour {
         this.CurrentTurn = this.CurrentTurn == Turn.ENEMY ? Turn.PLAYER : Turn.ENEMY;
         var characters = this.CurrentTurn == Turn.ENEMY ? this.enemies : this.characters;
         characters.ToList().ForEach(x => x.GetComponent<CharacterController>().ResetTurn());
+        next.gameObject.SetActive(true);
+        this.SetActiveCharacter(null);
+        this.SetSelectedCharacter(null);
     }
 
     #endregion

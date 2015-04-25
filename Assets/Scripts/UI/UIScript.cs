@@ -4,22 +4,24 @@ using System.Collections;
 public class UIScript : MonoBehaviour {
     LevelManager levelManager;
     public GameObject manager;
-    Canvas canvas;
+    public GameObject characterCard;
+    public GameObject abilities;
 	// Use this for initialization
 	void Start () {
         levelManager = manager.GetComponent<LevelManager>();
-        canvas = gameObject.GetComponent<Canvas>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (levelManager.ActiveCharacterCtrl == null)
+        if (levelManager.ActiveCharacter == null)
         {
-            this.canvas.enabled = false;
+            this.characterCard.SetActive(false);
+            this.abilities.SetActive(false);
         }
         else
         {
-            this.canvas.enabled = true;
+            this.characterCard.SetActive(true);
+            this.abilities.SetActive(true);
         }
 	}
 }
