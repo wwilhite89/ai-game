@@ -2,21 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ArtificialNeuralNetworks.Training;
+using ArtificialNeuralNetworks.Core;
 
 namespace ArtificialNeuralNetworks.AttackNetwork.Inputs
 {
-    public class PlayerTeamHealthInput : TrainingComponent
+    public class PlayerTeamHealthInput : InputComponent
     {
-
-		public PlayerTeamHealthInput(CharacterController player, int cycleTime)
-            : base(player, cycleTime)
-        { }
+        public PlayerTeamHealthInput(CharacterController controller) : base(controller) { }
 
         protected override void UpdateTraining()
         {
-            if (this.player != null)
-                this.newValue = this.player.GetStat(GameDB.Character.Stats.HP);
+            this.currentValue = 0;
         }
     }
 }

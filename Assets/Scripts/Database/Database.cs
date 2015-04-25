@@ -22,7 +22,7 @@ namespace GameDB
             return instance;
         }
 
-        protected Database () {
+        private Database () {
             if (!System.IO.File.Exists("GameDev.db"))
             {
                 // Create database

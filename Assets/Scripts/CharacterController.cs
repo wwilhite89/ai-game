@@ -1,8 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using GameDB;
 using GameDB.SessionData;
+using ArtificialNeuralNetworks.Core;
+using ArtificialNeuralNetworks.Training;
 
 public class CharacterController : MonoBehaviour
 {
@@ -20,6 +22,11 @@ public class CharacterController : MonoBehaviour
     private LevelManager levelManager;
 	private GameObject attackButton;
 	public Vector3 startPos;
+
+    private bool isTraining = false;
+    private INetworkTrainer trainer;
+    private INeuralNetwork attackNetwork;
+    private bool hasNetworkAttached;
 
     // Use this for initialization
     void Start()
@@ -186,6 +193,14 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    public string GetCharacterName()
+    {
+        if (this.initialized)
+            return this.character.Name;
+        else
+            return null;
+    }
+
     /// <summary>
     /// Initializes the script with a character.
     /// </summary>
@@ -200,4 +215,48 @@ public class CharacterController : MonoBehaviour
     {
         this.HasMoved = this.HasAttacked = false;
     }
+
+    #region Neural Network related activities
+
+    public void AttachNetwork(INeuralNetwork attackNetwork)
+    {
+        this.attackNetwork = attackNetwork;
+        this.hasNetworkAttached = true;
+    }
+
+    public bool IsControlledByAI()
+    {
+        return this.hasNetworkAttached;
+    }
+
+    public void AttachTrainer(INetworkTrainer trainer)
+    {
+        this.trainer = trainer;
+        this.isTraining = true;
+    }
+
+    public void CheckTrainingInput()
+    {
+        if (this.isTraining)
+            this.trainer.CheckTrainingInput();
+    }
+
+    public bool IsTraining()
+    {
+        return this.isTraining;
+    }
+
+    public void ShowTraining()
+    {
+        this.trainer.DisplayOutputs();
+        this.trainer.DisplaySensors();
+    }
+
+    public void HideTraining()
+    {
+        this.trainer.HideOutputs();
+        this.trainer.HideSensors();
+    }
+
+    #endregion
 }

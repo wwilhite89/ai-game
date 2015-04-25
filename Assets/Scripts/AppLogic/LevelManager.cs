@@ -50,6 +50,9 @@ public class LevelManager : MonoBehaviour {
 				default:
 					break;
 			}
+
+            if (ActiveCharacterCtrl.IsTraining())
+                ActiveCharacterCtrl.CheckTrainingInput();
 		}
 	}
 
@@ -74,9 +77,17 @@ public class LevelManager : MonoBehaviour {
 
     public void SetActiveCharacter(GameObject character)
     {
+        // Hide training for previous character
+        if (ActiveCharacterCtrl != null && ActiveCharacterCtrl.IsTraining())
+            ActiveCharacterCtrl.HideTraining();
+
         this.ActiveCharacter = character;
 		this.ActiveCharacterCtrl = character.GetComponent<CharacterController>();
 		this.ActiveCharacterCtrl.setWalkableLand ();
+
+        // Show training for new selected character
+        if (ActiveCharacterCtrl != null && ActiveCharacterCtrl.IsTraining())
+            ActiveCharacterCtrl.ShowTraining();
     }
 
     public void SetSelectedCharacter(GameObject character)

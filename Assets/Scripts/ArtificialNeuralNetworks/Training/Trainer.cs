@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using System.IO;
+using ArtificialNeuralNetworks.Core;
 
 namespace ArtificialNeuralNetworks.Training
 {
     public class Trainer : IDisposable
     {
-        private IList<TrainingComponent> components;
+        private List<InputComponent> components;
+        private double[] currentDecisions;
         private bool isActive = false;
         private StreamWriter writer;
+        private string lastDataLine = "";
+        public string characterName { get; private set; }
 
-        public Trainer(string trainingFilePath) 
+        public Trainer(string trainingFilePath, string characterName) 
         {
-            this.components = new List<TrainingComponent>();
-
-            if (File.Exists(trainingFilePath))
-                throw new UnityException("File " + trainingFilePath + " already exists.");
-            
-            this.writer = new StreamWriter(trainingFilePath);
+            this.characterName = characterName;
+            this.components = new List<InputComponent>();
+            this.writer = new StreamWriter(trainingFilePath, true);
         }
 
         public void StartTraining()
@@ -33,17 +34,43 @@ namespace ArtificialNeuralNetworks.Training
             this.isActive = false;
         }
 
+        public void SetCurrentDecision(double[] outputs)
+        {
+            this.currentDecisions = outputs;
+        }
+
         public void PrintTraining()
         {
-            if (this.isActive)
+            if (this.isActive && this.currentDecisions != null)
             {
+                StringBuilder dataLine = new StringBuilder();
+
+                // Write inputs
                 foreach (var com in this.components)
-                    writer.Write(com.GetCurrentTraining().ToString("F6") + " ");
-                writer.WriteLine();
+                    dataLine.Append(com.GetCurrentTraining().ToString("F6") + " ");
+                
+                // Write outputs
+                foreach (var output in this.currentDecisions)
+                    dataLine.Append(output.ToString("F2") + " ");
+
+                string newData = dataLine.ToString();
+
+                if (lastDataLine != newData)
+                {
+                    writer.WriteLine(newData);
+                    this.lastDataLine = newData;
+                }
             }
         }
 
-        public void RegisterComponent(TrainingComponent component)
+        public IDictionary<string, double> GetSensorData()
+        {
+            var values = new Dictionary<string, double>();
+            this.components.ForEach(x => values.Add(x.ToString(), x.GetCurrentTraining()));
+            return values;
+        }
+
+        public void RegisterComponent(InputComponent component)
         {
             this.components.Add(component);
         }
