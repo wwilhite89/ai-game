@@ -12,7 +12,14 @@ namespace ArtificialNeuralNetworks.AttackNetwork.Inputs
 
         protected override void UpdateTraining()
         {
-            this.currentValue = 0;
+            var team = controller.GetTeamMembers();
+
+            if (team == null)
+                return;
+
+            var maxHP = team.Sum(x => x.GetMaxHP());
+            var currentHP = team.Sum(x => x.GetStat(GameDB.Character.Stats.HP));
+            this.currentValue = (double)currentHP / (double)currentHP;
         }
     }
 }
