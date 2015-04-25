@@ -19,5 +19,8 @@
 #Unity3D Generated File On Crash Reports
 sysinfo.txt
 
+#VS files
+Assets/UnityVS/
+
 #Vim files
 *~
