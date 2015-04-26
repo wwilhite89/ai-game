@@ -23,6 +23,9 @@ public class LevelManager : MonoBehaviour {
     private GameManager gameManager;
     public Text next;
 
+    private Rect turnBanner;
+    private bool displayTurnBanner;
+
     #region Public Methods
 
 	void Start() {
@@ -33,6 +36,8 @@ public class LevelManager : MonoBehaviour {
         this.ActiveCharacter = null;
         this.spawnCharacters();
         next.gameObject.SetActive(false);
+        turnBanner = new Rect(0, -50 + Screen.height / 2, Screen.width, 100);
+        this.displayTurnBanner = true;
 	}
 
 	void Update() {
@@ -58,6 +63,12 @@ public class LevelManager : MonoBehaviour {
                 ActiveCharacterCtrl.CheckTrainingInput();
 		}
 	}
+
+    void OnGUI()
+    {
+        if (this.displayTurnBanner)
+            StartCoroutine(this.showTurnBanner());
+    }
 
     public GameObject[] GetTeam(string team)
     {
@@ -151,6 +162,7 @@ public class LevelManager : MonoBehaviour {
         next.gameObject.SetActive(true);
         this.SetActiveCharacter(null);
         this.SetSelectedCharacter(null);
+        this.displayTurnBanner = true;
     }
 
     #endregion
@@ -221,6 +233,16 @@ public class LevelManager : MonoBehaviour {
 	public void manageAIMove (AIChoiceScript.Decision decision) {
 		ActiveCharacterCtrl.GetComponent<AIChoiceScript>().MoveAI (decision);
 	}
-    
+
+    private IEnumerator showTurnBanner()
+    {
+        GUIStyle style = GUI.skin.box;
+        style.fontSize = 30;
+        style.alignment = TextAnchor.MiddleCenter;
+        GUI.Box(this.turnBanner, (this.CurrentTurn == Turn.ENEMY ? "Enemy" : "Player") + " Turn");
+        yield return new WaitForSeconds(2.5f);
+        this.displayTurnBanner = false;
+        yield return new WaitForSeconds(0);
+    }
     #endregion
 }
