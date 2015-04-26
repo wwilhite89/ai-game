@@ -20,6 +20,9 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
 
     // Modifies movement speed of characters. 1 is normal, 0 is unwalkable.
     public float speed;
+    private bool selectable = false;
+    private bool hovering = false;
+    private Color lastColor;
 
     // Use this for initialization
     void Start()
@@ -38,8 +41,30 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
     {
 		enemies = lvlMgr.getEnemies ();
 		characters = lvlMgr.getPlayers ();
-        HighlightLand(LandCheck());
+        this.selectable = LandCheck();
+        if (!this.selectable) this.hovering = false;
+        HighlightLand(this.selectable);
     }
+
+    void OnMouseEnter()
+    {
+        if (selectable)
+        {
+            this.hovering = true;
+            this.lastColor = renderer.material.color;
+            renderer.material.color = new Color(100f/255f,149f/255f,237f/255f);
+        }
+    }
+
+    void OnMouseExit()
+    {
+        if (selectable)
+        {
+            this.hovering = false;
+            renderer.material.color = lastColor;
+        }
+    }
+
 
 	public void OnPointerClick (PointerEventData eventData)
 	{
@@ -68,37 +93,39 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
 		walkable = false;
 		// is there an enemy on the land tile
 		for (int i = 0; i < enemies.Length; i++) {
-			if ( enemies[i].transform.position.x == this.transform.position.x
-			    && enemies[i].transform.position.z == this.transform.position.z)
-				return false;
+            if (enemies[i].transform.position.x == this.transform.position.x
+                && enemies[i].transform.position.z == this.transform.position.z)
+                return false;
 		}
 		// is there a character on the land tile
 		for (int i = 0; i < characters.Length; i++) {
-			if ( characters[i].transform.position.x == this.transform.position.x
-			    && characters[i].transform.position.z == this.transform.position.z)
-				return false;
+            if (characters[i].transform.position.x == this.transform.position.x
+                && characters[i].transform.position.z == this.transform.position.z)
+                return false;
 		}
 
-		if (player != null)
+		if (player != null && !player.GetComponent<CharacterController>().HasMoved)
 		{
 			dist = Vector3.Distance(gameObject.transform.position, player.transform.position);
 			
 			// highlight the land around a selected player if he is active and able to move
 			if (dist < player.GetComponent<CharacterController>().GetStat(GameDB.Character.Stats.MOV) && gameObject.GetComponent<LandScript>().speed != 0)
 			{
-				if (!player.GetComponent<CharacterController>().HasMoved) {
 					walkable = true;
 					return true;
-				}
 			}
 		}
+
 		walkable = false;
 		return false;
 	}
 
     void HighlightLand( bool b)
     {
-        this.renderer.material.color = b ? highlighColor : landColor;
+        if (hovering)
+            this.lastColor = b ? highlighColor : landColor;
+        else
+            this.renderer.material.color = b ? highlighColor : landColor;
     }
 
     // is called every frame on objects that are colliding
