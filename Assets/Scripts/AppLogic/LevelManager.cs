@@ -192,7 +192,7 @@ public class LevelManager : MonoBehaviour {
 
     public void CheckTurnEnd()
     {
-        if (this.ActiveCharacterCtrl != null && ActiveCharacterCtrl.HasMoved && ActiveCharacterCtrl.HasMoved)
+        if (this.ActiveCharacterCtrl != null && ActiveCharacterCtrl.HasMoved && ActiveCharacterCtrl.HasAttacked)
             this.ResetCharColor();
 
         var characters = this.CurrentTurn == Turn.ENEMY ? this.enemies : this.characters;
