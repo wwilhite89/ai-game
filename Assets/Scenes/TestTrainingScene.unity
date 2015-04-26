@@ -2294,6 +2294,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11494816, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
+      propertyPath: startDir.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494816, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
+      propertyPath: startDir.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
   m_RootGameObject: {fileID: 343896963}
@@ -3853,7 +3861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDir: {x: 0, y: 1, z: 0}
+  startDir: {x: 0, y: 0, z: 1}
   realtiveAngle: 0
 --- !u!114 &343896968
 MonoBehaviour:
@@ -4900,7 +4908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDir: {x: 0, y: 1, z: 0}
+  startDir: {x: 0, y: 0, z: 1}
   realtiveAngle: 0
 --- !u!114 &462236276
 MonoBehaviour:
@@ -5317,6 +5325,14 @@ Prefab:
     - target: {fileID: 19570838, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
       propertyPath: m_WalkableMask
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470832, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
+      propertyPath: startDir.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470832, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
+      propertyPath: startDir.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11470838, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
@@ -7228,7 +7244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDir: {x: 0, y: 1, z: 0}
+  startDir: {x: 0, y: 0, z: 1}
   realtiveAngle: 0
 --- !u!114 &644142989
 MonoBehaviour:
@@ -8349,6 +8365,14 @@ Prefab:
     - target: {fileID: 11494820, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
       propertyPath: m_Colors.m_NormalColor.b
       value: .96896553
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494816, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
+      propertyPath: startDir.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494816, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
+      propertyPath: startDir.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e34983747472a494286b19b7b7dbcf0a, type: 2}
@@ -11744,7 +11768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDir: {x: 0, y: 1, z: 0}
+  startDir: {x: 0, y: 0, z: 1}
   realtiveAngle: 0
 --- !u!114 &987866054
 MonoBehaviour:
@@ -13030,7 +13054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDir: {x: 0, y: 1, z: 0}
+  startDir: {x: 0, y: 0, z: 1}
   realtiveAngle: 0
 --- !u!114 &1118462239
 MonoBehaviour:
@@ -19978,6 +20002,14 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11407042, guid: e05eddcec88a2114b86148c34df99b83, type: 2}
+      propertyPath: startDir.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11407042, guid: e05eddcec88a2114b86148c34df99b83, type: 2}
+      propertyPath: startDir.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11449278, guid: e05eddcec88a2114b86148c34df99b83, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e05eddcec88a2114b86148c34df99b83, type: 2}
@@ -21625,7 +21657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0328b873b5298e244801860a21e634c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDir: {x: 0, y: 1, z: 0}
+  startDir: {x: 0, y: 0, z: 1}
   realtiveAngle: 0
 --- !u!114 &1916903691
 MonoBehaviour:

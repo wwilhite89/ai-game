@@ -115,7 +115,7 @@ public class AIChoiceScript : MonoBehaviour {
 						
 							
 
-			if(zMoves!=0||xMoves!=0){
+			if((zMoves!=0||xMoves!=0)&&walkable.Length>0){
 				runMove(newLocation);
 			}
 			else{
