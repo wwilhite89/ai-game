@@ -211,7 +211,7 @@ public class LevelManager : MonoBehaviour {
         this.CurrentTurn = this.CurrentTurn == Turn.ENEMY ? Turn.PLAYER : Turn.ENEMY;
         var characters = this.CurrentTurn == Turn.ENEMY ? this.enemies : this.characters;
         characters.ToList().ForEach(x => x.GetComponent<CharacterController>().ResetTurn());
-        next.gameObject.SetActive(true);
+        // next.gameObject.SetActive(true);
         this.SetActiveCharacter(null);
         this.SetSelectedCharacter(null);
         this.displayTurnBanner = true;
