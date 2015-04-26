@@ -129,7 +129,7 @@ public class CharacterController : MonoBehaviour
 
     public void UpdateEnemiesInRange()
     {
-        enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
+        enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent,false);
     }
 
 

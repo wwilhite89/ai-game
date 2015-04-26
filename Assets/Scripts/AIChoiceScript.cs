@@ -54,6 +54,8 @@ public class AIChoiceScript : MonoBehaviour {
 			Vector3 curLocation = this.transform.position; //current location of the player
 			Vector3 newLocation;  // Location for the player to move to;
 			int[]actLvls=this.GetComponent<AttackRangeScript>().getLvls();
+			CharacterController charCtrl = gameObject.GetComponent<CharacterController>();
+			int moveRange= (int) charCtrl.GetStat(GameDB.Character.Stats.RANGE);
 
 			//Debug.Log ("actlevel 0: "+actLvls[4]);
 			top = actLvls[0]+actLvls[1]+actLvls[4];
@@ -67,17 +69,17 @@ public class AIChoiceScript : MonoBehaviour {
 			Debug.Log (string.Format ("Activation Levels: {0},{1},{2},{3},{4},{5},{6},{7}", actLvls[0], actLvls [1], actLvls [2], actLvls [3], actLvls [4], actLvls [5], actLvls [6], actLvls [7]));
 			//Debug.Log (left+" "+right);
 			//Debug.Log (top+" "+bottom);
-			if(zMoves>1){
-				zMoves=1;
+			if(zMoves>moveRange){
+				zMoves=moveRange;
 			}
-			if(xMoves>1){
-				xMoves=1;
+			if(xMoves>moveRange){
+				xMoves=moveRange;
 			}
-			if(zMoves<-1){
-				zMoves=-1;
+			if(zMoves<-moveRange){
+				zMoves=-moveRange;
 			}
-			if(xMoves<-1){
-				xMoves=-1;
+			if(xMoves<-moveRange){
+				xMoves=-moveRange;
 			}
 
 
@@ -88,8 +90,22 @@ public class AIChoiceScript : MonoBehaviour {
 			//Debug.Log ("cur"+curLocation.x+" "+curLocation.z);
 			//Debug.Log (newLocation.x+" "+newLocation.y);
 
+			// who is the closest enemy
+			for (int i = 0; i < enemies.Length; i++) {
+					dist = Vector3.Distance(this.transform.position, enemies[i].transform.position);
+					if (dist < newDist) {
+							newDist = dist;
+							enemy = enemies[i];
+						}
+				}
+						
+							
+
 			if(zMoves!=0||xMoves!=0){
 				runMove(newLocation);
+			}
+			else{
+				this.GetComponent<CharacterController>(). Move (walkFrom(enemy));
 			}
 
 

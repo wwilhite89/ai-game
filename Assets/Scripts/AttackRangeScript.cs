@@ -49,7 +49,7 @@ public class AttackRangeScript : MonoBehaviour
     {
         if (!this.rangeSet && this.charCtrl.IsInitialized())
         {
-            this.range = (int) this.charCtrl.GetStat(GameDB.Character.Stats.RANGE)+1;
+            this.range = (int) this.charCtrl.GetStat(GameDB.Character.Stats.RANGE);
             this.rangeSet = true;
         }
     }
@@ -110,7 +110,7 @@ public class AttackRangeScript : MonoBehaviour
         float offsetRotation = transform.rotation.eulerAngles.y;
 
 
-        foreach (var agent in this.getObjectsInRadius(opponent))
+        foreach (var agent in this.getObjectsInRadius(opponent,true))
         {
             Vector3 objDir = (agent.transform.position - gameObject.transform.position).normalized;
             objDir.y = 0;
@@ -157,12 +157,18 @@ public class AttackRangeScript : MonoBehaviour
 		return levels;
     }
 
-    public GameObject[] getObjectsInRadius(string agentName)
+    public GameObject[] getObjectsInRadius(string agentName,bool extend)
     {
+		int searchRange;
+		if (extend) {
+			searchRange = this.range + 2;
+		} else {
+			searchRange = this.range;
+		}
         Vector3 pos = gameObject.transform.position;
 
         var agents = GameObject.FindGameObjectsWithTag(agentName)
-            .Where(x => Mathf.Abs((x.transform.position - pos).magnitude) <= this.range)
+            .Where(x => Mathf.Abs((x.transform.position - pos).magnitude) <= searchRange)
             .ToArray();
 
         return agents;
