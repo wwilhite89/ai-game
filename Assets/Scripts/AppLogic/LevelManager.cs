@@ -21,10 +21,13 @@ public class LevelManager : MonoBehaviour {
     private GameObject[] characters;
 	private GameObject[] enemies;
     private GameManager gameManager;
+
     public Text next;
 
     private Rect turnBanner;
     private bool displayTurnBanner;
+
+    private bool isAttacking = false;
 
     #region Public Methods
 
@@ -35,16 +38,17 @@ public class LevelManager : MonoBehaviour {
         this.CurrentTurn = Turn.PLAYER;
         this.ActiveCharacter = null;
         this.spawnCharacters();
-        next.gameObject.SetActive(false);
+        this.ResetCharColor();
+        if (next != null)  next.gameObject.SetActive(false);
         turnBanner = new Rect(0, -50 + Screen.height / 2, Screen.width, 100);
         this.displayTurnBanner = true;
 	}
 
 	void Update() {
 		if(ActiveCharacter != null) {
-			switch(ActiveCharacterCtrl.character.status) {
+			/*switch(ActiveCharacterCtrl.character.status) {
 				case Character.Status.ATTACKING:
-					highlightEnemies (Color.red);
+					// highlightEnemies (Color.red);
 					break;
 				case Character.Status.READY:
 					break;
@@ -57,7 +61,7 @@ public class LevelManager : MonoBehaviour {
 					break;
 				default:
 					break;
-			}
+			}*/
 
             if (ActiveCharacterCtrl.IsTraining())
                 ActiveCharacterCtrl.CheckTrainingInput();
@@ -68,6 +72,41 @@ public class LevelManager : MonoBehaviour {
     {
         if (this.displayTurnBanner)
             StartCoroutine(this.showTurnBanner());
+    }
+
+    public bool inMiddleOfTurn()
+    {
+        if (ActiveCharacterCtrl == null)
+            return false;
+        return !(this.ActiveCharacterCtrl.HasAttacked && this.ActiveCharacterCtrl.HasMoved);
+    }
+
+    public bool IsAttacking()
+    {
+        return this.isAttacking;
+    }
+
+    public void BeginAttackSequence()
+    {
+        this.isAttacking = true;
+
+        if (this.ActiveCharacterCtrl == null)
+            return;
+
+        this.ActiveCharacterCtrl.UpdateEnemiesInRange();
+
+        if (this.ActiveCharacterCtrl.enemiesInRange.Length > 0)
+        {
+            ActiveCharacterCtrl.StartAttack();
+            this.HighlightEnemies();
+        }
+        else
+            this.EndAttackSequence();
+    }
+
+    public void EndAttackSequence()
+    {
+        this.isAttacking = false;
     }
 
     public GameObject[] GetTeam(string team)
@@ -101,15 +140,19 @@ public class LevelManager : MonoBehaviour {
     public void SetActiveCharacter(GameObject character)
     {
         // Hide training for previous character
+        this.ResetCharColor();
+
         if (ActiveCharacterCtrl != null && ActiveCharacterCtrl.IsTraining())
         {
             ActiveCharacterCtrl.HideTraining();
         }
 
         this.ActiveCharacter = character;
+
         if (character != null)
         {
             this.ActiveCharacterCtrl = character.GetComponent<CharacterController>();
+            this.ActiveCharacterCtrl.renderer.material.color = Color.cyan;
             this.ActiveCharacterCtrl.setWalkableLand();
             // Show training for new selected character
             if (ActiveCharacterCtrl != null && ActiveCharacterCtrl.IsTraining())
@@ -144,17 +187,17 @@ public class LevelManager : MonoBehaviour {
     public void CheckTurnEnd()
     {
         var characters = this.CurrentTurn == Turn.ENEMY ? this.enemies : this.characters;
-        bool allCharactersActioned = characters.Count(x =>
+        var end = characters.Count() == 0 || characters.Count(x =>
             {
                 var p = x.GetComponent<CharacterController>();
                 return !p.HasAttacked || !p.HasMoved;
             }) == 0;
 
-		//if (allCharactersActioned)
-			//TODO (wil) highlight end turn button instead
+        if (end)
+            this.changeTurn();
     }
 	
-    public void ChangeTurn()
+    private void changeTurn()
     {
         this.CurrentTurn = this.CurrentTurn == Turn.ENEMY ? Turn.PLAYER : Turn.ENEMY;
         var characters = this.CurrentTurn == Turn.ENEMY ? this.enemies : this.characters;
@@ -204,17 +247,17 @@ public class LevelManager : MonoBehaviour {
             Debug.LogWarning(string.Format("Only {0} out of {1} player characters were spawned.", taken, playerChars.Count));
     }
 
-	private void highlightEnemies(Color c) {
+	public void HighlightEnemies() {
 		for (int i = 0; i < ActiveCharacterCtrl.enemiesInRange.Length; i++) {
-			ActiveCharacterCtrl.enemiesInRange[i].renderer.material.color = c;
+			ActiveCharacterCtrl.enemiesInRange[i].renderer.material.color = Color.red;
 		}
 	}
 
-	public void resetCharColor() {
+	public void ResetCharColor() {
 		for (int i = 0; i < characters.Length; i++)
-			characters [i].renderer.material.color = Color.grey;
+			characters [i].renderer.material.color = Color.green;
 		for (int i = 0; i < enemies.Length; i++)
-			enemies [i].renderer.material.color = Color.grey;
+			enemies [i].renderer.material.color = Color.black;
 	}
 
     private void checkGameEnd()

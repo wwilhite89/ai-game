@@ -24,6 +24,7 @@ public class CharacterController : MonoBehaviour
     private LevelManager levelManager;
 	private GameObject attackButton;
 	public Vector3 startPos;
+    private bool isAttacking = false;
 
     private bool isTraining = false;
     private INetworkTrainer trainer;
@@ -58,54 +59,88 @@ public class CharacterController : MonoBehaviour
 
     void OnMouseDown()
     {
-		// check if it is the characters turn
-        if (this.levelManager.IsTurn(this.gameObject))
-        {
-            // Set as active
-            this.levelManager.SetActiveCharacter(this.gameObject);
-            this.levelManager.SetSelectedCharacter(this.gameObject);
-            enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
-		}
-		// is the active character attacking an Enemy
-		else if ( levelManager.ActiveCharacter != null && !gameObject.Equals(levelManager.ActiveCharacter) && 
-		      levelManager.ActiveCharacterCtrl.character.status == Character.Status.ATTACKING &&
-	          !levelManager.ActiveCharacterCtrl.HasAttacked &&
-		      this.character.HouseId != levelManager.ActiveCharacterCtrl.character.HouseId) {
-			Attack(levelManager.ActiveCharacter);
-			levelManager.ActiveCharacterCtrl.HasAttacked = true;
-			levelManager.ActiveCharacterCtrl.character.status = Character.Status.READY;
-			GameObject.Find("Attack").GetComponent<AttackButton>().OnClick();
-              }
+		// Selecting a character on your team, unless in the middle of an action
+        if (this.levelManager.IsTurn(this.gameObject) && !this.levelManager.inMiddleOfTurn())
+            this.activateSelectedCharacter();
+
+        // Selecting a character to attack
+        else if (levelManager.ActiveCharacter != null && levelManager.ActiveCharacterCtrl.IsAttacking() && !levelManager.IsTurn(this.gameObject))
+            levelManager.ActiveCharacterCtrl.FinalizeAttack(this);
+       
+        // Select a character to view
         else
-        {
             this.levelManager.SetSelectedCharacter(this.gameObject);
-        }
+    }
+
+    private void activateSelectedCharacter()
+    {
+        this.levelManager.SetActiveCharacter(this.gameObject);
+        this.levelManager.SetSelectedCharacter(this.gameObject);
     }
 
     public void Move(Vector3 location)
     {
 		this.gameObject.GetComponentInParent<NavScript> ().moveAgent (location);
-		enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
         this.HasMoved = true;
+        this.levelManager.CheckTurnEnd();
     }
 
-	// Method for being attacked
-    private void Attack(GameObject opponent)
+    public bool IsAttacking()
     {
-		if(opponent != null) {
-			levelManager.resetCharColor();
-        	battleMgr.DoBattle(opponent.GetComponent<CharacterController>(), this);
-		}
+        return this.isAttacking;
     }
+
+    public void StartAttack()
+    {
+        this.isAttacking = true;
+    }
+
+    public void FinalizeAttack(CharacterController attackee)
+    {
+        if (!this.HasAttacked)
+        {
+            this.isAttacking = false;
+            this.HasAttacked = true;
+            this.battleMgr.DoBattle(this, attackee);
+            this.levelManager.EndAttackSequence();
+            this.levelManager.ResetCharColor();
+            this.levelManager.CheckTurnEnd();
+        }
+    }
+
+    public void ForfeitMovement()
+    {
+        this.HasMoved = false;
+        this.levelManager.CheckTurnEnd();
+    }
+
+    public void ForfeitAttack()
+    {
+        this.isAttacking = false;
+        this.HasAttacked = true;
+        this.levelManager.EndAttackSequence();
+        this.levelManager.ResetCharColor();
+        this.levelManager.CheckTurnEnd();
+    }
+
+    public void StopAttack()
+    {
+        this.isAttacking = false;
+    }
+
+    public void UpdateEnemiesInRange()
+    {
+        enemiesInRange = gameObject.GetComponent<AttackRangeScript>().getObjectsInRadius(opponent);
+    }
+
 
 	public void Rest() {
 		if(!this.HasAttacked) {
-			//TODO (wil) just a placeholder for now
             this.HP = Mathf.Min(this.HP + 2, this.character.health);
 			this.HasAttacked = true;
-			this.character.status = Character.Status.READY;
+            this.HasMoved = true;
+            this.levelManager.CheckTurnEnd();
 		}
-		this.character.status = Character.Status.READY;
 	}
 
     public bool IsInitialized()

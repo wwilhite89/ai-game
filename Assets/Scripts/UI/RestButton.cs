@@ -8,18 +8,29 @@ using GameDB;
 public class RestButton : MonoBehaviour {
     private LevelManager lvlMgr;
 	GameObject character;
+    private Button btn;
 
 	// Use this for initialization
 	void Start () {
         this.lvlMgr = GameObject.Find("Manager").GetComponent<LevelManager>();
+        this.btn = this.gameObject.GetComponent<Button>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		character = lvlMgr.ActiveCharacter;
+
+        this.setActive(lvlMgr.ActiveCharacterCtrl != null && !lvlMgr.ActiveCharacterCtrl.HasMoved && !lvlMgr.ActiveCharacterCtrl.HasAttacked);
 	}
 
 	public void OnClick() {
-		character.GetComponent<CharacterController>().character.status = Character.Status.RESTING;
+
+        if (lvlMgr.ActiveCharacterCtrl != null && !lvlMgr.ActiveCharacterCtrl.HasMoved && !lvlMgr.ActiveCharacterCtrl.HasAttacked)
+            lvlMgr.ActiveCharacterCtrl.Rest();
 	}
+
+    private void setActive(bool active)
+    {
+        this.btn.image.color = active ? Color.white : Color.grey;
+    }
 }
