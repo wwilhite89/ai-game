@@ -4,7 +4,7 @@ using GameDB;
 
 public class AIChoiceScript : MonoBehaviour {
 
-	public enum Decision {ATTCLOSE,ATTWEAK,RUN}
+	public enum Decision {ATTCLOSE,ATTWEAK, ATTWEAK_INRANGE, RUN}
 	private GameObject levelManager;
 	public GameObject[] walkable;
 	public GameObject[] enemies;
@@ -57,6 +57,25 @@ public class AIChoiceScript : MonoBehaviour {
 			}
 			this.GetComponent<CharacterController>(). Move (walkTo(enemy));
 			break;
+		case Decision.ATTWEAK_INRANGE:
+			// look through the enemies and see if any are in reach
+			if ( enemies != null ) {
+				// arbitrary high value, we can replace this with the highest health anyone can have
+				lowHealth = 1000;
+				for (int i = 0; i < enemies.Length; i++) {
+					dist = Vector3.Distance(this.transform.position, enemies[i].transform.position);
+					if (dist < newDist) {
+						health = enemies[i].GetComponent<CharacterController>().GetStat(Character.Stats.HP);
+						if (health < lowHealth) {
+							lowHealth = health;
+							newDist = dist;
+							enemy = enemies[i];
+						}
+					}
+				}
+			}
+			this.GetComponent<CharacterController>(). Move (walkTo(enemy));
+			break;
 		case Decision.RUN:
 			Debug.Log ("RUN");
 			int zMoves =0; // moves to make on the z-axis
@@ -96,9 +115,6 @@ public class AIChoiceScript : MonoBehaviour {
 				xMoves=-moveRange;
 			}
 
-
-
-
 			newLocation = new Vector3(curLocation.x+xMoves,curLocation.y,curLocation.z+zMoves);
 			//Debug.Log ("player"+this.transform.position.ToString());
 			//Debug.Log ("cur"+curLocation.x+" "+curLocation.z);
@@ -106,15 +122,13 @@ public class AIChoiceScript : MonoBehaviour {
 
 			// who is the closest enemy
 			for (int i = 0; i < enemies.Length; i++) {
-					dist = Vector3.Distance(this.transform.position, enemies[i].transform.position);
-					if (dist < newDist) {
-							newDist = dist;
-							enemy = enemies[i];
-						}
+				dist = Vector3.Distance(this.transform.position, enemies[i].transform.position);
+				if (dist < newDist) {
+					newDist = dist;
+					enemy = enemies[i];
 				}
+			}
 						
-							
-
 			if(zMoves!=0||xMoves!=0){
 				runMove(newLocation);
 			}
@@ -124,7 +138,6 @@ public class AIChoiceScript : MonoBehaviour {
 
 			break;
 		}
-		
 	}
 
 	Vector3 walkTo(GameObject enemy) {
@@ -146,6 +159,7 @@ public class AIChoiceScript : MonoBehaviour {
 
 		return this.transform.position;
 	}
+
 	private void runMove(Vector3 v){
 		bool moved = false;
 		float dist;
