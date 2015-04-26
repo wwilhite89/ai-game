@@ -27,4 +27,8 @@ public class TrainingScript : MonoBehaviour {
 	public void AttWeak( ) {
 		LvlMgr.GetComponent<LevelManager> ().manageAIMove (AIChoiceScript.Decision.ATTWEAK);
 	}
+
+	public void AttWeakInRange() {
+		LvlMgr.GetComponent<LevelManager> ().manageAIMove (AIChoiceScript.Decision.ATTWEAK_INRANGE);
+	}
 }

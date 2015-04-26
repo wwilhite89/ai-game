@@ -45,12 +45,10 @@ public class CharacterController : MonoBehaviour
 
         // Find out who the opponent is and set the string
         opponent = gameObject.tag == GameConstants.TAG_ENEMY ? GameConstants.TAG_PLAYER : GameConstants.TAG_ENEMY;
-
-		enemies = GameObject.FindGameObjectsWithTag (opponent);
     }
 
 	void Update () {
-
+		enemies = GameObject.FindGameObjectsWithTag (opponent);
 	}
 
 	void FixedUpdate() {
