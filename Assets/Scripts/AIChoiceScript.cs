@@ -41,18 +41,21 @@ public class AIChoiceScript : MonoBehaviour {
 			this.GetComponent<CharacterController>(). Move (walkTo(enemy));		
 			break;
 		case Decision.ATTWEAK:
-
+			float health;
+			float lowHealth;
 			if ( enemies != null ) {
-				float health = enemies[0].GetComponent<CharacterController>().GetStat(Character.Stats.HP);
-				// look through the enemies and see if any are in reach
-				for (int i = 0; i < enemies.Length; i++) {
-					dist = Vector3.Distance(this.transform.position, enemies[i].transform.position);
-					if (dist < newDist) {
-						newDist = dist;
+				lowHealth = enemies[0].GetComponent<CharacterController>().GetStat(Character.Stats.HP);
+				enemy = enemies[0];
+				// find the enemy with the lowest health
+				for (int i = 1; i < enemies.Length; i++) {
+					health = enemies[i].GetComponent<CharacterController>().GetStat(Character.Stats.HP);
+					if (health < lowHealth) {
+						lowHealth = health;
 						enemy = enemies[i];
 					}
 				}
 			}
+			this.GetComponent<CharacterController>(). Move (walkTo(enemy));
 			break;
 		case Decision.RUN:
 			Debug.Log ("RUN");
