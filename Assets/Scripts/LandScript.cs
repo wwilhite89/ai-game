@@ -4,7 +4,7 @@ using System.Collections;
 using GameDB.SessionData;
 using System;
 
-public class LandScript : MonoBehaviour, IPointerClickHandler {
+public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler {
     private GameObject enemy;
     private GameObject currentChar;
     private GameObject levelManager;
@@ -46,25 +46,32 @@ public class LandScript : MonoBehaviour, IPointerClickHandler {
         HighlightLand(this.selectable);
     }
 
-    void OnMouseEnter()
-    {
-        if (selectable)
-        {
-            this.hovering = true;
-            this.lastColor = renderer.material.color;
-            renderer.material.color = new Color(100f/255f,149f/255f,237f/255f);
-        }
-    }
+	#region IPointerEnterHandler implementation
 
-    void OnMouseExit()
-    {
-        if (selectable)
-        {
-            this.hovering = false;
-            renderer.material.color = lastColor;
-        }
-    }
+	public void OnPointerEnter (PointerEventData eventData)
+	{
+		if (selectable)
+		{
+			this.hovering = true;
+			this.lastColor = renderer.material.color;
+			renderer.material.color = new Color(100f/255f,149f/255f,237f/255f);
+		}
+	}
 
+	#endregion
+
+	#region IPointerExitHandler implementation
+
+	public void OnPointerExit (PointerEventData eventData)
+	{
+		if (selectable)
+		{
+			this.hovering = false;
+			renderer.material.color = lastColor;
+		}
+	}
+
+	#endregion
 
 	public void OnPointerClick (PointerEventData eventData)
 	{

@@ -20597,13 +20597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e46c919fbc5d014096e2b6c35008ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  engagedColor:
-    m_NormalColor: {r: .977941155, g: .977941155, b: .977941155, a: 0}
-    m_HighlightedColor: {r: 1, g: .96896553, b: .96896553, a: 0}
-    m_PressedColor: {r: 1, g: .982758641, b: .982758641, a: 0}
-    m_DisabledColor: {r: 1, g: .975862086, b: .975862086, a: 0}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0
 --- !u!114 &1878654106
 MonoBehaviour:
   m_ObjectHideFlags: 0
