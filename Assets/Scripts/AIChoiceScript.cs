@@ -23,14 +23,13 @@ public class AIChoiceScript : MonoBehaviour {
 		GameObject enemy = null;
 		float dist = 0.0f;
 		float newDist = 100.0f;
-		bool moved=false;
 	
 		enemies = this.GetComponent<CharacterController>().enemies;
 		walkable = this.GetComponent<CharacterController> ().getWalkableLand ();
 		
 		switch(decision) {
 		case Decision.ATTCLOSE:
-			// look through the enemies in range and see if any are in reach
+			// look through the enemies and see if any are in reach
 			for (int i = 0; i < enemies.Length; i++) {
 				dist = Vector3.Distance(this.transform.position, enemies[i].transform.position);
 				if (dist < newDist) {
@@ -42,6 +41,18 @@ public class AIChoiceScript : MonoBehaviour {
 			this.GetComponent<CharacterController>(). Move (walkTo(enemy));		
 			break;
 		case Decision.ATTWEAK:
+
+			if ( enemies != null ) {
+				float health = enemies[0].GetComponent<CharacterController>().GetStat(Character.Stats.HP);
+				// look through the enemies and see if any are in reach
+				for (int i = 0; i < enemies.Length; i++) {
+					dist = Vector3.Distance(this.transform.position, enemies[i].transform.position);
+					if (dist < newDist) {
+						newDist = dist;
+						enemy = enemies[i];
+					}
+				}
+			}
 			break;
 		case Decision.RUN:
 			Debug.Log ("RUN");
@@ -91,13 +102,6 @@ public class AIChoiceScript : MonoBehaviour {
 			if(zMoves!=0||xMoves!=0){
 				runMove(newLocation);
 			}
-
-
-			
-			
-			
-
-
 
 			break;
 		}
