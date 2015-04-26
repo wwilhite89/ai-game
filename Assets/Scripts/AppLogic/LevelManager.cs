@@ -78,7 +78,13 @@ public class LevelManager : MonoBehaviour {
     {
         if (ActiveCharacterCtrl == null)
             return false;
-        return !(this.ActiveCharacterCtrl.HasAttacked && this.ActiveCharacterCtrl.HasMoved);
+
+        // Completed turn
+        if (this.ActiveCharacterCtrl.HasAttacked && this.ActiveCharacterCtrl.HasMoved)
+            return false;
+
+        // Has performed one action, but not the other
+        return this.ActiveCharacterCtrl.HasAttacked ^ this.ActiveCharacterCtrl.HasMoved;
     }
 
     public bool IsAttacking()
@@ -186,6 +192,9 @@ public class LevelManager : MonoBehaviour {
 
     public void CheckTurnEnd()
     {
+        if (this.ActiveCharacterCtrl != null && ActiveCharacterCtrl.HasMoved && ActiveCharacterCtrl.HasMoved)
+            this.ResetCharColor();
+
         var characters = this.CurrentTurn == Turn.ENEMY ? this.enemies : this.characters;
         var end = characters.Count() == 0 || characters.Count(x =>
             {

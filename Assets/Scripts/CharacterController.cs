@@ -110,7 +110,7 @@ public class CharacterController : MonoBehaviour
 
     public void ForfeitMovement()
     {
-        this.HasMoved = false;
+        this.HasMoved = true;
         this.levelManager.CheckTurnEnd();
     }
 
@@ -119,7 +119,6 @@ public class CharacterController : MonoBehaviour
         this.isAttacking = false;
         this.HasAttacked = true;
         this.levelManager.EndAttackSequence();
-        this.levelManager.ResetCharColor();
         this.levelManager.CheckTurnEnd();
     }
 
