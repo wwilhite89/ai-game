@@ -11316,6 +11316,7 @@ GameObject:
   - 114: {fileID: 987866053}
   - 114: {fileID: 987866052}
   - 114: {fileID: 987866051}
+  - 114: {fileID: 987866050}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -11336,6 +11337,20 @@ Transform:
   - {fileID: 1297475049}
   m_Father: {fileID: 1441820056}
   m_RootOrder: 0
+--- !u!114 &987866050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11481170, guid: f77d3f2fcf71e2743b5206424c97b3bd,
+    type: 2}
+  m_PrefabInternal: {fileID: 487078219}
+  m_GameObject: {fileID: 987866048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9b499306334754ea4c1ebed473484d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkable: []
+  enemies: []
 --- !u!114 &987866051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16499,7 +16514,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 1
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
 --- !u!4 &1441820056
 Transform:
