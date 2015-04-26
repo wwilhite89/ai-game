@@ -33,7 +33,7 @@ GameObject:
   - 114: {fileID: 11470832}
   - 114: {fileID: 11470834}
   - 114: {fileID: 11470836}
-  - 114: {fileID: 11470838}
+  - 114: {fileID: 11481170}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -147,7 +147,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.39999998, y: 1.39999998, z: 1}
+  m_Size: {x: .699999988, y: .699999988, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11470828
 MonoBehaviour:
@@ -173,8 +173,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesInRange: []
+  enemies: []
+  walkableLand: []
   opponent: 
   selected: 0
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!114 &11470832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startDir: {x: 0, y: 1, z: 0}
+  realtiveAngle: 0
 --- !u!114 &11470834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -244,7 +248,7 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
---- !u!114 &11470838
+--- !u!114 &11481170
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -252,11 +256,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 170836}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fa0dca60a953a44790c9c7ba5fb27d7, type: 3}
+  m_Script: {fileID: 11500000, guid: ea9b499306334754ea4c1ebed473484d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LvlMgr: {fileID: 0}
-  range: 2
+  walkable: []
+  enemies: []
 --- !u!195 &19570838
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -275,7 +279,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 1
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
 --- !u!212 &21270838
 SpriteRenderer:

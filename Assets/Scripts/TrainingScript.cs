@@ -24,4 +24,7 @@ public class TrainingScript : MonoBehaviour {
 	public void RunClose() {
 		LvlMgr.GetComponent<LevelManager> ().manageAIMove (AIChoiceScript.Decision.RUN);
 	}
+	public void AttWeak( ) {
+		LvlMgr.GetComponent<LevelManager> ().manageAIMove (AIChoiceScript.Decision.ATTWEAK);
+	}
 }
