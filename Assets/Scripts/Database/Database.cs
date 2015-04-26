@@ -140,9 +140,9 @@ namespace GameDB
                     #region Greyjoy
 //                    c.Add(new Character { Name = "Balon Greyjoy"});
                     c.Add(new Character { Name = "Theon Greyjoy", health = 22, attack = 7, defense = 5, evade = .15f, critical = .20f, movement = 3, range = 4, resourcePath = "Theon" });
-					c.Add(new Character { Name = "Victarian Greyjoy", health = 30, attack = 15, defense = 15, evade = .02f, critical = .05f, movement = 2, range = 1 });
+				c.Add(new Character { Name = "Victarian Greyjoy", health = 30, attack = 15, defense = 15, evade = .02f, critical = .05f, movement = 2, range = 1, resourcePath = "victarian"  });
 //                    c.Add(new Character { Name = "Euron Crow's Eye"});
-					c.Add(new Character { Name = "Ashsa Greyjoy", health = 20, attack = 9, defense = 5, evade = .30f, critical = .30f, movement = 5, range = 1});
+				c.Add(new Character { Name = "Ashsa Greyjoy", health = 20, attack = 9, defense = 5, evade = .30f, critical = .30f, movement = 5, range = 1, resourcePath = "ashsa" });
 //                    c.Add(new Character { Name = "Dagmar Cleftjaw" });
 //                    c.Add(new Character { Name = "Aaron Damphair" });
                     #endregion
@@ -152,7 +152,7 @@ namespace GameDB
 					c.Add(new Character { Name = "Eddard Stark", health = 25, attack = 15, defense = 10, evade = .10f, critical = .15f, movement = 2, range = 1, resourcePath="Ned"});
 					c.Add(new Character { Name = "Robb Stark", health = 23, attack = 12, defense = 5, evade = .20f, critical = .20f, movement = 2, range = 1, resourcePath="Rob"});
 //                    c.Add(new Character { Name = "Catelyn Stark" });
-					c.Add(new Character { Name = "Roose Bolton", health = 23, attack = 10, defense = 10, evade = .30f, critical = .40f, movement = 2, range = 1 });
+				c.Add(new Character { Name = "Roose Bolton", health = 23, attack = 10, defense = 10, evade = .30f, critical = .40f, movement = 2, range = 1, resourcePath = "roose"  });
 //                    c.Add(new Character { Name = "Greation Umber" });
 //                    c.Add(new Character { Name = "The Blackfish" });
 //                    c.Add(new Character { Name = "Ser Rodrick Cassel" });
