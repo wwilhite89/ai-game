@@ -5067,6 +5067,10 @@ Prefab:
       propertyPath: m_WalkableMask
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 19570838, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
+      propertyPath: m_Height
+      value: .0199999996
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11470838, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f77d3f2fcf71e2743b5206424c97b3bd, type: 2}
@@ -16609,7 +16613,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
+  m_Height: .0199999996
   m_BaseOffset: 0
   m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
