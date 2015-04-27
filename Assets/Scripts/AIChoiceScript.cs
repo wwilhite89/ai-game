@@ -39,7 +39,14 @@ public class AIChoiceScript : MonoBehaviour {
 				}
 			}
 
-			this.GetComponent<CharacterController>(). Move (walkTo(enemy));		
+			CharacterController controller = this.GetComponent<CharacterController>();
+			Vector3 newPos = walkTo(enemy);
+			controller.Move(newPos);
+			dist = Vector3.Distance(newPos, enemy.transform.position);
+			if(dist-1 < controller.character.range) {
+				controller.StartAttack();
+				controller.FinalizeAttack(enemy.GetComponent<CharacterController>());
+			}
 			break;
 		case Decision.ATTWEAK:
 			float health;
@@ -56,7 +63,14 @@ public class AIChoiceScript : MonoBehaviour {
 					}
 				}
 			}
-			this.GetComponent<CharacterController>(). Move (walkTo(enemy));
+			controller = this.GetComponent<CharacterController>();
+			newPos = walkTo(enemy);
+			controller.Move(newPos);
+			dist = Vector3.Distance(newPos, enemy.transform.position);
+			if(dist-1 < controller.character.range) {
+				controller.StartAttack();
+				controller.FinalizeAttack(enemy.GetComponent<CharacterController>());
+			}
 			break;
 		case Decision.ATTWEAK_INRANGE:
 			// look through the enemies and see if any are in reach
@@ -75,7 +89,14 @@ public class AIChoiceScript : MonoBehaviour {
 					}
 				}
 			}
-			this.GetComponent<CharacterController>(). Move (walkTo(enemy));
+			controller = this.GetComponent<CharacterController>();
+			newPos = walkTo(enemy);
+			controller.Move(newPos);
+			dist = Vector3.Distance(newPos, enemy.transform.position);
+			if(dist-1 < controller.character.range) {
+				controller.StartAttack();
+				controller.FinalizeAttack(enemy.GetComponent<CharacterController>());
+			}
 			break;
 		case Decision.RUN:
 			Debug.Log ("RUN");
