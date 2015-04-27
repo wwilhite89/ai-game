@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ArtificialNeuralNetworks.AttackNetwork;
+using System.Linq;
 using GameDB;
 
 public class AIChoiceScript : MonoBehaviour {
 
 	
-	public enum Decision {ATTCLOSE,ATTWEAK, ATTWEAK_INRANGE, RUN}
 	private GameObject levelManager;
 	public GameObject[] walkable;
 	public GameObject[] enemies;
@@ -20,7 +21,7 @@ public class AIChoiceScript : MonoBehaviour {
 	
 	}
 
-	public void MoveAI ( Decision decision ) {
+	public void MoveAI (AttackNetwork.DECISION decision ) {
 		GameObject enemy = null;
 		float dist = 0.0f;
 		float newDist = 100.0f;
@@ -31,28 +32,41 @@ public class AIChoiceScript : MonoBehaviour {
 		walkable = this.GetComponent<CharacterController> ().getWalkableLand ();
 		
 		switch(decision) {
-		case Decision.ATTCLOSE:
+		case AttackNetwork.DECISION.ATTACK_CLOSEST:
 			// look through the enemies and see if any are in reach
-			for (int i = 0; i < enemies.Length; i++) {
-				dist = Vector3.Distance(this.transform.position, enemies[i].transform.position);
-				if (dist < newDist) {
-					newDist = dist;
-					enemy = enemies[i];
-				}
-			}
-			
-			if (newDist > controller.GetStat(Character.Stats.RANGE)) {
-				newPos = walkTo(enemy);
-				controller.Move(newPos);
-				newDist = Vector3.Distance(newPos, enemy.transform.position);
-			}
-			
-			if(newDist-1 < controller.character.range) {
-				controller.StartAttack();
-				controller.FinalizeAttack(enemy.GetComponent<CharacterController>());
-			}
+            enemies.ToList().ForEach(x =>
+                {
+                    dist = Vector3.Distance(this.transform.position, x.transform.position);
+                    
+                    if (dist < newDist)
+                    {
+                        newDist = dist;
+                        enemy = x;
+                    }
+                });
+
+			// Move
+            if (newDist > controller.GetStat(Character.Stats.RANGE))
+            {
+                newPos = walkTo(enemy);
+                controller.Move(newPos);
+                newDist = Vector3.Distance(newPos, enemy.transform.position);
+            }
+            else
+                controller.ForfeitMovement();
+
+			// Attack
+            if (newDist - 1 < controller.character.range)
+            {
+                controller.StartAttack();
+                controller.FinalizeAttack(enemy.GetComponent<CharacterController>());
+            }
+            else
+                controller.ForfeitAttack();
+
+
 			break;
-		case Decision.ATTWEAK:
+		case AttackNetwork.DECISION.ATTACK_WEAKEST:
 			float health;
 			float lowHealth;
 			if ( enemies != null ) {
@@ -73,12 +87,19 @@ public class AIChoiceScript : MonoBehaviour {
 				controller.Move(newPos);
 				newDist = Vector3.Distance(newPos, enemy.transform.position);
 			}
+            else
+                controller.ForfeitMovement();
+
 			if(newDist-1 < controller.character.range) {
 				controller.StartAttack();
 				controller.FinalizeAttack(enemy.GetComponent<CharacterController>());
 			}
+            else
+                controller.ForfeitAttack();
+
 			break;
-		case Decision.ATTWEAK_INRANGE:
+            
+            case AttackNetwork.DECISION.ATTACK_WEAKEST_IN_RANGE:
 			// look through the enemies and see if any are in reach
 			if ( enemies != null ) {
 				// arbitrary high value, we can replace this with the highest health anyone can have
@@ -95,17 +116,23 @@ public class AIChoiceScript : MonoBehaviour {
 					}
 				}
 			}
-			if (newDist > controller.GetStat(Character.Stats.RANGE)) {
-				newPos = walkTo(enemy);
-				controller.Move(newPos);
-				newDist = Vector3.Distance(newPos, enemy.transform.position);
-			}
+            if (newDist > controller.GetStat(Character.Stats.RANGE))
+            {
+                newPos = walkTo(enemy);
+                controller.Move(newPos);
+                newDist = Vector3.Distance(newPos, enemy.transform.position);
+            }
+            else
+                controller.ForfeitMovement();
+
 			if(newDist-1 < controller.character.range) {
 				controller.StartAttack();
 				controller.FinalizeAttack(enemy.GetComponent<CharacterController>());
 			}
+            else
+                controller.ForfeitAttack();
 			break;
-		case Decision.RUN:
+		case AttackNetwork.DECISION.RUN:
 			Debug.Log ("RUN");
 			int zMoves =0; // moves to make on the z-axis
 			int xMoves =0; // moves to make on  the x-axis
@@ -165,8 +192,15 @@ public class AIChoiceScript : MonoBehaviour {
 				this.GetComponent<CharacterController>(). Move (walkFrom(enemy));
 			}
 
+            controller.ForfeitAttack();
+
 			break;
+
+            case AttackNetwork.DECISION.REST:
+                controller.Rest();
+                break;
 		}
+        
 	}
 
 	Vector3 walkTo(GameObject enemy) {

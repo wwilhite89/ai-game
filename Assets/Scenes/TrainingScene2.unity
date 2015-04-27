@@ -3511,6 +3511,7 @@ GameObject:
   - 114: {fileID: 343896966}
   - 114: {fileID: 343896965}
   - 114: {fileID: 343896973}
+  - 114: {fileID: 343896974}
   m_Layer: 0
   m_Name: AI
   m_TagString: Enemy
@@ -3693,6 +3694,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkable: []
   enemies: []
+--- !u!114 &343896974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 343896963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111476d867c8eb940b60cf3eb3a6e2d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorkingDirectory: AttackNetwork
+  OutputPathFormat: Training_Character_{0}.txt
+  Mode: 2
+  OnlyLoadCharacterData: 0
+  LearnRate: .20000000000000001
+  Momentum: .20000000000000001
+  MaxEpochs: 10000
+  ErrorThreshold: .10000000000000001
 --- !u!1 &347256589
 GameObject:
   m_ObjectHideFlags: 0
@@ -4558,6 +4578,7 @@ GameObject:
   - 114: {fileID: 462236274}
   - 114: {fileID: 462236273}
   - 114: {fileID: 462236281}
+  - 114: {fileID: 462236282}
   m_Layer: 0
   m_Name: AI
   m_TagString: Enemy
@@ -4740,6 +4761,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkable: []
   enemies: []
+--- !u!114 &462236282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 462236271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111476d867c8eb940b60cf3eb3a6e2d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorkingDirectory: AttackNetwork
+  OutputPathFormat: Training_Character_{0}.txt
+  Mode: 2
+  OnlyLoadCharacterData: 0
+  LearnRate: .20000000000000001
+  Momentum: .20000000000000001
+  MaxEpochs: 10000
+  ErrorThreshold: .10000000000000001
 --- !u!1 &462537729
 GameObject:
   m_ObjectHideFlags: 0
@@ -21026,6 +21066,7 @@ GameObject:
   - 114: {fileID: 1916903689}
   - 114: {fileID: 1916903697}
   - 114: {fileID: 1916903691}
+  - 114: {fileID: 1916903698}
   m_Layer: 0
   m_Name: AI
   m_TagString: Enemy
@@ -21208,6 +21249,25 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
+--- !u!114 &1916903698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1916903687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111476d867c8eb940b60cf3eb3a6e2d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorkingDirectory: AttackNetwork
+  OutputPathFormat: Training_Character_{0}.txt
+  Mode: 2
+  OnlyLoadCharacterData: 0
+  LearnRate: .20000000000000001
+  Momentum: .20000000000000001
+  MaxEpochs: 10000
+  ErrorThreshold: .10000000000000001
 --- !u!1 &1921257456
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,9 +41,17 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     {
 		enemies = lvlMgr.getEnemies ();
 		characters = lvlMgr.getPlayers ();
-        this.selectable = LandCheck();
-        if (!this.selectable) this.hovering = false;
-        HighlightLand(this.selectable);
+        if (lvlMgr.CurrentTurn == LevelManager.Turn.PLAYER)
+        {
+            this.selectable = LandCheck();
+            if (!this.selectable) this.hovering = false;
+            HighlightLand(this.selectable);
+        }
+        else
+        {
+            this.selectable = false;
+            this.hovering = false;
+        }
     }
 
 	#region IPointerEnterHandler implementation
@@ -78,7 +86,7 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 		var player = lvlMgr.ActiveCharacter;
 
         // Land must be walkable
-        if (player != null && gameObject.GetComponent<LandScript>().speed != 0)
+        if (lvlMgr.CurrentTurn == LevelManager.Turn.PLAYER && player != null && gameObject.GetComponent<LandScript>().speed != 0)
         {
             blockPosition = gameObject.transform.position;
             blockPosition.y += .6f;

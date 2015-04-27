@@ -109,12 +109,12 @@ public class BattleManager : MonoBehaviour {
         GUI.contentColor = this.currentColor;
         GUI.Box(this.battleBanner, this.currentMessage, this.style);
         
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
         
         this.currentMessage = null;
         GUI.contentColor = temp;
         
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(1f);
     }
 
 }

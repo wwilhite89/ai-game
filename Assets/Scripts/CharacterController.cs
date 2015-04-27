@@ -28,7 +28,7 @@ public class CharacterController : MonoBehaviour
 
     private bool isTraining = false;
     private INetworkTrainer trainer;
-    private INeuralNetwork attackNetwork;
+    public INeuralNetwork attackNetwork { get; private set;}
     private bool hasNetworkAttached;
 
     private int HP;
@@ -57,17 +57,21 @@ public class CharacterController : MonoBehaviour
 
     void OnMouseDown()
     {
-		// Selecting a character on your team, unless in the middle of an action
-        if (this.levelManager.IsTurn(this.gameObject) && !this.levelManager.inMiddleOfTurn())
-            this.activateSelectedCharacter();
+        // Only allow actions on player's turn
+        if (this.levelManager.CurrentTurn == LevelManager.Turn.PLAYER)
+        {
+            // Selecting a character on your team, unless in the middle of an action
+            if (this.levelManager.IsTurn(this.gameObject) && !this.levelManager.inMiddleOfTurn())
+                this.activateSelectedCharacter();
 
-        // Selecting a character to attack
-        else if (levelManager.ActiveCharacter != null && levelManager.ActiveCharacterCtrl.IsAttacking() && !levelManager.IsTurn(this.gameObject))
-            levelManager.ActiveCharacterCtrl.FinalizeAttack(this);
-       
-        // Select a character to view
-        else
-            this.levelManager.SetSelectedCharacter(this.gameObject);
+            // Selecting a character to attack
+            else if (levelManager.ActiveCharacter != null && levelManager.ActiveCharacterCtrl.IsAttacking() && !levelManager.IsTurn(this.gameObject))
+                levelManager.ActiveCharacterCtrl.FinalizeAttack(this);
+
+            // Select a character to view
+            else
+                this.levelManager.SetSelectedCharacter(this.gameObject);
+        }
     }
 
     private void activateSelectedCharacter()
@@ -132,7 +136,7 @@ public class CharacterController : MonoBehaviour
 
 
 	public void Rest() {
-		if(!this.HasAttacked) {
+		if(!this.HasAttacked && !this.HasMoved) {
             this.HP = Mathf.Min(this.HP + 2, this.character.health);
             this.battleMgr.EnqueueBattleMessage(string.Format("{0} rests for {1} points of health.", this.GetCharacterName(), 2), Color.green);
 			this.HasAttacked = true;

@@ -20,7 +20,7 @@ public class RestButton : MonoBehaviour {
 	void Update () {
 		character = lvlMgr.ActiveCharacter;
 
-        this.setActive(lvlMgr.ActiveCharacterCtrl != null && !lvlMgr.ActiveCharacterCtrl.HasMoved && !lvlMgr.ActiveCharacterCtrl.HasAttacked);
+        this.setActive(lvlMgr.CurrentTurn == LevelManager.Turn.PLAYER && lvlMgr.ActiveCharacterCtrl != null && !lvlMgr.ActiveCharacterCtrl.HasMoved && !lvlMgr.ActiveCharacterCtrl.HasAttacked);
 	}
 
 	public void OnClick() {

@@ -40,6 +40,6 @@ public class AttackButton : MonoBehaviour {
         var playerSelected = this.currentPlayer != null;
 
         // Update button's active status
-        this.setActive(playerSelected && !this.currentPlayer.HasAttacked);
+        this.setActive(lvlMgr.CurrentTurn == LevelManager.Turn.PLAYER && playerSelected && !this.currentPlayer.HasAttacked);
     }
 }

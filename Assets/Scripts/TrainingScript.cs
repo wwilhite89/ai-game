@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ArtificialNeuralNetworks.AttackNetwork;
 
 public class TrainingScript : MonoBehaviour {
 	
@@ -15,20 +16,20 @@ public class TrainingScript : MonoBehaviour {
 	}
 
 	public void AttClose( ) {
-		LvlMgr.GetComponent<LevelManager> ().manageAIMove (AIChoiceScript.Decision.ATTCLOSE);
+		LvlMgr.GetComponent<LevelManager> ().manageAIMove (AttackNetwork.DECISION.ATTACK_CLOSEST);
 	}
 	public void Run( ) {
-		LvlMgr.GetComponent<LevelManager> ().manageAIMove (AIChoiceScript.Decision.RUN);
+		LvlMgr.GetComponent<LevelManager> ().manageAIMove (AttackNetwork.DECISION.RUN);
 	}
 
 	public void RunClose() {
-		LvlMgr.GetComponent<LevelManager> ().manageAIMove (AIChoiceScript.Decision.RUN);
+		LvlMgr.GetComponent<LevelManager> ().manageAIMove (AttackNetwork.DECISION.RUN);
 	}
 	public void AttWeak( ) {
-		LvlMgr.GetComponent<LevelManager> ().manageAIMove (AIChoiceScript.Decision.ATTWEAK);
+		LvlMgr.GetComponent<LevelManager> ().manageAIMove (AttackNetwork.DECISION.ATTACK_WEAKEST);
 	}
 
 	public void AttWeakInRange() {
-		LvlMgr.GetComponent<LevelManager> ().manageAIMove (AIChoiceScript.Decision.ATTWEAK_INRANGE);
+		LvlMgr.GetComponent<LevelManager> ().manageAIMove (AttackNetwork.DECISION.ATTACK_WEAKEST_IN_RANGE);
 	}
 }

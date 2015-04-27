@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using GameDB;
 using GameDB.SessionData;
+using ArtificialNeuralNetworks.AttackNetwork;
 using System.Linq;
 
 /// <summary>
@@ -26,7 +27,7 @@ public class LevelManager : MonoBehaviour {
 
     private Rect turnBanner;
     private bool displayTurnBanner;
-
+    public bool ControlsEnabled {get; private set;}
     private bool isAttacking = false;
 
     #region Public Methods
@@ -42,27 +43,11 @@ public class LevelManager : MonoBehaviour {
         if (next != null)  next.gameObject.SetActive(false);
         turnBanner = new Rect(0, -50 + Screen.height / 2, Screen.width, 100);
         this.displayTurnBanner = true;
+        this.ControlsEnabled = true;
 	}
 
 	void Update() {
 		if(ActiveCharacter != null) {
-			/*switch(ActiveCharacterCtrl.character.status) {
-				case Character.Status.ATTACKING:
-					// highlightEnemies (Color.red);
-					break;
-				case Character.Status.READY:
-					break;
-				case Character.Status.RESTING:
-					ActiveCharacterCtrl.Rest();
-					break;
-				// (wil) this probably isn't necessary
-				case Character.Status.DEAD:
-					Kill(ActiveCharacter);
-					break;
-				default:
-					break;
-			}*/
-
             if (ActiveCharacterCtrl.IsTraining())
                 ActiveCharacterCtrl.CheckTrainingInput();
 		}
@@ -215,6 +200,39 @@ public class LevelManager : MonoBehaviour {
         this.SetActiveCharacter(null);
         this.SetSelectedCharacter(null);
         this.displayTurnBanner = true;
+
+        if (this.CurrentTurn == Turn.ENEMY)
+            StartCoroutine(this.performEnemyTurn());
+    }
+
+    private IEnumerator performEnemyTurn()
+    {
+        this.ControlsEnabled = false;
+        yield return new WaitForSeconds(5f);
+
+        foreach (var enemy in this.enemies)
+        {
+            var controller = enemy.GetComponent<CharacterController>();
+
+            if (controller.IsControlledByAI())
+            {
+                float waitTime = 5f;
+                // Activate the character
+                this.SetSelectedCharacter(enemy);
+                this.SetActiveCharacter(enemy);
+                controller.attackNetwork.Sense();
+                var decision = ArtificialNeuralNetworks.AttackNetwork.AttackNetwork.GetDecision(controller.attackNetwork.Think());
+                Debug.Log(string.Format("{0} decides to {1}", controller.GetCharacterName(), decision.ToString()));
+                controller.GetComponent<AIChoiceScript>().MoveAI(decision);
+
+                if (decision != AttackNetwork.DECISION.REST) waitTime += 3f;
+
+                yield return new WaitForSeconds(waitTime);
+            }
+        }
+
+        yield return new WaitForSeconds(5f);
+        //this.ControlsEnabled = true;
     }
 
     #endregion
@@ -282,7 +300,7 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
-	public void manageAIMove (AIChoiceScript.Decision decision) {
+	public void manageAIMove (AttackNetwork.DECISION decision) {
 		ActiveCharacterCtrl.GetComponent<AIChoiceScript>().MoveAI (decision);
 	}
 

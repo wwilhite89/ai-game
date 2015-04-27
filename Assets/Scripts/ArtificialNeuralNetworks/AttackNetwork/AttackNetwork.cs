@@ -10,7 +10,7 @@ using ArtificialNeuralNetworks.Core;
 
 namespace ArtificialNeuralNetworks.AttackNetwork
 {
-    class AttackNetwork : MonoBehaviour, INeuralNetwork
+    public class AttackNetwork : MonoBehaviour, INeuralNetwork
     {
         public enum DECISION
         {
@@ -21,7 +21,7 @@ namespace ArtificialNeuralNetworks.AttackNetwork
             RUN,
         }
 
-        internal enum TRAINING_STATE
+        public enum TRAINING_STATE
         {
             TRAIN,
             LOAD,
@@ -246,7 +246,7 @@ namespace ArtificialNeuralNetworks.AttackNetwork
             return outputs.FindIndex(x => x == outputs.Max());
         }
 
-        public DECISION GetDecision(int decision)
+        public static DECISION GetDecision(int decision)
         {
             return (DECISION)decision;
         }
