@@ -24,6 +24,8 @@ public class AIChoiceScript : MonoBehaviour {
 		GameObject enemy = null;
 		float dist = 0.0f;
 		float newDist = 100.0f;
+		Vector3 newPos;
+		CharacterController controller = this.GetComponent<CharacterController>();
 	
 		enemies = this.GetComponent<CharacterController>().enemies;
 		walkable = this.GetComponent<CharacterController> ().getWalkableLand ();
@@ -38,12 +40,14 @@ public class AIChoiceScript : MonoBehaviour {
 					enemy = enemies[i];
 				}
 			}
-
-			CharacterController controller = this.GetComponent<CharacterController>();
-			Vector3 newPos = walkTo(enemy);
-			controller.Move(newPos);
-			dist = Vector3.Distance(newPos, enemy.transform.position);
-			if(dist-1 < controller.character.range) {
+			
+			if (newDist > controller.GetStat(Character.Stats.RANGE)) {
+				newPos = walkTo(enemy);
+				controller.Move(newPos);
+				newDist = Vector3.Distance(newPos, enemy.transform.position);
+			}
+			
+			if(newDist-1 < controller.character.range) {
 				controller.StartAttack();
 				controller.FinalizeAttack(enemy.GetComponent<CharacterController>());
 			}
@@ -63,11 +67,13 @@ public class AIChoiceScript : MonoBehaviour {
 					}
 				}
 			}
-			controller = this.GetComponent<CharacterController>();
-			newPos = walkTo(enemy);
-			controller.Move(newPos);
-			dist = Vector3.Distance(newPos, enemy.transform.position);
-			if(dist-1 < controller.character.range) {
+			newDist = Vector3.Distance(this.transform.position, enemy.transform.position);
+			if (newDist > controller.GetStat(Character.Stats.RANGE)) {
+				newPos = walkTo(enemy);
+				controller.Move(newPos);
+				newDist = Vector3.Distance(newPos, enemy.transform.position);
+			}
+			if(newDist-1 < controller.character.range) {
 				controller.StartAttack();
 				controller.FinalizeAttack(enemy.GetComponent<CharacterController>());
 			}
@@ -89,11 +95,12 @@ public class AIChoiceScript : MonoBehaviour {
 					}
 				}
 			}
-			controller = this.GetComponent<CharacterController>();
-			newPos = walkTo(enemy);
-			controller.Move(newPos);
-			dist = Vector3.Distance(newPos, enemy.transform.position);
-			if(dist-1 < controller.character.range) {
+			if (newDist > controller.GetStat(Character.Stats.RANGE)) {
+				newPos = walkTo(enemy);
+				controller.Move(newPos);
+				newDist = Vector3.Distance(newPos, enemy.transform.position);
+			}
+			if(newDist-1 < controller.character.range) {
 				controller.StartAttack();
 				controller.FinalizeAttack(enemy.GetComponent<CharacterController>());
 			}
