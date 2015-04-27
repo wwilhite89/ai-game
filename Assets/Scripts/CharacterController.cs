@@ -134,6 +134,7 @@ public class CharacterController : MonoBehaviour
 	public void Rest() {
 		if(!this.HasAttacked) {
             this.HP = Mathf.Min(this.HP + 2, this.character.health);
+            this.battleMgr.EnqueueBattleMessage(string.Format("{0} rests for {1} points of health.", this.GetCharacterName(), 2), Color.green);
 			this.HasAttacked = true;
             this.HasMoved = true;
             this.levelManager.CheckTurnEnd();
