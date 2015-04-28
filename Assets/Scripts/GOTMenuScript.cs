@@ -94,6 +94,14 @@ public class GOTMenuScript : MonoBehaviour {
 	void OnGUI()
 	{
         GUI.Label(this.displayRect, this.displayText, displayStyle);
+		const int buttonWidth = 60;
+		const int buttonHeight = 20;
+		
+		Rect buttonRect = new Rect (Screen.width - 100, Screen.height - 100, buttonWidth, buttonHeight);
+		
+		if (GUI.Button (buttonRect, "Guide")) {
+			Application.LoadLevel("HelpScene");
+		}
 
         // Press Start
         if (!this.started)
