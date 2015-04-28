@@ -15,8 +15,6 @@ public class AIChoiceScript : MonoBehaviour {
 	void Start () {
 		levelManager = GameObject.FindGameObjectWithTag ("GameController");
 	}
-	
-	// Update is called once per frame
 	void Update () {
 	
 	}
@@ -24,7 +22,7 @@ public class AIChoiceScript : MonoBehaviour {
 	public void MoveAI (AttackNetwork.DECISION decision ) {
 		GameObject enemy = null;
 		float dist = 0.0f;
-		float newDist = 100.0f;
+		float newDist = float.MaxValue;
 		Vector3 newPos;
 		CharacterController controller = this.GetComponent<CharacterController>();
 	
@@ -87,8 +85,7 @@ public class AIChoiceScript : MonoBehaviour {
 				controller.Move(newPos);
 				newDist = Vector3.Distance(newPos, enemy.transform.position);
 			}
-            else
-                controller.ForfeitMovement();
+
 
 			if(newDist-1 < controller.character.range) {
 				controller.StartAttack();
@@ -103,7 +100,7 @@ public class AIChoiceScript : MonoBehaviour {
 			// look through the enemies and see if any are in reach
 			if ( enemies != null ) {
 				// arbitrary high value, we can replace this with the highest health anyone can have
-				lowHealth = 1000;
+				lowHealth = int.MaxValue;
 				for (int i = 0; i < enemies.Length; i++) {
 					dist = Vector3.Distance(this.transform.position, enemies[i].transform.position);
 					if (dist < newDist) {
@@ -116,15 +113,23 @@ public class AIChoiceScript : MonoBehaviour {
 					}
 				}
 			}
+             
+            // This should not happen
+            if (enemy == null)
+            {
+                this.MoveAI(AttackNetwork.DECISION.ATTACK_WEAKEST);
+                return;
+            }
+
+            // Move if out of range
             if (newDist > controller.GetStat(Character.Stats.RANGE))
             {
                 newPos = walkTo(enemy);
                 controller.Move(newPos);
                 newDist = Vector3.Distance(newPos, enemy.transform.position);
             }
-            else
-                controller.ForfeitMovement();
 
+            // if now in range, attack
 			if(newDist-1 < controller.character.range) {
 				controller.StartAttack();
 				controller.FinalizeAttack(enemy.GetComponent<CharacterController>());
@@ -205,7 +210,8 @@ public class AIChoiceScript : MonoBehaviour {
 
 	Vector3 walkTo(GameObject enemy) {
 		float dist;
-		float newDist = 1000.0f;
+		float newDist = float.MaxValue;
+        int destination = -1;
 		GameObject Land = null;
 
 		// what walkable land is closest to the enemy
@@ -215,10 +221,19 @@ public class AIChoiceScript : MonoBehaviour {
 			if (dist < newDist) {
 				newDist = dist;
 				Land = walkable[i];
+                destination = i;
 			}
 		}
-		if (Land != null)
-			return Land.transform.position;
+        if (Land != null)
+        {
+            if (destination > -1)
+            {
+                var temp = this.walkable.ToList();
+                temp.RemoveAt(destination);
+                this.walkable = temp.ToArray();
+            }
+            return Land.transform.position;
+        }
 
 		return this.transform.position;
 	}

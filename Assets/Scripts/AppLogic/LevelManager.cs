@@ -225,7 +225,7 @@ public class LevelManager : MonoBehaviour {
                 Debug.Log(string.Format("{0} decides to {1}", controller.GetCharacterName(), decision.ToString()));
                 controller.GetComponent<AIChoiceScript>().MoveAI(decision);
 
-                if (decision != AttackNetwork.DECISION.REST) waitTime += 3f;
+                //if (decision != AttackNetwork.DECISION.REST) waitTime += 3f;
 
                 yield return new WaitForSeconds(waitTime);
             }
