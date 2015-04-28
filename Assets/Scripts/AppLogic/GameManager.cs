@@ -89,7 +89,7 @@ public class GameManager {
         var db = Database.getInstance();
 
         // Temporary
-        var enemyHouse = (House.HouseName) ((int)house == 3 ? 0 : (int)house + 1);
+        var enemyHouse = (House.HouseName) ((int)house == 2 ? 0 : (int)house + 1);
         return db.GetDefaultCharacters(enemyHouse);
     }
 
