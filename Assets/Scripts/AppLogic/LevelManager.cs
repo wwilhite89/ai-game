@@ -23,12 +23,24 @@ public class LevelManager : MonoBehaviour {
 	private GameObject[] enemies;
     private GameManager gameManager;
 
+    private Queue<Message> messageQueue = new Queue<Message>();
+    private bool guiInitialized = false;
+    private Rect messageBanner;
+    private GUIStyle style;
+    private System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
+    private int showForTime = 0;
+    private string currentMessage;
+
     public Text next;
 
-    private Rect turnBanner;
-    private bool displayTurnBanner;
     public bool ControlsEnabled {get; private set;}
     private bool isAttacking = false;
+
+    internal class Message
+    {
+        public string content;
+        public Color color;
+    }
 
     #region Public Methods
 
@@ -41,9 +53,9 @@ public class LevelManager : MonoBehaviour {
         this.spawnCharacters();
         this.ResetCharColor();
         if (next != null)  next.gameObject.SetActive(false);
-        turnBanner = new Rect(0, -50 + Screen.height / 2, Screen.width, 100);
-        this.displayTurnBanner = true;
+        this.messageBanner = new Rect(0, -50 + Screen.height / 2, Screen.width, 100);
         this.ControlsEnabled = true;
+        this.EnqueueMessage("Player turn", Color.white);
 	}
 
 	void Update() {
@@ -55,8 +67,42 @@ public class LevelManager : MonoBehaviour {
 
     void OnGUI()
     {
-        if (this.displayTurnBanner)
-            StartCoroutine(this.showTurnBanner());
+        if (!this.guiInitialized)
+        {
+            style = GUI.skin.box;
+            style.fontSize = 30;
+            style.fontStyle = FontStyle.BoldAndItalic;
+            style.alignment = TextAnchor.MiddleCenter;
+            this.guiInitialized = true;
+            this.showForTime = 2;
+        }
+
+        // Show any current messages
+        if (this.currentMessage != null)
+            GUI.Box(this.messageBanner, this.currentMessage, this.style);
+
+        // Stop the current message
+        if (this.watch.IsRunning && (this.watch.ElapsedMilliseconds / 1000f) > this.showForTime)
+        {
+            this.currentMessage = null;
+            this.watch.Stop();
+            this.watch.Reset();
+        }
+
+        // Queue the next message
+        if (!this.watch.IsRunning && this.messageQueue.Count > 0)
+        {
+            var msg = this.messageQueue.Dequeue();
+            this.watch.Start();
+            this.currentMessage = msg.content;
+            GUI.color = msg.color;
+        }
+        
+    }
+
+    public void EnqueueMessage(string message, Color color)
+    {
+        this.messageQueue.Enqueue(new Message { content = message, color = color });
     }
 
     public bool inMiddleOfTurn()
@@ -199,7 +245,7 @@ public class LevelManager : MonoBehaviour {
         // next.gameObject.SetActive(true);
         this.SetActiveCharacter(null);
         this.SetSelectedCharacter(null);
-        this.displayTurnBanner = true;
+        this.messageQueue.Enqueue(new Message { content = (this.CurrentTurn == Turn.ENEMY ? "Enemy" : "Player") + " Turn", color = Color.white });
 
         if (this.CurrentTurn == Turn.ENEMY)
             StartCoroutine(this.performEnemyTurn());
@@ -304,15 +350,5 @@ public class LevelManager : MonoBehaviour {
 		ActiveCharacterCtrl.GetComponent<AIChoiceScript>().MoveAI (decision);
 	}
 
-    private IEnumerator showTurnBanner()
-    {
-        GUIStyle style = GUI.skin.box;
-        style.fontSize = 30;
-        style.alignment = TextAnchor.MiddleCenter;
-        GUI.Box(this.turnBanner, (this.CurrentTurn == Turn.ENEMY ? "Enemy" : "Player") + " Turn");
-        yield return new WaitForSeconds(2.5f);
-        this.displayTurnBanner = false;
-        yield return new WaitForSeconds(0);
-    }
     #endregion
 }

@@ -22,7 +22,7 @@ public class AdjacentAgentSensor : MonoBehaviour {
     void FixedUpdate()
     {
 
-		if (intitailize == false) {
+		/*if (intitailize == false) {
 			range = this.GetComponent<CharacterController> ().GetStat (Character.Stats.RANGE) + 1;
 			speed = this.GetComponent<CharacterController> ().GetStat (Character.Stats.MOV);
 		}
@@ -41,6 +41,6 @@ public class AdjacentAgentSensor : MonoBehaviour {
 
 				this.GetComponent<CharacterController>().Move( newPos );
 			}
-		}
+		}*/
     }
 }

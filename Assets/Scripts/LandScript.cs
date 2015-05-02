@@ -24,6 +24,8 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     private bool hovering = false;
     private Color lastColor;
 
+    private CharacterController lastPlayer = null;
+
     // Use this for initialization
     void Start()
     {
@@ -43,14 +45,22 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 		characters = lvlMgr.getPlayers ();
         if (lvlMgr.CurrentTurn == LevelManager.Turn.PLAYER)
         {
-            this.selectable = LandCheck();
-            if (!this.selectable) this.hovering = false;
-            HighlightLand(this.selectable);
+            if (this.lastPlayer != lvlMgr.ActiveCharacterCtrl || 
+                (this.lastPlayer != null && this.lastPlayer.HasMoved && walkable))
+            {
+                this.selectable = LandCheck();
+                if (!this.selectable) this.hovering = false;
+                HighlightLand(this.selectable);
+                this.lastPlayer = lvlMgr.ActiveCharacterCtrl;
+            }
         }
         else
         {
             this.selectable = false;
             this.hovering = false;
+            if (this.lastPlayer != null)
+                HighlightLand(false);
+            this.lastPlayer = null;
         }
     }
 
@@ -106,6 +116,14 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 		var player = lvlMgr.ActiveCharacter;
 		float dist;
 		walkable = false;
+
+        // Can the current player even move?
+        if (player == null || lvlMgr.ActiveCharacterCtrl.HasMoved)
+        {
+            walkable = false;
+            return false;
+        }
+
 		// is there an enemy on the land tile
 		for (int i = 0; i < enemies.Length; i++) {
             if (enemies[i].transform.position.x == this.transform.position.x
