@@ -96,16 +96,17 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 		var player = lvlMgr.ActiveCharacter;
 
         // Land must be walkable
-        if (lvlMgr.CurrentTurn == LevelManager.Turn.PLAYER && player != null && gameObject.GetComponent<LandScript>().speed != 0)
+        if (walkable && player != null && !lvlMgr.ActiveCharacterCtrl.HasMoved && gameObject.GetComponent<LandScript>().speed != 0
+            && lvlMgr.CurrentTurn == LevelManager.Turn.PLAYER && lvlMgr.IsTurn(player))
         {
             blockPosition = gameObject.transform.position;
             blockPosition.y += .6f;
 
             playerDist = Vector3.Distance(gameObject.transform.position, player.transform.position);
 
-            Debug.Log("you clicked distance " + playerDist);
+            // Debug.Log("you clicked distance " + playerDist);
             
-            if (playerDist < player.GetComponent<CharacterController>().GetStat(GameDB.Character.Stats.MOV) && !player.GetComponent<CharacterController>().HasMoved && lvlMgr.IsTurn(player))
+            if (playerDist < lvlMgr.ActiveCharacterCtrl.GetStat(GameDB.Character.Stats.MOV))
             {
                 player.GetComponent<CharacterController>().Move(blockPosition);
             }

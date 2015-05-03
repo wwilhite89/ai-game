@@ -82,7 +82,9 @@ public class CharacterController : MonoBehaviour
 
     public void Move(Vector3 location)
     {
-		this.gameObject.GetComponentInParent<NavScript> ().moveAgent (location);
+        var agent = this.gameObject.GetComponentInParent<NavScript> ();
+		agent.moveAgent (location);
+        this.levelManager.SetMovementAgent(agent);
         this.HasMoved = true;
         this.levelManager.CheckTurnEnd();
     }

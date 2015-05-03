@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour {
 
     public bool ControlsEnabled {get; private set;}
     private bool isAttacking = false;
+    private NavScript navigation = null;
 
     internal class Message
     {
@@ -98,6 +99,19 @@ public class LevelManager : MonoBehaviour {
             GUI.color = msg.color;
         }
         
+    }
+
+    public void SetMovementAgent(NavScript navigation)
+    {
+        this.navigation = navigation;
+    }
+
+    public bool IsMoving()
+    {
+        if (this.navigation == null)
+            return false;
+
+        return this.navigation.IsMoving();
     }
 
     public void EnqueueMessage(string message, Color color)

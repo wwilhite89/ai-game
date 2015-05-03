@@ -25,7 +25,7 @@ public class AttackButton : MonoBehaviour {
 	}
 
 	public void OnClick() {
-        if (!lvlMgr.IsAttacking())
+        if (!lvlMgr.IsAttacking() && !lvlMgr.IsMoving())
             lvlMgr.BeginAttackSequence();
 	}
 
@@ -40,6 +40,7 @@ public class AttackButton : MonoBehaviour {
         var playerSelected = this.currentPlayer != null;
 
         // Update button's active status
-        this.setActive(lvlMgr.CurrentTurn == LevelManager.Turn.PLAYER && playerSelected && !this.currentPlayer.HasAttacked);
+        this.setActive(lvlMgr.CurrentTurn == LevelManager.Turn.PLAYER && playerSelected 
+            && !this.currentPlayer.HasAttacked && !lvlMgr.IsMoving());
     }
 }

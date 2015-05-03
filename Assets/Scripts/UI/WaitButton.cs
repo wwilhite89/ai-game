@@ -20,14 +20,16 @@ public class WaitButton : MonoBehaviour {
 	void Update () {
 		character = lvlMgr.ActiveCharacter;
 
-        this.setActive(lvlMgr.CurrentTurn == LevelManager.Turn.PLAYER && lvlMgr.ActiveCharacterCtrl != null && (!lvlMgr.ActiveCharacterCtrl.HasMoved || !lvlMgr.ActiveCharacterCtrl.HasAttacked));
+        this.setActive(lvlMgr.CurrentTurn == LevelManager.Turn.PLAYER && lvlMgr.ActiveCharacterCtrl != null 
+            && (!lvlMgr.ActiveCharacterCtrl.HasMoved || !lvlMgr.ActiveCharacterCtrl.HasAttacked)
+            && !lvlMgr.IsMoving());
 	}
 
 	public void OnClick() {
 
         var player = lvlMgr.ActiveCharacterCtrl;
 
-        if (player != null && !player.HasMoved)
+        if (player != null && !player.HasMoved && !lvlMgr.IsMoving())
         {
             player.ForfeitMovement();
             player.UpdateEnemiesInRange();

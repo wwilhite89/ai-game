@@ -2,13 +2,14 @@
 using System.Collections;
 
 public class NavScript : MonoBehaviour {
-	public GameObject gameManager;
+	public LevelManager levelManager;
 	
 	
 	NavMeshAgent agent;
 	
 	void Start () {
-		gameManager = GameObject.FindGameObjectWithTag ("GameController");
+        GameObject manager = GameObject.Find("Manager");
+        this.levelManager = manager.GetComponent<LevelManager>();
 		agent = GetComponent<NavMeshAgent>();
 	}
 	
@@ -17,8 +18,21 @@ public class NavScript : MonoBehaviour {
 	}
 	
 	public void moveAgent ( Vector3 loc ) {
-		agent.SetDestination(loc);
+        agent.SetDestination(loc);
+        this.levelManager.SetMovementAgent(this);
 	}
+
+    public bool IsMoving()
+    {
+        var distance = this.agent.remainingDistance;
+
+        if (distance == Mathf.Infinity)
+            return false;
+
+        return agent.pathStatus != NavMeshPathStatus.PathComplete
+            || agent.remainingDistance > 0;
+    }
+
 	/*
 	void OnMouseDown () {
 		gameManager.GetComponent<CharacterController> ().activePlayer = this.gameObject;

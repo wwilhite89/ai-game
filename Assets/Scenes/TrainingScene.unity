@@ -266,7 +266,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.39999998, y: 1.39999998, z: 1}
+  m_Size: {x: .699999988, y: .699999988, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &8522022
 MeshFilter:
@@ -3079,46 +3079,6 @@ Prefab:
   m_RootGameObject: {fileID: 644183126}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1 &258646926
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 258646928}
-  - 114: {fileID: 258646927}
-  m_Layer: 0
-  m_Name: Trainer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &258646927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 258646926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52f3eeaaedb5d054993f74c992a4df3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LvlMgr: {fileID: 708922733}
---- !u!4 &258646928
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 258646926}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.904881, y: 2.16960907e-05, z: 1.72773528}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
 --- !u!1 &267440292
 GameObject:
   m_ObjectHideFlags: 0
@@ -4204,18 +4164,17 @@ Transform:
 --- !u!114 &378799519
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11470838, guid: f77d3f2fcf71e2743b5206424c97b3bd,
+  m_PrefabParentObject: {fileID: 11481170, guid: f77d3f2fcf71e2743b5206424c97b3bd,
     type: 2}
   m_PrefabInternal: {fileID: 1669756427}
   m_GameObject: {fileID: 378799517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fa0dca60a953a44790c9c7ba5fb27d7, type: 3}
+  m_Script: {fileID: 11500000, guid: ea9b499306334754ea4c1ebed473484d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LvlMgr: {fileID: 0}
-  range: 3
-  speed: 0
+  walkable: []
+  enemies: []
 --- !u!114 &378799520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4355,7 +4314,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.39999998, y: 1.39999998, z: 1}
+  m_Size: {x: .699999988, y: .699999988, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &378799527
 MeshFilter:
@@ -4629,7 +4588,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 258646927}
+      - m_Target: {fileID: 0}
         m_MethodName: AttClose
         m_Mode: 1
         m_Arguments:
@@ -6434,9 +6393,9 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
+  m_Height: .0199999996
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
 --- !u!1 &617748920
 GameObject:
@@ -6479,18 +6438,17 @@ Transform:
 --- !u!114 &617748922
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11470838, guid: f77d3f2fcf71e2743b5206424c97b3bd,
+  m_PrefabParentObject: {fileID: 11481170, guid: f77d3f2fcf71e2743b5206424c97b3bd,
     type: 2}
   m_PrefabInternal: {fileID: 975837240}
   m_GameObject: {fileID: 617748920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fa0dca60a953a44790c9c7ba5fb27d7, type: 3}
+  m_Script: {fileID: 11500000, guid: ea9b499306334754ea4c1ebed473484d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LvlMgr: {fileID: 0}
-  range: 3
-  speed: 0
+  walkable: []
+  enemies: []
 --- !u!114 &617748923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6630,7 +6588,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.39999998, y: 1.39999998, z: 1}
+  m_Size: {x: .699999988, y: .699999988, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &617748930
 MeshFilter:
@@ -6713,9 +6671,9 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
+  m_Height: .0199999996
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
 --- !u!1 &625666849
 GameObject:
@@ -7135,18 +7093,17 @@ Transform:
 --- !u!114 &632661663
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11470838, guid: f77d3f2fcf71e2743b5206424c97b3bd,
+  m_PrefabParentObject: {fileID: 11481170, guid: f77d3f2fcf71e2743b5206424c97b3bd,
     type: 2}
   m_PrefabInternal: {fileID: 1804426610}
   m_GameObject: {fileID: 632661661}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fa0dca60a953a44790c9c7ba5fb27d7, type: 3}
+  m_Script: {fileID: 11500000, guid: ea9b499306334754ea4c1ebed473484d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LvlMgr: {fileID: 0}
-  range: 3
-  speed: 0
+  walkable: []
+  enemies: []
 --- !u!114 &632661664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7286,7 +7243,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.39999998, y: 1.39999998, z: 1}
+  m_Size: {x: .699999988, y: .699999988, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &632661671
 MeshFilter:
@@ -8539,6 +8496,7 @@ MonoBehaviour:
   SelectedCharacter: {fileID: 0}
   ActiveCharacterCtrl: {fileID: 0}
   SelectedCharacterCtrl: {fileID: 0}
+  next: {fileID: 0}
 --- !u!4 &708922737
 Transform:
   m_ObjectHideFlags: 0
@@ -14435,7 +14393,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 258646927}
+      - m_Target: {fileID: 0}
         m_MethodName: Run
         m_Mode: 1
         m_Arguments:
@@ -15413,9 +15371,9 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
+  m_Height: .0199999996
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
 --- !u!1 &1339363129
 GameObject:
@@ -19757,7 +19715,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.39999998, y: 1.39999998, z: 1}
+  m_Size: {x: .699999988, y: .699999988, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1757507040
 MeshFilter:
@@ -21223,13 +21181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e46c919fbc5d014096e2b6c35008ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  engagedColor:
-    m_NormalColor: {r: .977941155, g: .977941155, b: .977941155, a: 0}
-    m_HighlightedColor: {r: 1, g: .96896553, b: .96896553, a: 0}
-    m_PressedColor: {r: 1, g: .982758641, b: .982758641, a: 0}
-    m_DisabledColor: {r: 1, g: .975862086, b: .975862086, a: 0}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0
 --- !u!114 &1878654106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21727,7 +21678,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.39999998, y: 1.39999998, z: 1}
+  m_Size: {x: .699999988, y: .699999988, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1916903696
 MeshFilter:
