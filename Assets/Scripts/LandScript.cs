@@ -52,7 +52,7 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             /*if (this.lastPlayer != lvlMgr.ActiveCharacterCtrl || 
                 (this.lastPlayer != null && this.lastPlayer.HasMoved))
             {*/
-                this.selectable = LandCheck();
+                this.selectable = this.walkable;
                 if (!this.selectable) this.hovering = false;
                 HighlightLand(this.selectable);
                 this.lastPlayer = lvlMgr.ActiveCharacterCtrl;
@@ -117,8 +117,9 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         }
 	}
 
-	private bool LandCheck() {
+	private bool isWalkable() {
 		var player = lvlMgr.ActiveCharacter;
+        var controller = lvlMgr.ActiveCharacterCtrl;
 		float dist;
 
         // Can the current player even move?
@@ -126,27 +127,23 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             return false;
 
 		// is there an enemy on the land tile
-        var enemies = lvlMgr.getEnemies();
-		for (int i = 0; i < enemies.Length; i++) {
-            if (enemies[i].transform.position.x == this.transform.position.x
-                && enemies[i].transform.position.z == this.transform.position.z)
-                return false;
-		}
+        var enemyCheck = lvlMgr.getEnemies().Any(x => Mathf.Abs(x.transform.position.x - this.transform.position.x) < 0.5
+            && Mathf.Abs(x.transform.position.z - this.transform.position.z) < 0.5);
 
-		// is there a character on the land tile
-        var characters = lvlMgr.getPlayers();
-		for (int i = 0; i < characters.Length; i++) {
-            if (characters[i].transform.position.x == this.transform.position.x
-                && characters[i].transform.position.z == this.transform.position.z)
-                return false;
-		}
+        if (enemyCheck) return false;
 
-		if (player != null && !player.GetComponent<CharacterController>().HasMoved)
+        // is there a character on the land tile
+        var charCheck = lvlMgr.getPlayers().Any(x => Mathf.Abs(x.transform.position.x - this.transform.position.x) < 0.5
+            && Mathf.Abs(x.transform.position.z - this.transform.position.z) < 0.5);
+
+        if (charCheck) return false;
+
+		if (player != null && !controller.HasMoved)
 		{
 			dist = Vector3.Distance(gameObject.transform.position, player.transform.position);
 			
 			// highlight the land around a selected player if he is active and able to move
-			if (dist < player.GetComponent<CharacterController>().GetStat(GameDB.Character.Stats.MOV) && gameObject.GetComponent<LandScript>().speed != 0)
+			if (dist < controller.GetStat(GameDB.Character.Stats.MOV) && this.speed != 0)
 					return true;
 		}
 
@@ -159,23 +156,6 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             this.lastColor = b ? highlighColor : landColor;
         else
             this.renderer.material.color = b ? highlighColor : landColor;
-    }
-
-    private bool isWalkable()
-    {
-        // is there an enemy on the land tile
-        var enemyCheck = lvlMgr.getEnemies().Any(x => Mathf.Abs(x.transform.position.x - this.transform.position.x) < 0.5
-            && Mathf.Abs(x.transform.position.z - this.transform.position.z) < 0.5);
-
-        if (enemyCheck) return false;
-
-        // is there a character on the land tile
-        var charCheck = lvlMgr.getPlayers().Any(x => Mathf.Abs(x.transform.position.x - this.transform.position.x) < 0.5
-            && Mathf.Abs(x.transform.position.z - this.transform.position.z) < 0.5);
-
-        if (charCheck) return false;
-
-        return this.speed != 0;
     }
 
     // is called every frame on objects that are colliding
