@@ -38,8 +38,11 @@ public class LevelManager : MonoBehaviour {
     private bool isAttacking = false;
     private NavScript navigation = null;
 
-    private System.Timers.Timer timer = null;
     private Queue<CharacterController> pendingAiQueue = new Queue<CharacterController>();
+
+    private AudioClip restingClip;
+    private AudioClip missClip;
+    private AudioClip hitClip;
 
     internal class Message
     {
@@ -61,6 +64,9 @@ public class LevelManager : MonoBehaviour {
         this.messageBanner = new Rect(0, -50 + Screen.height / 2, Screen.width, 100);
         this.ControlsEnabled = true;
         this.EnqueueMessage("Player Turn", Color.white);
+        this.restingClip = Resources.Load(@"Sound/rest") as AudioClip;
+        this.missClip = Resources.Load(@"Sound/miss") as AudioClip;
+        this.hitClip = Resources.Load(@"Sound/hit") as AudioClip;
 	}
 
 	void Update() {
@@ -86,6 +92,7 @@ public class LevelManager : MonoBehaviour {
         if (this.currentMessage != null)
         {
             GUI.color = guiColor;
+            // dodge, dealt, rests
             GUI.Box(this.messageBanner, this.currentMessage, this.style);
         }
 
@@ -102,6 +109,19 @@ public class LevelManager : MonoBehaviour {
         {
             var msg = this.messageQueue.Dequeue();
             this.currentMessage = msg.content;
+
+            bool dmg = this.currentMessage.Contains("dealt"),
+                rest = this.currentMessage.Contains("rests"),
+                miss = this.currentMessage.Contains("dodges");
+
+            if (dmg || rest || miss)
+            {
+                var audio = this.gameObject.GetComponent<AudioSource>();
+                audio.clip = dmg ? hitClip : (rest ? restingClip : missClip);
+                audio.Play();
+                //audio.PlayOneShot(dmg ? this.hitClip : rest ? this.restingClip : this.missClip);
+            }
+
             this.guiColor = msg.color;
             this.watch.Start();
         }
