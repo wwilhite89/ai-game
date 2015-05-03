@@ -46,7 +46,6 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     // Update is called once per frame
     void FixedUpdate()
     {
-		this.selectable = LandCheck();
         if (lvlMgr.CurrentTurn == LevelManager.Turn.PLAYER)
         {
             /*if (this.lastPlayer != lvlMgr.ActiveCharacterCtrl || 
