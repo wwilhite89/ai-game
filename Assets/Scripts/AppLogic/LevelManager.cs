@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour {
     private bool guiInitialized = false;
     private Rect messageBanner;
     private GUIStyle style;
+    private Color guiColor = Color.white;
     private System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
     private int showForTime = 0;
     private string currentMessage;
@@ -36,6 +37,9 @@ public class LevelManager : MonoBehaviour {
     public bool ControlsEnabled {get; private set;}
     private bool isAttacking = false;
     private NavScript navigation = null;
+
+    private System.Timers.Timer timer = null;
+    private Queue<CharacterController> pendingAiQueue = new Queue<CharacterController>();
 
     internal class Message
     {
@@ -56,7 +60,7 @@ public class LevelManager : MonoBehaviour {
         if (next != null)  next.gameObject.SetActive(false);
         this.messageBanner = new Rect(0, -50 + Screen.height / 2, Screen.width, 100);
         this.ControlsEnabled = true;
-        this.EnqueueMessage("Player turn", Color.white);
+        this.EnqueueMessage("Player Turn", Color.white);
 	}
 
 	void Update() {
@@ -80,7 +84,10 @@ public class LevelManager : MonoBehaviour {
 
         // Show any current messages
         if (this.currentMessage != null)
+        {
+            GUI.color = guiColor;
             GUI.Box(this.messageBanner, this.currentMessage, this.style);
+        }
 
         // Stop the current message
         if (this.watch.IsRunning && (this.watch.ElapsedMilliseconds / 1000f) > this.showForTime)
@@ -94,9 +101,9 @@ public class LevelManager : MonoBehaviour {
         if (!this.watch.IsRunning && this.messageQueue.Count > 0)
         {
             var msg = this.messageQueue.Dequeue();
-            this.watch.Start();
             this.currentMessage = msg.content;
-            GUI.color = msg.color;
+            this.guiColor = msg.color;
+            this.watch.Start();
         }
         
     }
@@ -112,6 +119,11 @@ public class LevelManager : MonoBehaviour {
             return false;
 
         return this.navigation.IsMoving();
+    }
+
+    public int GetMessageQueueCount()
+    {
+        return this.messageQueue.Count;
     }
 
     public void EnqueueMessage(string message, Color color)
@@ -152,7 +164,10 @@ public class LevelManager : MonoBehaviour {
             this.HighlightEnemies();
         }
         else
+        {
+            this.EnqueueMessage("No enemies in range to attack.", Color.red);
             this.EndAttackSequence();
+        }
     }
 
     public void EndAttackSequence()
@@ -204,7 +219,6 @@ public class LevelManager : MonoBehaviour {
         {
             this.ActiveCharacterCtrl = character.GetComponent<CharacterController>();
             this.ActiveCharacterCtrl.renderer.material.color = Color.cyan;
-            this.ActiveCharacterCtrl.setWalkableLand();
             // Show training for new selected character
             if (ActiveCharacterCtrl != null && ActiveCharacterCtrl.IsTraining())
                 ActiveCharacterCtrl.ShowTraining();
@@ -262,37 +276,65 @@ public class LevelManager : MonoBehaviour {
         this.messageQueue.Enqueue(new Message { content = (this.CurrentTurn == Turn.ENEMY ? "Enemy" : "Player") + " Turn", color = Color.white });
 
         if (this.CurrentTurn == Turn.ENEMY)
-            StartCoroutine(this.performEnemyTurn());
+            this.performEnemyTurn();
     }
 
-    private IEnumerator performEnemyTurn()
+    private void performEnemyTurn()
     {
         this.ControlsEnabled = false;
-        yield return new WaitForSeconds(5f);
+        //this.timer = new System.Timers.Timer(2);
+        //timer.Elapsed += enemyTurnTimeElapsed;
 
         foreach (var enemy in this.enemies)
         {
             var controller = enemy.GetComponent<CharacterController>();
 
             if (controller.IsControlledByAI())
-            {
-                float waitTime = 5f;
-                // Activate the character
-                this.SetSelectedCharacter(enemy);
-                this.SetActiveCharacter(enemy);
-                controller.attackNetwork.Sense();
-                var decision = ArtificialNeuralNetworks.AttackNetwork.AttackNetwork.GetDecision(controller.attackNetwork.Think());
-                Debug.Log(string.Format("{0} decides to {1}", controller.GetCharacterName(), decision.ToString()));
-                controller.GetComponent<AIChoiceScript>().MoveAI(decision);
-
-                //if (decision != AttackNetwork.DECISION.REST) waitTime += 3f;
-
-                yield return new WaitForSeconds(waitTime);
-            }
+                this.pendingAiQueue.Enqueue(controller);
         }
 
-        yield return new WaitForSeconds(5f);
-        //this.ControlsEnabled = true;
+        //this.timer.Start();
+        StartCoroutine(this.executeEnemyActions());
+    }
+
+    private IEnumerator executeEnemyActions()
+    {
+        yield return new WaitForSeconds(4); // Wait for turn banners
+
+        StartCoroutine(executeSingleEnemyAction());
+
+        this.ControlsEnabled = true;
+    }
+
+    private IEnumerator executeSingleEnemyAction()
+    {
+
+        while (this.pendingAiQueue.Count > 0)
+        {
+
+            var nextAI = this.pendingAiQueue.Dequeue();
+
+            // Activate the character
+            this.SetSelectedCharacter(nextAI.gameObject);
+            this.SetActiveCharacter(nextAI.gameObject);
+
+            nextAI.attackNetwork.Sense();
+
+            var decision = ArtificialNeuralNetworks.AttackNetwork.AttackNetwork.GetDecision(nextAI.attackNetwork.Think());
+            var msgs = 0;
+            // Debug.Log(controller.GetCharacterName() + " decides to " + decision.ToString());
+            nextAI.GetComponent<AIChoiceScript>().MoveAI(decision, out msgs);
+
+            // Resume
+            yield return new WaitForSeconds(msgs * 2f); // 2 secs for each msg
+            //yield return this.executeEnemyActions();
+        }
+
+    }
+
+    private void performSingleEnemyAction(GameObject currentEnemy, GameObject[] remainder)
+    {
+        System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
     }
 
     #endregion
@@ -361,7 +403,8 @@ public class LevelManager : MonoBehaviour {
     }
 
 	public void manageAIMove (AttackNetwork.DECISION decision) {
-		ActiveCharacterCtrl.GetComponent<AIChoiceScript>().MoveAI (decision);
+        var temp = 0;
+		ActiveCharacterCtrl.GetComponent<AIChoiceScript>().MoveAI (decision, out temp);
 	}
 
     #endregion

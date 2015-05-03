@@ -11,10 +11,15 @@ using ArtificialNeuralNetworks.Training;
 public class CharacterController : MonoBehaviour
 {
     public Character character {get; set;}
-    public GameObject[] enemiesInRange;
-	public GameObject[] enemies;
+    public GameObject[] enemies
+    {
+        get
+        {
+            return levelManager.GetTeam(opponent);
+        }
+    }
+	public GameObject[] enemiesInRange;
     private GameObject[] Land;
-	public GameObject[] walkableLand;
     public string opponent;
     public bool HasMoved { get; private set; }
     public bool HasAttacked { get; private set; }
@@ -48,11 +53,7 @@ public class CharacterController : MonoBehaviour
     }
 
 	void Update () {
-		enemies = GameObject.FindGameObjectsWithTag (opponent);
-	}
 
-	void FixedUpdate() {
-		this.setWalkableLand ();
 	}
 
     void OnMouseDown()
@@ -83,8 +84,11 @@ public class CharacterController : MonoBehaviour
     public void Move(Vector3 location)
     {
         var agent = this.gameObject.GetComponentInParent<NavScript> ();
-		agent.moveAgent (location);
-        this.levelManager.SetMovementAgent(agent);
+		// agent.moveAgent (location);
+        Debug.Log(this.GetCharacterName() + " moves to " + location);
+        agent.gameObject.transform.position = location;
+        
+        // this.levelManager.SetMovementAgent(agent);
         this.HasMoved = true;
         this.levelManager.CheckTurnEnd();
     }
@@ -152,24 +156,8 @@ public class CharacterController : MonoBehaviour
         return this.initialized;
     }
 
-	public void setWalkableLand () {
-		GameObject [] temp;
-		int count = 0;
-
-		for (int i = 0; i < Land.Length; i++) {
-			if (Land [i].GetComponent<LandScript> ().walkable == true)
-				count++;
-		}
-		temp = new GameObject[count];
-		for (int i = 0, j = 0; i < Land.Length; i++) {
-			if (Land [i].GetComponent<LandScript> ().walkable == true)
-				temp[j++] = Land[i];
-		}
-		walkableLand = temp;
-	}
-
-	public GameObject[] getWalkableLand() {
-		return walkableLand;
+	public GameObject[] GetWalkableLand() {
+        return this.Land.Where(x => x.GetComponent<LandScript>().walkable).ToArray();
 	}
 
     public int GetMaxHP()

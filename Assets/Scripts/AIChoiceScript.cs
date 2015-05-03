@@ -7,213 +7,194 @@ using GameDB;
 public class AIChoiceScript : MonoBehaviour {
 
 	
-	private GameObject levelManager;
-	public GameObject[] walkable;
-	public GameObject[] enemies;
+	private LevelManager levelManager;
 
 	// Use this for initialization
 	void Start () {
-		levelManager = GameObject.FindGameObjectWithTag ("GameController");
+        GameObject manager = GameObject.Find("Manager");
+        this.levelManager = manager.GetComponent<LevelManager>();
 	}
+
 	void Update () {
 	
 	}
 
-	public void MoveAI (AttackNetwork.DECISION decision ) {
-		GameObject enemy = null;
-		float dist = 0.0f;
-		float newDist = float.MaxValue;
-		Vector3 newPos;
+	public void MoveAI (AttackNetwork.DECISION decision, out int messagesGenerated) {
 		CharacterController controller = this.GetComponent<CharacterController>();
-	
-		enemies = this.GetComponent<CharacterController>().enemies;
-		walkable = this.GetComponent<CharacterController> ().getWalkableLand ();
-		
+        
+		var enemies = this.GetComponent<CharacterController>().enemies;
+
+        var currentMsgCount = this.levelManager.GetMessageQueueCount();
+
 		switch(decision) {
-		case AttackNetwork.DECISION.ATTACK_CLOSEST:
-			// look through the enemies and see if any are in reach
-            enemies.ToList().ForEach(x =>
-                {
-                    dist = Vector3.Distance(this.transform.position, x.transform.position);
-                    
-                    if (dist < newDist)
-                    {
-                        newDist = dist;
-                        enemy = x;
-                    }
-                });
-
-			// Move
-            if (newDist > controller.GetStat(Character.Stats.RANGE))
-            {
-                newPos = walkTo(enemy);
-                controller.Move(newPos);
-                newDist = Vector3.Distance(newPos, enemy.transform.position);
-            }
-            else
-                controller.ForfeitMovement();
-
-			// Attack
-            if (newDist - 1 < controller.character.range)
-            {
-                controller.StartAttack();
-                controller.FinalizeAttack(enemy.GetComponent<CharacterController>());
-            }
-            else
-                controller.ForfeitAttack();
-
-
-			break;
-		case AttackNetwork.DECISION.ATTACK_WEAKEST:
-			float health;
-			float lowHealth;
-			if ( enemies != null ) {
-				lowHealth = enemies[0].GetComponent<CharacterController>().GetStat(Character.Stats.HP);
-				enemy = enemies[0];
-				// find the enemy with the lowest health
-				for (int i = 1; i < enemies.Length; i++) {
-					health = enemies[i].GetComponent<CharacterController>().GetStat(Character.Stats.HP);
-					if (health < lowHealth) {
-						lowHealth = health;
-						enemy = enemies[i];
-					}
-				}
-			}
-			newDist = Vector3.Distance(this.transform.position, enemy.transform.position);
-			if (newDist > controller.GetStat(Character.Stats.RANGE)) {
-				newPos = walkTo(enemy);
-				controller.Move(newPos);
-				newDist = Vector3.Distance(newPos, enemy.transform.position);
-			}
-
-
-			if(newDist-1 < controller.character.range) {
-				controller.StartAttack();
-				controller.FinalizeAttack(enemy.GetComponent<CharacterController>());
-			}
-            else
-                controller.ForfeitAttack();
-
-			break;
-            
+		    case AttackNetwork.DECISION.ATTACK_CLOSEST:
+                this.attackClosest(enemies, controller);
+			    break;
+		    case AttackNetwork.DECISION.ATTACK_WEAKEST:
+                this.attackWeakest(enemies, controller);
+			    break;
             case AttackNetwork.DECISION.ATTACK_WEAKEST_IN_RANGE:
-			// look through the enemies and see if any are in reach
-			if ( enemies != null ) {
-				// arbitrary high value, we can replace this with the highest health anyone can have
-				lowHealth = int.MaxValue;
-				for (int i = 0; i < enemies.Length; i++) {
-					dist = Vector3.Distance(this.transform.position, enemies[i].transform.position);
-					if (dist < newDist) {
-						health = enemies[i].GetComponent<CharacterController>().GetStat(Character.Stats.HP);
-						if (health < lowHealth) {
-							lowHealth = health;
-							newDist = dist;
-							enemy = enemies[i];
-						}
-					}
-				}
-			}
-             
-            // This should not happen
-            if (enemy == null)
-            {
-                this.MoveAI(AttackNetwork.DECISION.ATTACK_WEAKEST);
-                return;
-            }
-
-            // Move if out of range
-            if (newDist > controller.GetStat(Character.Stats.RANGE))
-            {
-                newPos = walkTo(enemy);
-                controller.Move(newPos);
-                newDist = Vector3.Distance(newPos, enemy.transform.position);
-            }
-
-            // if now in range, attack
-			if(newDist-1 < controller.character.range) {
-				controller.StartAttack();
-				controller.FinalizeAttack(enemy.GetComponent<CharacterController>());
-			}
-            else
-                controller.ForfeitAttack();
-			break;
-		case AttackNetwork.DECISION.RUN:
-			Debug.Log ("RUN");
-			int zMoves =0; // moves to make on the z-axis
-			int xMoves =0; // moves to make on  the x-axis
-			int top=0;	   // Enemies above the player
-			int bottom=0;  // Enemies bellow the player
-			int left=0;    // Enemies to the left of the player
-			int right=0;   // Enemies to the right of the player
-			Vector3 curLocation = this.transform.position; //current location of the player
-			Vector3 newLocation;  // Location for the player to move to;
-			int[]actLvls=this.GetComponent<AttackRangeScript>().getLvls();
-			CharacterController charCtrl = gameObject.GetComponent<CharacterController>();
-			int moveRange= (int) charCtrl.GetStat(GameDB.Character.Stats.RANGE);
-
-			//Debug.Log ("actlevel 0: "+actLvls[4]);
-			top = actLvls[0]+actLvls[1]+actLvls[4];
-			bottom = actLvls[2]+actLvls[3]+actLvls[6];
-			left = actLvls[1]+actLvls[3]+actLvls[5];
-			right = actLvls[0]+actLvls[2]+actLvls[7];
-			zMoves = bottom-top;
-			xMoves = left - right;
-			Debug.Log (zMoves);
-			Debug.Log (xMoves);
-			Debug.Log (string.Format ("Activation Levels: {0},{1},{2},{3},{4},{5},{6},{7}", actLvls[0], actLvls [1], actLvls [2], actLvls [3], actLvls [4], actLvls [5], actLvls [6], actLvls [7]));
-			//Debug.Log (left+" "+right);
-			//Debug.Log (top+" "+bottom);
-			if(zMoves>moveRange){
-				zMoves=moveRange;
-			}
-			if(xMoves>moveRange){
-				xMoves=moveRange;
-			}
-			if(zMoves<-moveRange){
-				zMoves=-moveRange;
-			}
-			if(xMoves<-moveRange){
-				xMoves=-moveRange;
-			}
-
-			newLocation = new Vector3(curLocation.x+xMoves,curLocation.y,curLocation.z+zMoves);
-			//Debug.Log ("player"+this.transform.position.ToString());
-			//Debug.Log ("cur"+curLocation.x+" "+curLocation.z);
-			//Debug.Log (newLocation.x+" "+newLocation.y);
-
-			// who is the closest enemy
-			for (int i = 0; i < enemies.Length; i++) {
-				dist = Vector3.Distance(this.transform.position, enemies[i].transform.position);
-				if (dist < newDist) {
-					newDist = dist;
-					enemy = enemies[i];
-				}
-			}
-						
-			if((zMoves!=0||xMoves!=0)&&walkable.Length>0){
-				runMove(newLocation);
-			}
-			else{
-				this.GetComponent<CharacterController>(). Move (walkFrom(enemy));
-			}
-
-            controller.ForfeitAttack();
-
-			break;
-
+                this.attackWeakestInRange(enemies, controller);
+			    break;
+		    case AttackNetwork.DECISION.RUN:
+                this.run(enemies, controller);
+			    break;
             case AttackNetwork.DECISION.REST:
                 controller.Rest();
                 break;
 		}
-        
+
+        messagesGenerated = Mathf.Max(0, levelManager.GetMessageQueueCount() - currentMsgCount);
 	}
 
-	Vector3 walkTo(GameObject enemy) {
+    private void run(GameObject[] enemies, CharacterController controller)
+    {
+        int zMoves = 0; // moves to make on the z-axis
+        int xMoves = 0; // moves to make on  the x-axis
+        int top = 0;	   // Enemies above the player
+        int bottom = 0;  // Enemies bellow the player
+        int left = 0;    // Enemies to the left of the player
+        int right = 0;   // Enemies to the right of the player
+        Vector3 curLocation = this.transform.position; //current location of the player
+        Vector3 newLocation;  // Location for the player to move to;
+        int[] actLvls = this.GetComponent<AttackRangeScript>().getLvls();
+        CharacterController charCtrl = gameObject.GetComponent<CharacterController>();
+        int moveRange = (int)charCtrl.GetStat(GameDB.Character.Stats.RANGE);
+
+        top = actLvls[0] + actLvls[1] + actLvls[4];
+        bottom = actLvls[2] + actLvls[3] + actLvls[6];
+        left = actLvls[1] + actLvls[3] + actLvls[5];
+        right = actLvls[0] + actLvls[2] + actLvls[7];
+
+        zMoves = bottom - top;
+        xMoves = left - right;
+
+        if (zMoves > moveRange) zMoves = moveRange; 
+        if (xMoves > moveRange) xMoves = moveRange;
+        if (zMoves < -moveRange) zMoves = -moveRange;
+        if (xMoves < -moveRange) xMoves = -moveRange;
+        
+        newLocation = new Vector3(curLocation.x + xMoves, curLocation.y, curLocation.z + zMoves);
+
+        float dist = 0.0f;
+        float newDist = float.MaxValue;
+        GameObject enemy = null;
+
+        // Find the closest enemy
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            dist = Vector3.Distance(this.transform.position, enemies[i].transform.position);
+            if (dist < newDist)
+            {
+                newDist = dist;
+                enemy = enemies[i];
+            }
+        }
+
+        // Run away from him/her
+        if ((zMoves != 0 || xMoves != 0) && this.GetComponent<CharacterController>().GetWalkableLand().Length > 0)
+            runMove(newLocation);
+        else
+            this.GetComponent<CharacterController>().Move(walkFrom(enemy));
+
+        controller.ForfeitAttack();
+    }
+
+    private void attackClosest(GameObject[] enemies, CharacterController controller)
+    {
+        float dist = 0.0f;
+        float newDist = float.MaxValue;
+        GameObject enemy = null;
+        Vector3 newPos;
+
+        // Find enemies in range
+        enemies.ToList().ForEach(x =>
+        {
+            dist = Vector3.Distance(this.transform.position, x.transform.position);
+
+            if (dist < newDist)
+            {
+                newDist = dist;
+                enemy = x;
+            }
+        });
+
+        // Move
+        if (newDist > controller.GetStat(Character.Stats.RANGE))
+        {
+            newPos = walkTo(enemy);
+            controller.Move(newPos);
+            newDist = Vector3.Distance(newPos, enemy.transform.position);
+        }
+        else
+            controller.ForfeitMovement();
+
+        // Attack
+        this.tryAttack(newDist, controller, enemy.GetComponent<CharacterController>());
+    }
+
+    private void attackWeakest(GameObject[] enemies, CharacterController controller)
+    {
+        float dist = 0.0f;
+        float newDist = float.MaxValue;
+        Vector3 newPos;
+
+        // Find enemy with lowest health
+        var enemy = enemies.First(x => x.GetComponent<CharacterController>().GetStat(Character.Stats.HP) == 
+            enemies.Min(y => y.GetComponent<CharacterController>().GetStat(Character.Stats.HP)));
+
+
+        newDist = Vector3.Distance(this.transform.position, enemy.transform.position);
+        
+        // Move
+        if (newDist > controller.GetStat(Character.Stats.RANGE))
+        {
+            newPos = walkTo(enemy);
+            controller.Move(newPos);
+            newDist = Vector3.Distance(newPos, enemy.transform.position);
+        }
+        else
+            controller.ForfeitMovement();
+
+        // Attack
+        this.tryAttack(newDist, controller, enemy.GetComponent<CharacterController>());
+    }
+
+    private void attackWeakestInRange(GameObject[] enemies, CharacterController controller)
+    {
+        var weakest = enemies.FirstOrDefault(x => x.GetComponent<CharacterController>().GetStat(Character.Stats.HP) ==
+            enemies.Select(y => y.GetComponent<CharacterController>()).Min(y => y.GetStat(Character.Stats.HP)));
+
+        // This should not happen
+        if (weakest == null)
+        {
+            var generated = 0;
+            this.MoveAI(AttackNetwork.DECISION.ATTACK_WEAKEST, out generated);
+            return;
+        }
+
+        // Move if out of range
+        var newDist = Vector3.Distance(this.transform.position, weakest.transform.position);
+
+        if (newDist > controller.GetStat(Character.Stats.RANGE))
+        {
+            var newPos = walkTo(weakest);
+            controller.Move(newPos);
+            newDist = Vector3.Distance(newPos, weakest.transform.position);
+        }
+        else
+            controller.ForfeitMovement();
+
+        // Attack
+        this.tryAttack(newDist, controller, weakest.GetComponent<CharacterController>());
+    }
+
+	private Vector3 walkTo(GameObject enemy) {
 		float dist;
 		float newDist = float.MaxValue;
         int destination = -1;
 		GameObject Land = null;
-
+        var walkable = this.GetComponent<CharacterController>().GetWalkableLand();
 		// what walkable land is closest to the enemy
 		for (int i = 0; i < walkable.Length; i++) {
 
@@ -224,16 +205,9 @@ public class AIChoiceScript : MonoBehaviour {
                 destination = i;
 			}
 		}
+
         if (Land != null)
-        {
-            if (destination > -1)
-            {
-                var temp = this.walkable.ToList();
-                temp.RemoveAt(destination);
-                this.walkable = temp.ToArray();
-            }
             return Land.transform.position;
-        }
 
 		return this.transform.position;
 	}
@@ -243,6 +217,8 @@ public class AIChoiceScript : MonoBehaviour {
 		float dist;
 		float newDist = 1000.0f;
 		Vector3 Land=new Vector3();
+        var walkable = this.GetComponent<CharacterController>().GetWalkableLand();
+
 		for (int i = 0; i < walkable.Length; i++) {
 			Vector3 square = walkable[i].transform.position;
 			dist = Vector3.Distance(v, walkable[i].transform.position);
@@ -261,13 +237,13 @@ public class AIChoiceScript : MonoBehaviour {
 		}
 
 	}
-	
 
-	Vector3 walkFrom(GameObject enemy) {
+	private Vector3 walkFrom(GameObject enemy) {
 		float dist;
 		float newDist = 0.0f;
 		GameObject Land = null;
-		
+        var walkable = this.GetComponent<CharacterController>().GetWalkableLand();
+
 		// what walkable land is closest to the enemy
 		for (int i = 0; i < walkable.Length; i++) {
 			dist = Vector3.Distance(enemy.transform.position, walkable[i].transform.position);
@@ -281,4 +257,15 @@ public class AIChoiceScript : MonoBehaviour {
 		
 		return this.transform.position;
 	}
+
+    private void tryAttack(float distance, CharacterController attacker, CharacterController attackee)
+    {
+        if (distance - 1 < attacker.character.range)
+        {
+            attacker.StartAttack();
+            attacker.FinalizeAttack(attackee);
+        }
+        else
+            attacker.ForfeitAttack();
+    }
 }

@@ -3,20 +3,25 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using GameDB.SessionData;
 using System;
+using System.Linq;
 
 public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler {
     private GameObject enemy;
     private GameObject currentChar;
     private GameObject levelManager;
     public string LandType;
-	private GameObject [] enemies;
-	private GameObject[] characters;
     private Color highlighColor;
     private Vector3 blockPosition;
     private float playerDist;
     private Color landColor;
     private LevelManager lvlMgr;
-	public bool walkable;
+    public bool walkable
+    {
+        get
+        {
+            return this.isWalkable();
+        }
+    }
 
     // Modifies movement speed of characters. 1 is normal, 0 is unwalkable.
     public float speed;
@@ -41,18 +46,16 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     // Update is called once per frame
     void FixedUpdate()
     {
-		enemies = lvlMgr.getEnemies ();
-		characters = lvlMgr.getPlayers ();
         if (lvlMgr.CurrentTurn == LevelManager.Turn.PLAYER)
         {
-            if (this.lastPlayer != lvlMgr.ActiveCharacterCtrl || 
-                (this.lastPlayer != null && this.lastPlayer.HasMoved && walkable))
-            {
+            /*if (this.lastPlayer != lvlMgr.ActiveCharacterCtrl || 
+                (this.lastPlayer != null && this.lastPlayer.HasMoved))
+            {*/
                 this.selectable = LandCheck();
                 if (!this.selectable) this.hovering = false;
                 HighlightLand(this.selectable);
                 this.lastPlayer = lvlMgr.ActiveCharacterCtrl;
-            }
+            //}
         }
         else
         {
@@ -113,25 +116,24 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         }
 	}
 
-	bool LandCheck() {
+	private bool LandCheck() {
 		var player = lvlMgr.ActiveCharacter;
 		float dist;
-		walkable = false;
 
         // Can the current player even move?
         if (player == null || lvlMgr.ActiveCharacterCtrl.HasMoved)
-        {
-            walkable = false;
             return false;
-        }
 
 		// is there an enemy on the land tile
+        var enemies = lvlMgr.getEnemies();
 		for (int i = 0; i < enemies.Length; i++) {
             if (enemies[i].transform.position.x == this.transform.position.x
                 && enemies[i].transform.position.z == this.transform.position.z)
                 return false;
 		}
+
 		// is there a character on the land tile
+        var characters = lvlMgr.getPlayers();
 		for (int i = 0; i < characters.Length; i++) {
             if (characters[i].transform.position.x == this.transform.position.x
                 && characters[i].transform.position.z == this.transform.position.z)
@@ -144,13 +146,9 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 			
 			// highlight the land around a selected player if he is active and able to move
 			if (dist < player.GetComponent<CharacterController>().GetStat(GameDB.Character.Stats.MOV) && gameObject.GetComponent<LandScript>().speed != 0)
-			{
-					walkable = true;
 					return true;
-			}
 		}
 
-		walkable = false;
 		return false;
 	}
 
@@ -160,6 +158,23 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             this.lastColor = b ? highlighColor : landColor;
         else
             this.renderer.material.color = b ? highlighColor : landColor;
+    }
+
+    private bool isWalkable()
+    {
+        // is there an enemy on the land tile
+        var enemyCheck = lvlMgr.getEnemies().Any(x => x.transform.position.x == this.transform.position.x
+            && x.transform.position.z == this.transform.position.z);
+
+        if (enemyCheck) return false;
+
+        // is there a character on the land tile
+        var charCheck = lvlMgr.getPlayers().Any(x => x.transform.position.x == this.transform.position.x
+            && x.transform.position.z == this.transform.position.z);
+
+        if (charCheck) return false;
+
+        return this.speed != 0;
     }
 
     // is called every frame on objects that are colliding
