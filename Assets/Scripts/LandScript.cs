@@ -163,14 +163,14 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     private bool isWalkable()
     {
         // is there an enemy on the land tile
-        var enemyCheck = lvlMgr.getEnemies().Any(x => x.transform.position.x == this.transform.position.x
-            && x.transform.position.z == this.transform.position.z);
+        var enemyCheck = lvlMgr.getEnemies().Any(x => Mathf.Abs(x.transform.position.x - this.transform.position.x) < 0.5
+            && Mathf.Abs(x.transform.position.z - this.transform.position.z) < 0.5);
 
         if (enemyCheck) return false;
 
         // is there a character on the land tile
-        var charCheck = lvlMgr.getPlayers().Any(x => x.transform.position.x == this.transform.position.x
-            && x.transform.position.z == this.transform.position.z);
+        var charCheck = lvlMgr.getPlayers().Any(x => Mathf.Abs(x.transform.position.x - this.transform.position.x) < 0.5
+            && Mathf.Abs(x.transform.position.z - this.transform.position.z) < 0.5);
 
         if (charCheck) return false;
 

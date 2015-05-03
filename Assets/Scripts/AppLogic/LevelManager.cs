@@ -235,11 +235,13 @@ public class LevelManager : MonoBehaviour {
     }
 
 	public GameObject[] getEnemies() {
-		return enemies;
+        // return GameObject.FindGameObjectsWithTag(GameConstants.TAG_ENEMY);
+        return enemies;
 	}
 
 	public GameObject[] getPlayers() {
-		return characters;
+        // return GameObject.FindGameObjectsWithTag(GameConstants.TAG_PLAYER);
+        return characters;
 	}
 	
     public bool IsTurn(GameObject player)
