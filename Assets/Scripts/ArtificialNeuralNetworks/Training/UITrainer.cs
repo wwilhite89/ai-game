@@ -89,7 +89,6 @@ namespace ArtificialNeuralNetworks.Training
 
         private void showSensors()
         {
-            int maxCols = 2, currentRow = 0;
             StringBuilder text = new StringBuilder();
             text.AppendLine("Active character (" + this.trainer.characterName + ") inputs:\r\n");
             GUIStyle style = GUI.skin.button;

@@ -161,7 +161,7 @@ namespace GameDB
                 case House.HouseName.LANNISTER:
                     #region Lannister
 					c.Add(new Character { Name = "Jaime Lannister", health = 24, attack = 10, defense = 5, evade = .15f, critical = .15f, movement = 2, range = 2, resourcePath="Jaime" });
-					c.Add(new Character { Name = "The Hound", health = 28, attack = 10, defense = 6, evade = .05f, critical = .10f, movement = 2, range = 1, resourcePath="The Hound" });
+					c.Add(new Character { Name = "The Hound", health = 24, attack = 10, defense = 6, evade = .05f, critical = .10f, movement = 2, range = 1, resourcePath="The Hound" });
 //					c.Add(new Character { Name = "The Mountain", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="" });
 					c.Add(new Character { Name = "Tywin Lannister", health = 25, attack = 12, defense = 7, evade = .10f, critical = .10f, movement = 3, range = 1, resourcePath="Tywin" });
 //                    c.Add(new Character { Name = "Cersei Lannister" });

@@ -12,7 +12,6 @@ public class AdjacentAgentSensor : MonoBehaviour {
 	public float range;
 	public float speed;
 	private float distToEnemy;
-	private bool intitailize = false;
 
     void Start()
     {

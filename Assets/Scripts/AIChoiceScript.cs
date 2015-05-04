@@ -135,7 +135,6 @@ public class AIChoiceScript : MonoBehaviour {
 
     private void attackWeakest(GameObject[] enemies, CharacterController controller)
     {
-        float dist = 0.0f;
         float newDist = float.MaxValue;
         Vector3 newPos;
 
@@ -280,7 +279,7 @@ public class AIChoiceScript : MonoBehaviour {
 
 		for (int i = 0; i < enemies.Length; i++) {
 			var dist = Vector3.Distance(this.transform.position,enemies[i].transform.position);
-			if ( dist <= this.GetComponent<CharacterController>().GetStat(Character.Stats.RANGE))
+			if ( dist - 1 <= this.GetComponent<CharacterController>().GetStat(Character.Stats.RANGE))
                 return enemies[i];
             }
 		return null;
