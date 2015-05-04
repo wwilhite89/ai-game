@@ -73,6 +73,8 @@ public class CharacterController : MonoBehaviour
             else
                 this.levelManager.SetSelectedCharacter(this.gameObject);
         }
+        else if (this.levelManager.ControlsEnabled)
+            this.levelManager.SetSelectedCharacter(this.gameObject);
     }
 
     private void activateSelectedCharacter()

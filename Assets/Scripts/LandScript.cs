@@ -46,16 +46,20 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (lvlMgr.CurrentTurn == LevelManager.Turn.PLAYER)
+        this.selectable = this.walkable;
+        if (!this.selectable) this.hovering = false;
+        HighlightLand(this.selectable);
+        this.lastPlayer = lvlMgr.ActiveCharacterCtrl;
+        /*if (lvlMgr.CurrentTurn == LevelManager.Turn.PLAYER)
         {
-            /*if (this.lastPlayer != lvlMgr.ActiveCharacterCtrl || 
+            if (this.lastPlayer != lvlMgr.ActiveCharacterCtrl || 
                 (this.lastPlayer != null && this.lastPlayer.HasMoved))
-            {*/
+            {
                 this.selectable = this.walkable;
                 if (!this.selectable) this.hovering = false;
                 HighlightLand(this.selectable);
                 this.lastPlayer = lvlMgr.ActiveCharacterCtrl;
-            //}
+            }
         }
         else
         {
@@ -64,7 +68,7 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             if (this.lastPlayer != null)
                 HighlightLand(false);
             this.lastPlayer = null;
-        }
+        }*/
     }
 
 	#region IPointerEnterHandler implementation
@@ -117,12 +121,12 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 	}
 
 	private bool isWalkable() {
-		var player = lvlMgr.ActiveCharacter;
-        var controller = lvlMgr.ActiveCharacterCtrl;
+        var player = lvlMgr.SelectedCharacter != null ? lvlMgr.SelectedCharacter : lvlMgr.ActiveCharacter;
+        var controller = player != null ? player.GetComponent<CharacterController>() : null;
 		float dist;
 
         // Can the current player even move?
-        if (player == null || lvlMgr.ActiveCharacterCtrl.HasMoved)
+        if (player == null || controller.HasMoved)
             return false;
 
 		// is there an enemy on the land tile
@@ -137,14 +141,11 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
         if (charCheck) return false;
 
-		if (player != null && !controller.HasMoved)
-		{
-			dist = Vector3.Distance(gameObject.transform.position, player.transform.position);
+		dist = Vector3.Distance(gameObject.transform.position, player.transform.position);
 			
-			// highlight the land around a selected player if he is active and able to move
-			if (dist < controller.GetStat(GameDB.Character.Stats.MOV) && this.speed != 0)
-					return true;
-		}
+		// highlight the land around a selected player if he is active and able to move
+		if (dist < controller.GetStat(GameDB.Character.Stats.MOV) && this.speed != 0)
+				return true;
 
 		return false;
 	}

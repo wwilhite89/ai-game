@@ -13,7 +13,7 @@ public class UIScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (levelManager.ActiveCharacter == null)
+        if (levelManager.ActiveCharacter == null && levelManager.SelectedCharacter == null)
         {
             this.characterCard.SetActive(false);
             this.abilities.SetActive(false);

@@ -31,7 +31,7 @@ public class BattleManager : MonoBehaviour {
         string msg = "";
 
         // Determine if there's a critical (CRIT)
-        var critVal = r.NextDouble() <= attacker.GetStat(Character.Stats.CRIT) ? 3 : 1;
+        var critVal = r.NextDouble() <= attacker.GetStat(Character.Stats.CRIT) ? 2 : 1;
 
         if (critVal > 1)
             msg += "Critical hit! ";
