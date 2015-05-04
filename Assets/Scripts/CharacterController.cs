@@ -143,8 +143,9 @@ public class CharacterController : MonoBehaviour
 
 	public void Rest() {
 		if(!this.HasAttacked && !this.HasMoved) {
-            var restFor = this.HP == this.character.health ? 0 : 2;
-            this.HP = this.character.health + restFor;
+			var mult = this.character.health * .15f;
+			var restFor = this.HP == this.character.health ? 0 : Mathf.RoundToInt (mult);
+			this.HP = this.HP + restFor;
             this.levelManager.EnqueueMessage(string.Format("{0} rests for {1} points of health.", this.GetCharacterName(), restFor), Color.green);
 			this.HasAttacked = true;
             this.HasMoved = true;
