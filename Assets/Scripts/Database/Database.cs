@@ -139,10 +139,10 @@ namespace GameDB
                 case House.HouseName.GREYJOY:
                     #region Greyjoy
 //                    c.Add(new Character { Name = "Balon Greyjoy"});
-                    c.Add(new Character { Name = "Theon Greyjoy", health = 22, attack = 11, defense = 7, evade = .05f, critical = .01f, movement = 3, range = 2, resourcePath = "Theon" });
+                    c.Add(new Character { Name = "Theon Greyjoy", health = 22, attack = 11, defense = 7, evade = .05f, critical = .01f, movement = 1, range = 2, resourcePath = "Theon" });
 				c.Add(new Character { Name = "Victarian Greyjoy", health = 30, attack = 12, defense = 7, evade = .02f, critical = .05f, movement = 2, range = 1, resourcePath = "victarian"  });
 //                    c.Add(new Character { Name = "Euron Crow's Eye"});
-				c.Add(new Character { Name = "Ashsa Greyjoy", health = 20, attack = 10, defense = 5, evade = .01f, critical = .01f, movement = 5, range = 1, resourcePath = "ashsa" });
+				c.Add(new Character { Name = "Ashsa Greyjoy", health = 20, attack = 10, defense = 5, evade = .01f, critical = .01f, movement = 2, range = 1, resourcePath = "ashsa" });
 //                    c.Add(new Character { Name = "Dagmar Cleftjaw" });
 //                    c.Add(new Character { Name = "Aaron Damphair" });
                     #endregion

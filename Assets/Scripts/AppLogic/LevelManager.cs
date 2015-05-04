@@ -405,8 +405,11 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void ResetCharColor() {
-		for (int i = 0; i < characters.Length; i++)
-			characters [i].renderer.material.color = Color.green;
+        for (int i = 0; i < characters.Length; i++)
+        {
+            
+            characters[i].renderer.material.color = Color.green;
+        }
 		for (int i = 0; i < enemies.Length; i++)
 			enemies [i].renderer.material.color = Color.black;
 	}

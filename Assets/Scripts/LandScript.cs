@@ -126,7 +126,7 @@ public class LandScript : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 		float dist;
 
         // Can the current player even move?
-        if (player == null || controller.HasMoved)
+        if (player == null || (controller.HasMoved && lvlMgr.IsTurn(player)))
             return false;
 
 		// is there an enemy on the land tile
