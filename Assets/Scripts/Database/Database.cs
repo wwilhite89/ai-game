@@ -139,10 +139,10 @@ namespace GameDB
                 case House.HouseName.GREYJOY:
                     #region Greyjoy
 //                    c.Add(new Character { Name = "Balon Greyjoy"});
-                    c.Add(new Character { Name = "Theon Greyjoy", health = 22, attack = 11, defense = 7, evade = .05f, critical = .01f, movement = 1, range = 2, resourcePath = "Theon" });
+                    c.Add(new Character { Name = "Theon Greyjoy", health = 22, attack = 11, defense = 7, evade = .05f, critical = .01f, movement = 2, range = 2, resourcePath = "Theon" });
 				c.Add(new Character { Name = "Victarian Greyjoy", health = 30, attack = 12, defense = 7, evade = .02f, critical = .05f, movement = 2, range = 1, resourcePath = "victarian"  });
 //                    c.Add(new Character { Name = "Euron Crow's Eye"});
-				c.Add(new Character { Name = "Ashsa Greyjoy", health = 20, attack = 10, defense = 5, evade = .01f, critical = .01f, movement = 2, range = 1, resourcePath = "ashsa" });
+				c.Add(new Character { Name = "Ashsa Greyjoy", health = 20, attack = 10, defense = 5, evade = .01f, critical = .01f, movement = 3, range = 1, resourcePath = "ashsa" });
 //                    c.Add(new Character { Name = "Dagmar Cleftjaw" });
 //                    c.Add(new Character { Name = "Aaron Damphair" });
                     #endregion
@@ -150,7 +150,7 @@ namespace GameDB
                 case House.HouseName.STARK:
                     #region Stark
 					c.Add(new Character { Name = "Eddard Stark", health = 25, attack = 10, defense = 6, evade = .10f, critical = .15f, movement = 2, range = 1, resourcePath="Ned"});
-					c.Add(new Character { Name = "Robb Stark", health = 23, attack = 12, defense = 6, evade = .20f, critical = .20f, movement = 2, range = 1, resourcePath="Rob"});
+					c.Add(new Character { Name = "Robb Stark", health = 23, attack = 12, defense = 6, evade = .20f, critical = .20f, movement = 3, range = 1, resourcePath="Rob"});
 //                    c.Add(new Character { Name = "Catelyn Stark" });
 				c.Add(new Character { Name = "Roose Bolton", health = 23, attack = 11, defense = 5, evade = .15f, critical = .40f, movement = 2, range = 1, resourcePath = "roose"  });
 //                    c.Add(new Character { Name = "Greation Umber" });
@@ -160,10 +160,10 @@ namespace GameDB
                     break;
                 case House.HouseName.LANNISTER:
                     #region Lannister
-					c.Add(new Character { Name = "Jaime Lannister", health = 24, attack = 10, defense = 5, evade = .15f, critical = .15f, movement = 1, range = 2, resourcePath="Jaime" });
+					c.Add(new Character { Name = "Jaime Lannister", health = 24, attack = 10, defense = 5, evade = .15f, critical = .15f, movement = 2, range = 2, resourcePath="Jaime" });
 					c.Add(new Character { Name = "The Hound", health = 28, attack = 10, defense = 6, evade = .05f, critical = .10f, movement = 2, range = 1, resourcePath="The Hound" });
 //					c.Add(new Character { Name = "The Mountain", health = 10, attack = 5, defense = 5, evade = .05f, critical = .05f, movement = 2, range = 1, resourcePath="" });
-					c.Add(new Character { Name = "Tywin Lannister", health = 25, attack = 12, defense = 7, evade = .10f, critical = .10f, movement = 2, range = 1, resourcePath="Tywin" });
+					c.Add(new Character { Name = "Tywin Lannister", health = 25, attack = 12, defense = 7, evade = .10f, critical = .10f, movement = 3, range = 1, resourcePath="Tywin" });
 //                    c.Add(new Character { Name = "Cersei Lannister" });
 //                    c.Add(new Character { Name = "Ser Kevan Lannister" });
 //                    c.Add(new Character { Name = "Tyrion Lannister" });
