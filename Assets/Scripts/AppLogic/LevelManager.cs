@@ -84,6 +84,7 @@ public class LevelManager : MonoBehaviour {
             style.fontSize = 30;
             style.fontStyle = FontStyle.BoldAndItalic;
             style.alignment = TextAnchor.MiddleCenter;
+            
             this.guiInitialized = true;
             this.showForTime = 2;
         }
@@ -92,7 +93,7 @@ public class LevelManager : MonoBehaviour {
         if (this.currentMessage != null)
         {
             GUI.color = guiColor;
-            // dodge, dealt, rests
+            GUI.Box(this.messageBanner, "", this.style);
             GUI.Box(this.messageBanner, this.currentMessage, this.style);
         }
 
