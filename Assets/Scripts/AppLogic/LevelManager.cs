@@ -348,7 +348,7 @@ public class LevelManager : MonoBehaviour {
             nextAI.GetComponent<AIChoiceScript>().MoveAI(decision, out msgs);
 
             // Resume
-            yield return new WaitForSeconds(msgs * 2f); // 2 secs for each msg
+            yield return new WaitForSeconds(Mathf.Max(1.5f, msgs * 2f)); // 2 secs for each msg
             //yield return this.executeEnemyActions();
         }
 
