@@ -33,7 +33,8 @@ namespace ArtificialNeuralNetworks.AttackNetwork.Inputs
             var defStrRatio = this.getRatio(enemies, Character.Stats.DEF, Character.Stats.ATT);
             var defensiveConfidence = defStrRatio >= 1 ? 1 : (defStrRatio >= 0.75 ? 0.75 : (defStrRatio >= 0.5 ? 0.5 : (defStrRatio >= 0.25 ? 0.25 : 0.00)));
 
-            var teammates = controller.GetTeamMembers().Where(x => x != controller);
+            var teammates = controller.GetTeamMembers();
+
             var numbersConfidence = enemies.Count() > (teammates.Count() + 1) ? 0 : (enemies.Count() < (teammates.Count() + 1) ? 1 : 0.5);
 
             this.currentValue = (1.00 / 3.00) * attackingConfidence + (1.00 / 3.00) * defensiveConfidence + (1.00 / 3.00) * numbersConfidence;

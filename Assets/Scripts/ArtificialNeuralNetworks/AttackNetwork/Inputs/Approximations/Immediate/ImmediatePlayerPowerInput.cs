@@ -19,6 +19,13 @@ namespace ArtificialNeuralNetworks.AttackNetwork.Inputs
         protected override void UpdateTraining()
         {
             var enemies = controller.GetEnemyTeamMembers();
+
+            if (enemies.Count == 0)
+            {
+                this.currentValue = 1;
+                return;
+            }
+
             var avgEnemyRange = enemies.Average(x => x.GetStat(Character.Stats.MOV) + x.GetStat(Character.Stats.RANGE));
             var enemiesInRange = enemies.Where(x =>
                 Mathf.Abs(Vector3.Distance(controller.gameObject.transform.position, x.gameObject.transform.position)) <= avgEnemyRange);
@@ -37,11 +44,16 @@ namespace ArtificialNeuralNetworks.AttackNetwork.Inputs
             var defStrRatio = this.getRatio(enemiesInRange, Character.Stats.DEF, Character.Stats.ATT);
             var defensiveConfidence = defStrRatio >= 1 ? 1 : (defStrRatio >= 0.75 ? 0.75 : (defStrRatio >= 0.5 ? 0.5 : (defStrRatio >= 0.25 ? 0.25 : 0.00)));
 
-            var teammates = controller.GetTeamMembers().Where(x => x != controller);
-            var avgTeamRange = teammates.Average(x => x.GetStat(Character.Stats.MOV) + x.GetStat(Character.Stats.RANGE));
-            var teammatesInRange = teammates.Where(x =>
-                Mathf.Abs(Vector3.Distance(controller.gameObject.transform.position, x.gameObject.transform.position)) <= avgTeamRange);
-            var numbersConfidence = enemiesInRange.Count() > (teammatesInRange.Count()+1) ? 0 : (enemiesInRange.Count() < (teammatesInRange.Count()+1) ? 1 : 0.5);
+            var teammates = controller.GetTeamMembers();
+            double numbersConfidence = 0;
+
+            if (teammates.Count > 0)
+            {
+                var avgTeamRange = teammates.Average(x => x.GetStat(Character.Stats.MOV) + x.GetStat(Character.Stats.RANGE));
+                var teammatesInRange = teammates.Where(x =>
+                    Mathf.Abs(Vector3.Distance(controller.gameObject.transform.position, x.gameObject.transform.position)) <= avgTeamRange);
+                numbersConfidence = enemiesInRange.Count() > (teammatesInRange.Count() + 1) ? 0 : (enemiesInRange.Count() < (teammatesInRange.Count() + 1) ? 1 : 0.5);
+            }
 
             this.currentValue = (1.00 / 3.00) * attackingConfidence + (1.00 / 3.00) * defensiveConfidence + (1.00 / 3.00) * numbersConfidence;
         }
