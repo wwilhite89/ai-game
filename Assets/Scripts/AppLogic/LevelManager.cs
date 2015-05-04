@@ -407,8 +407,23 @@ public class LevelManager : MonoBehaviour {
 	public void ResetCharColor() {
         for (int i = 0; i < characters.Length; i++)
         {
+            if (this.CurrentTurn == Turn.ENEMY)
+                characters[i].renderer.material.color = Color.green;
+            else
+            {
+                var c = characters[i].GetComponent<CharacterController>();
+
+                // Performed a single action
+                if (c.HasMoved ^ c.HasAttacked)
+                    characters[i].renderer.material.color = Color.blue;
+                // Performed both actions
+                else if (c.HasMoved && c.HasAttacked)
+                    characters[i].renderer.material.color = Color.grey;
+                // Performed no actions
+                else
+                    characters[i].renderer.material.color = Color.green;
+            }
             
-            characters[i].renderer.material.color = Color.green;
         }
 		for (int i = 0; i < enemies.Length; i++)
 			enemies [i].renderer.material.color = Color.black;
