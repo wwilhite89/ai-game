@@ -260,12 +260,29 @@ public class AIChoiceScript : MonoBehaviour {
 
     private void tryAttack(float distance, CharacterController attacker, CharacterController attackee)
     {
+		var otherReachable = reachable ();
         if (distance - 1 < attacker.character.range)
         {
             attacker.StartAttack();
             attacker.FinalizeAttack(attackee);
         }
-        else
+
+        else if (otherReachable != null) {
+			attacker.StartAttack();
+			attacker.FinalizeAttack(otherReachable.GetComponent<CharacterController>());
+		}
+		else
             attacker.ForfeitAttack();
     }
+
+	private GameObject reachable() {
+		var enemies = this.GetComponent<CharacterController> ().enemies;
+
+		for (int i = 0; i < enemies.Length; i++) {
+			var dist = Vector3.Distance(this.transform.position,enemies[i].transform.position);
+			if ( dist <= this.GetComponent<CharacterController>().GetStat(Character.Stats.RANGE))
+                return enemies[i];
+            }
+		return null;
+	}
 }
